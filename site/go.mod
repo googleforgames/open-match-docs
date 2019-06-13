@@ -1,4 +1,4 @@
-module open-match.dev/open-match/site
+module open-match.dev/open-match-docs/site
 
 // Copyright 2019 Google LLC
 //
