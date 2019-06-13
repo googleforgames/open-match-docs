@@ -6,10 +6,7 @@
 
 [![Follow on Twitter](https://img.shields.io/twitter/follow/Open_Match.svg?style=social&logo=twitter)](https://twitter.com/intent/follow?screen_name=Open_Match)
 
-Open Match website.
-
-Open Match replaces the complex plumbing parts of matchmaking and allows you to
-focus on the details of making a good match based on your game.
+This is the source code for the Open Match website, http://open-match.dev.
 
 ## Contributing
 
