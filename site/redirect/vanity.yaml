@@ -19,3 +19,7 @@ paths:
     repo: https://github.com/googleforgames/open-match.git
     display: "https://github.com/googleforgames/open-match https://github.com/googleforgames/open-match/tree/master{/dir} https://github.com/googleforgames/open-match/blob/master{/dir}/{file}#L{line}"
     vcs: git
+  /open-match-docs:
+    repo: https://github.com/googleforgames/open-match-docs.git
+    display: "https://github.com/googleforgames/open-match-docs https://github.com/googleforgames/open-match-docs/tree/master{/dir} https://github.com/googleforgames/open-match-docs/blob/master{/dir}/{file}#L{line}"
+    vcs: git
