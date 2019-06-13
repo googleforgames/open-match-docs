@@ -27,8 +27,8 @@ pygmentsUseClassic = false
 # See https://help.farbox.com/pygments.html
 pygmentsStyle = "tango"
 
-# First one is picked as the Twitter card image if not set on page.
-#images = ["images/project-illustration.png"]
+ # First one is picked as the Twitter card image if not set on page.
+ #images = ["images/project-illustration.png"]
 
 # Configure how URLs look like per section.
 [permalinks]
@@ -72,8 +72,8 @@ github_repo = "https://github.com/googleforgames/open-match"
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "008748710159674449076:sqoelpnrdoe"
 
-release_branch = "master"
-release_version = "0.0.0-dev"
+release_branch = "release-0.5.1"
+release_version = "0.5.1"
 
 # User interface configuration
 [params.ui]
