@@ -1,18 +1,18 @@
 ---
 title: "Install Open Match in Kubernetes"
 linkTitle: "Installation"
-weight: 1
+weight: 2
 description: >
   Follow this guide to install Open Match in your Kubernetes cluster.
 ---
 
 In this quickstart, we'll create a Kubernetes cluster, install Open Match, and create matches with the example tools.
 
-# Setup Kubernetes
+## Setup Kubernetes
 
 This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into skip this section.
 
-* [Set up a Google Cloud Kubernetes Cluster]({{< relref "./setup-gke.md" >}}) (*this may involve extra charges unless you are on free tier*)
+* [Set up a Google Cloud Kubernetes Cluster]({{< relref "./setup_gke.md" >}}) (*this may involve extra charges unless you are on free tier*)
 * [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
 
 ## Install Open Match Servers
@@ -34,7 +34,7 @@ kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-ad
 kubectl create namespace open-match
 
 # Install the core Open Match and monitoring services.
-kubectl apply -f https://github.com/googleforgames/open-match/releases/download/v0.5.0/install.yaml --namespace open-match
+kubectl apply -f https://open-match.dev/install/v{{ .Site.Params.release_version }}/yaml/install.yaml --namespace open-match
 ```
 
 ### Install Example Components
@@ -43,7 +43,7 @@ Open Match framework requires the user to author a custom match function and an 
 
 ```bash
 # Install the example MMF and Evaluator.
-kubectl apply -f https://github.com/googleforgames/open-match/releases/download/v0.5.0/install-example.yaml --namespace open-match
+kubectl apply -f https://open-match.dev/install/v{{ .Site.Params.release_version }}/yaml/install-demo.yaml --namespace open-match
 ```
 
 This command also deploys a component that continuously generates players with different properties and adds them to Open Match state storage. This is because a populated player pool is required to generate matches.

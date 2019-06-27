@@ -1,7 +1,7 @@
 ---
-title: "Contributing"
-linkTitle: "Contributing"
-weight: 9
+title: "Contribute"
+linkTitle: "Contribute"
+weight: 1000
 description: >
   How to contribute to Open Match
 ---

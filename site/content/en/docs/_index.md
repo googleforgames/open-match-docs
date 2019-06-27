@@ -1,15 +1,12 @@
-
 ---
-title: "Open Match"
+title: "Open Match Documentation"
 linkTitle: "Documentation"
 weight: 20
 menu:
   main:
     weight: 20
 description: >
-  Open Match is an open source game *matchmaking framework* designed to allow game creators to
-  build matchmakers of any size easily and with as much possibility for sharing and code re-use
-  as possible. It’s designed to be flexible, extensible, and scalable.
+  Documentation and usage guides on how to develop and host matchmakers on top of Open Match.
 ---
 
 These pages show you how to get up and running as quickly as possible in Open Match.
@@ -17,4 +14,10 @@ These pages show you how to get up and running as quickly as possible in Open Ma
 If you are new to Open Match, start with [Installation]({{< relref "./Installation/_index.md" >}}),
 to get Open Match up and running.
 
+The [Getting Started]({{< relref "./Getting Started/_index.md" >}}) section will have you 
+setup the [demo matchmaker]({{< relref "./Getting Started/first_match.md" >}}).
+
 {{< pagelist >}}
+
+<br/>
+Release version: {{< release-version >}}
