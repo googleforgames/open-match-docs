@@ -78,8 +78,10 @@ GAE_SITE_VERSION = om$(YEAR_MONTH)
 # If the version is 0.0* then the service name is "development" as in development.open-match.dev.
 ifeq ($(MAJOR_MINOR_VERSION),0.0)
 	GAE_SERVICE_NAME = development
+	OPEN_MATCH_REMOTE_BRANCH = master
 else
 	GAE_SERVICE_NAME = $(shell echo $(MAJOR_MINOR_VERSION) | tr . -)
+	OPEN_MATCH_REMOTE_BRANCH = release-$(MAJOR_MINOR_VERSION)
 endif
 
 export PATH := $(REPOSITORY_ROOT)/node_modules/.bin/:$(TOOLCHAIN_BIN):$(TOOLCHAIN_DIR)/nodejs/bin:$(PATH)
@@ -221,8 +223,9 @@ site/static/swaggerui/:
 	(cd $(TOOLCHAIN_DIR)/swaggerui-temp/; unzip -q -o swaggerui.zip)
 	cp -rf $(TOOLCHAIN_DIR)/swaggerui-temp/swagger-ui-$(SWAGGERUI_VERSION)/dist/ \
 		$(SITE_DIR)/static/swaggerui
-	# Update the URL in the main page to point to a known good endpoint.
-	$(SED_REPLACE) 's/url:.*/url: \"https:\/\/open-match.dev\/api\/v$(BASE_VERSION)\/frontend.swagger.json\",/g' $(SITE_DIR)/static/swaggerui/index.html
+	# Update the Swagger doc URLs to point to the same version as 
+	curl -L -o $(SITE_DIR)/static/config.json https://raw.githubusercontent.com/googleforgames/open-match/$(OPEN_MATCH_REMOTE_BRANCH)/cmd/swaggerui/config.json
+	$(SED_REPLACE) 's|url:.*|configUrl: "/config.json",|g' $(SITE_DIR)/static/swaggerui/index.html
 	rm -rf $(TOOLCHAIN_DIR)/swaggerui-temp
 
 md-test: docker
