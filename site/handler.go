@@ -114,6 +114,10 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		h.serveSwaggerAPI(w, r, path)
 		return
 	}
+	if pc == nil && strings.Contains(current, "/v1") {
+		h.serveFakeAPI(w, current)
+		return
+	}
 	if pc == nil {
 		http.NotFound(w, r)
 		return
@@ -160,6 +164,11 @@ func (h *handler) serveSwaggerAPI(w http.ResponseWriter, r *http.Request, path s
 	root := "https://storage.googleapis.com/open-match-chart/api"
 	h.withCors(w)
 	http.Redirect(w, r, root+path, http.StatusTemporaryRedirect)
+}
+
+func (h *handler) serveFakeAPI(w http.ResponseWriter, path string) {
+	message := fmt.Sprintf("%s is not available, see https://open-match.dev/site/docs/installation/ to learn how to deploy Open Match to your cluster.", path)
+	http.Error(w, message, http.StatusTeapot)
 }
 
 func (h *handler) Host(r *http.Request) string {
