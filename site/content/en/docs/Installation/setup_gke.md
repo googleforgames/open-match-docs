@@ -1,11 +1,10 @@
 ---
-title: "Setup Google Kubernetes Engine"
+title: "Create a GKE Cluster"
 linkTitle: "Setup GKE"
 weight: 1
 description: >
-  Follow these steps to create a Google Kubernetes Engine (GKE) cluster in Google Cloud Platform (GCP).
+  Steps to create a Google Kubernetes Engine (GKE) cluster in Google Cloud Platform (GCP).
 ---
-# Create a GKE Cluster
 
 Below are the steps to create a GKE cluster in Google Cloud Platform.
 
@@ -14,7 +13,7 @@ Below are the steps to create a GKE cluster in Google Cloud Platform.
 * When you create a project you'll need to set a Project ID, if you forget it you can see it here, https://console.cloud.google.com/iam-admin/settings/project.
 * Install [Google Cloud SDK](https://cloud.google.com/sdk/) which is the command line tool to work against your project.
 
-Here are the next steps using the gcloud tool.  
+Here are the next steps using the gcloud tool.
 
 ```bash
 # Login to your Google Account for GCP

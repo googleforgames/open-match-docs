@@ -1,7 +1,7 @@
 ---
 title: "Reference"
 linkTitle: "Reference"
-weight: 10
+weight: 4
 description: >
   Reference documentation for Open Match
 ---
