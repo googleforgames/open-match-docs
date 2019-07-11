@@ -1,10 +1,12 @@
 ---
-title: "Quickstart: Create Your First Match"
+title: "Create Your First Match"
 linkTitle: "First Match"
-weight: 20
+weight: 2
 description: >
   This guide covers how you can deploy the Demo matchmaker and create your first match.
 ---
+
+<TODO: This section is still work in progress>
 
 ## Objectives
 

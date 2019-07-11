@@ -1,7 +1,7 @@
 ---
 title: "Glossary"
 linkTitle: "Glossary"
-weight: 2
+weight: 3
 description: >
   Open Match uses a lot of Cloud native tools. Here's what they mean.
 ---

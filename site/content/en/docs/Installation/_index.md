@@ -1,67 +1,44 @@
 ---
-title: "Install Open Match in Kubernetes"
+title: "Installation"
 linkTitle: "Installation"
-weight: 2
+weight: 3
 description: >
-  Follow this guide to install Open Match in your Kubernetes cluster.
+  Follow this guide to setup Open Match in your Kubernetes cluster.
 ---
 
 In this quickstart, we'll create a Kubernetes cluster, install Open Match, and create matches with the example tools.
 
-## Setup Kubernetes
+## Setup Kubernetes Cluster
 
-This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into skip this section.
+This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section.
 
 * [Set up a Google Cloud Kubernetes Cluster]({{< relref "./setup_gke.md" >}}) (*this may involve extra charges unless you are on free tier*)
 * [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
 
-## Install Open Match Servers
+## Install Core Open Match
 
-The simplest way to install Open Match is to use the install.yaml files for the latest release.
-This installs Open Match with the default configuration.
+Once the cluster is set up, the next step is to install core Open Match services in the kubernetes cluster. To do this, please follow the instructions in the
+[Install Open Match Core]({{< relref "./install_om.md" >}}) guide.
 
-```bash
-# Create a cluster role binding (if using gcloud on Linux or OSX)
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user `gcloud config get-value account`
+### Install Custom Components
 
-# Create a cluster role binding (if using gcloud on Windows)
-for /F %i in ('gcloud config get-value account') do kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user %i
-
-# Create a cluster role binding (if using minikube)
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:default
-
-# Create a namespace to place all the Open Match components in.
-kubectl create namespace open-match
-
-# Install the core Open Match and monitoring services.
-kubectl apply -f https://open-match.dev/install/v{{ .Site.Params.release_version }}/yaml/install.yaml --namespace open-match
-```
-
-### Install Example Components
-
-Open Match framework requires the user to author a custom match function and an evaluator that are invoked to create matches. For demo purposes, we will use an example MMF and Evaluator. The following command deploys these in the kubernetes cluster:
-
-```bash
-# Install the example MMF and Evaluator.
-kubectl apply -f https://open-match.dev/install/v{{ .Site.Params.release_version }}/yaml/install-demo.yaml --namespace open-match
-```
-
-This command also deploys a component that continuously generates players with different properties and adds them to Open Match state storage. This is because a populated player pool is required to generate matches.
+Open Match requires the game developer to provide a Match Function and an Evaluator service.
+[Install Example Components]({{< relref "./install_components.md" >}}) guide provides details for configuring these components and steps to set up an example Match Function and Evaluator in the kubernetes cluster.
 
 ### Generate Matches
 
-In a real setup, a game backend (Director / DGS etc.) will request Open Match for matches. For demo purposes, this is simulated by a backend client that requests Open Match to continuously list matches till it runs out of players.
+After setting up Open Match, the Match Function and Evaluator, Open Match is now ready to accept Tickets and requests to generate Matches. Note that Open Match should be configured with a list of indices that will map to the Ticket properties that Open Match will index Tickets on. Here are the high level instructions to generate matches:
 
-```bash
-# Install the example MMF and Evaluator.
-kubectl run om-backendclient --rm --restart=Never --image-pull-policy=Always -i --tty --image=gcr.io/open-match-public-images/openmatch-backendclient:0.5.0 --namespace=open-match
-```
+* Implement a Frontend Client that will interact with Open Match Frontend to create new Tickets, wait for Ticket Assignemnts and Delete Tickets.
+* Implement a Backend Client that will request Open Match for Matches, passing in different Match Profiles to describe the desired Matches.
 
-If successful, the backend client should successfully generate matches, displaying players populated in Rosters.
+The installation of sample components in the previous step also sets up a demo example that preforms the tasks of a Frontend, Backend client triggering generation of sample Tickets, requesting for Matches and setting (fake) assignments on these Matches.
+
+You can modify the example MMF, Evaluator and Demo client application to your game specifications to set up a prototype matchmaker for your service.
 
 ### Delete Open Match
 
-To delete Open Match from this cluster, simply run:
+To delete Open Match and the corresponding sample components from this cluster, simply run:
 
 ```bash
 kubectl delete namespace open-match
