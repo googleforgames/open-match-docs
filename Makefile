@@ -57,6 +57,7 @@ OM_SITE_GCP_PROJECT_ID = open-match-site
 OM_SITE_GCP_PROJECT_FLAG = --project=$(OM_SITE_GCP_PROJECT_ID)
 EXE_EXTENSION =
 GO111MODULE = on
+SITE_HOST = localhost
 SITE_PORT = 8080
 RENDERED_SITE_DIR_REL = build/site
 RENDERED_SITE_DIR = $(REPOSITORY_ROOT)/build/site
@@ -270,7 +271,7 @@ deploy-redirect-site: gcloud
 	cd $(SITE_DIR)/redirect/ && gcloud $(OM_SITE_GCP_PROJECT_FLAG) app deploy app.yaml --promote --quiet
 
 run-site: $(HUGO_REL) site/static/swaggerui/
-	cd $(SITE_DIR)/ && $(HUGO) server --debug --watch --enableGitInfo . --baseURL=http://localhost:$(SITE_PORT)/ --bind 0.0.0.0 --port $(SITE_PORT) --disableFastRender
+	cd $(SITE_DIR)/ && $(HUGO) server --debug --watch --enableGitInfo . --baseURL=http://$(SITE_HOST):$(SITE_PORT)/ --bind 0.0.0.0 --port $(SITE_PORT) --disableFastRender
 
 # For presubmit we want to update the protobuf generated files and verify that tests are good.
 presubmit: clean update-deps lint $(RENDERED_SITE_DIR_REL)/ site-test md-test
