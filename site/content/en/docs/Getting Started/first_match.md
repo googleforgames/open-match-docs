@@ -11,7 +11,8 @@ description: >
 A rough description of some important concepts.  Concrete examples are
 included in linked code samples in demo components.
 
-- **Ticket**: A ticket is a player (or group of players) requesting a match.
+- **Ticket**: A ticket represents a player (or group of players) requesting a
+match.
 - **Assignment**:  Info passed back from Open Match to a ticket creator.
 Typically contains connection information to a game server.
 - **Match**: A collection of tickets.
