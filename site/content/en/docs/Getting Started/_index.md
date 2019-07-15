@@ -1,7 +1,7 @@
 ---
 title: "Getting Started Guide"
 linkTitle: "Getting Started"
-weight: 2
+weight: 3
 description: >
   Getting up and running with Open Match
 ---

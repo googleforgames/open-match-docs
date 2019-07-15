@@ -1,7 +1,7 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 3
+weight: 2
 description: >
   Follow this guide to setup Open Match in your Kubernetes cluster.
 ---
@@ -20,21 +20,14 @@ This guide is for users that do not have a Kubernetes cluster. If you already ha
 Once the cluster is set up, the next step is to install core Open Match services in the kubernetes cluster. To do this, please follow the instructions in the
 [Install Open Match Core]({{< relref "./install_om.md" >}}) guide.
 
-### Install Custom Components
+## Install Components and Configure Open Match
 
-Open Match requires the game developer to provide a Match Function and an Evaluator service.
-[Install Example Components]({{< relref "./install_components.md" >}}) guide provides details for configuring these components and steps to set up an example Match Function and Evaluator in the kubernetes cluster.
+In order to run Open Match, it must be configured by:
 
-### Generate Matches
+- Installing a match making function and evaluator.
+- Updating the configmap with the correct indexes.
 
-After setting up Open Match, the Match Function and Evaluator, Open Match is now ready to accept Tickets and requests to generate Matches. Note that Open Match should be configured with a list of indices that will map to the Ticket properties that Open Match will index Tickets on. Here are the high level instructions to generate matches:
-
-* Implement a Frontend Client that will interact with Open Match Frontend to create new Tickets, wait for Ticket Assignemnts and Delete Tickets.
-* Implement a Backend Client that will request Open Match for Matches, passing in different Match Profiles to describe the desired Matches.
-
-The installation of sample components in the previous step also sets up a demo example that preforms the tasks of a Frontend, Backend client triggering generation of sample Tickets, requesting for Matches and setting (fake) assignments on these Matches.
-
-You can modify the example MMF, Evaluator and Demo client application to your game specifications to set up a prototype matchmaker for your service.
+[Getting Started]({{< ref "/docs/Getting Started" >}}) contains an example which covers this.
 
 ### Delete Open Match
 
