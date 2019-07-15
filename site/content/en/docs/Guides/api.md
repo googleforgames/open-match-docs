@@ -1,6 +1,6 @@
 ---
-title: "API Guide"
-linkTitle: "API Guide"
+title: "API"
+linkTitle: "API"
 weight: 1
 description: >
   This guide covers how you can interact with the Open Match API.
