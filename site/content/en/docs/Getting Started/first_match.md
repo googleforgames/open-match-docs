@@ -25,7 +25,7 @@ matches, and then gives assignments to tickets in the matches found.
 
 Here is a sequence diagram of Open Match matching two players.
 
-![Demo Match Sequence Diagram](/images/demo-match-sequence.png)
+![Demo Match Sequence Diagram](../../../images/demo-match-sequence.png)
 
 # Install Demo
 
