@@ -26,10 +26,8 @@ The Swagger UI is accessible from your cluster via port 51500. Kubernetes's
 virtual network is by default private so you'll need to add a proxy to communicate with it.
 
 ```bash
-# Get the name of a pod running Swagger UI.
-SWAGGERUI_POD=`kubectl get pod --namespace open-match --selector="app=open-match,component=swaggerui" --output jsonpath='{.items[0].metadata.name}'`
 # Open the port to the pod so that it can be accessed locally.
-kubectl port-forward --namespace open-match $SWAGGERUI_POD 51500:51500
+kubectl port-forward --namespace open-match service/om-swaggerui 51500:51500
 ```
 
 From there you can access the proxy from http://localhost:51500.
@@ -39,7 +37,7 @@ From there you can access the proxy from http://localhost:51500.
 Swagger UI is a generic tool for viewing APIs and interacting with them.
 Open Match has many APIs but the default one is the `Frontend`.
 
-![Swagger UI for Open Match](../../../images/swaggerui.png)
+![Swagger UI for Open Match](../../../images/guides/api-swaggerui.png)
 
 By clicking on a function you can see the schema of the API. To call an API click
 `Try it out` and then fill in body and then select `Execute`. You'll then see the
