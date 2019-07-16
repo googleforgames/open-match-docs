@@ -26,5 +26,5 @@ kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-ad
 kubectl create namespace open-match
 
 # Install the core Open Match services and monitoring services.
-kubectl apply -f https://open-match.dev/install/v{{ .Site.Params.release_version }}/yaml/install.yaml --namespace open-match
+kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml --namespace open-match
 ```

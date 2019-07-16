@@ -1,7 +1,7 @@
 ---
 title: "Understand Open Match"
 linkTitle: "Core Concepts"
-weight: 1
+weight: 10
 description: Overview of Open Match core concepts.
 ---
 
