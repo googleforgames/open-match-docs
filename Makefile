@@ -24,7 +24,7 @@
 # If you want information on how to edit this file checkout,
 # http://makefiletutorial.com/
 
-BASE_VERSION = 0.0.0-dev
+BASE_VERSION = 0.6.0-rc.1
 SHORT_SHA = $(shell git rev-parse --short=7 HEAD | tr -d [:punct:])
 VERSION_SUFFIX = $(SHORT_SHA)
 BRANCH_NAME = $(shell git rev-parse --abbrev-ref HEAD | tr -d [:punct:])
@@ -225,7 +225,7 @@ site/static/swaggerui/:
 	cp -rf $(TOOLCHAIN_DIR)/swaggerui-temp/swagger-ui-$(SWAGGERUI_VERSION)/dist/ \
 		$(SITE_DIR)/static/swaggerui
 	# Update the Swagger doc URLs to point to the same version as 
-	curl -L -o $(SITE_DIR)/static/swaggerui/config.json https://raw.githubusercontent.com/googleforgames/open-match/$(OPEN_MATCH_REMOTE_BRANCH)/cmd/swaggerui/config.json
+	curl -L -o $(SITE_DIR)/static/swaggerui/config.json https://raw.githubusercontent.com/googleforgames/open-match/$(OPEN_MATCH_REMOTE_BRANCH)/third_party/swaggerui/config.json
 	$(SED_REPLACE) 's|url:.*|configUrl: "config.json",|g' $(SITE_DIR)/static/swaggerui/index.html
 	rm -rf $(TOOLCHAIN_DIR)/swaggerui-temp
 
