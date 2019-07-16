@@ -225,7 +225,7 @@ site/static/swaggerui/:
 	cp -rf $(TOOLCHAIN_DIR)/swaggerui-temp/swagger-ui-$(SWAGGERUI_VERSION)/dist/ \
 		$(SITE_DIR)/static/swaggerui
 	# Update the Swagger doc URLs to point to the same version as 
-	curl -L -o $(SITE_DIR)/static/swaggerui/config.json https://raw.githubusercontent.com/googleforgames/open-match/$(OPEN_MATCH_REMOTE_BRANCH)/cmd/swaggerui/config.json
+	curl -L -o $(SITE_DIR)/static/swaggerui/config.json https://raw.githubusercontent.com/googleforgames/open-match/$(OPEN_MATCH_REMOTE_BRANCH)/third_party/swaggerui/config.json
 	$(SED_REPLACE) 's|url:.*|configUrl: "config.json",|g' $(SITE_DIR)/static/swaggerui/index.html
 	rm -rf $(TOOLCHAIN_DIR)/swaggerui-temp
 
