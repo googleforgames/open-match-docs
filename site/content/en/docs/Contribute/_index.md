@@ -20,6 +20,12 @@ There's many ways to get in touch with the Open Match community.
 
 Participation in this project comes under the Contributor Covenant Code of Conduct
 
-## Development and Contribution
+## Contributing to Open Match
 
-Please read the [CONTRIBUTING.md](https://github.com/googleforgames/open-match/blob/master/CONTRIBUTING.md) guide for directions on submitting Pull Requests to Open Match.
+Open Match is in active development and we would love your contribution! Please
+read the [contributing guide](https://github.com/googleforgames/open-match/blob/master/CONTRIBUTING.md) for guidelines on contributing to
+Open Match.
+
+The [Open Match Development guide](https://github.com/googleforgames/open-match/blob/master/docs/development.md) has detailed instructions
+on getting the source code, making changes, testing and submitting a pull request
+to Open Match.
