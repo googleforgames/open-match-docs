@@ -1,5 +1,5 @@
 {{ if .Path }}
-{{ $gh_repo := ($.Param "github_repo") }}
+{{ $gh_repo := ($.Param "github_docs_repo") }}
 {{ if $gh_repo }}
 <div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
 {{ $editURL := printf "%s/edit/master/site/content/%s/%s" $gh_repo ($.Site.Language.Lang) .Path }}
