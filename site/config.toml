@@ -74,7 +74,7 @@ github_docs_repo = "https://github.com/googleforgames/open-match-docs"
 gcs_engine_id = "008748710159674449076:sqoelpnrdoe"
 
 release_branch = "master"
-release_version = "0.6.0-rc.1"
+release_version = "0.6.0"
 
 # User interface configuration
 [params.ui]
