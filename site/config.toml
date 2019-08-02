@@ -73,7 +73,7 @@ github_docs_repo = "https://github.com/googleforgames/open-match-docs"
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 gcs_engine_id = "008748710159674449076:sqoelpnrdoe"
 
-release_branch = "master"
+release_branch = "release-0.6"
 release_version = "0.6.0"
 
 # User interface configuration
