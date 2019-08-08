@@ -27,10 +27,10 @@ Here is a sequence diagram of Open Match matching two players.
 
 ![Demo Match Sequence Diagram](../../../images/demo-match-sequence.png)
 
-# Install Demo
+# Install Demo in a Kubernetes Cluster
 
 This demo has the following kubernetes deployments (with services and some other
-housekeeping):
+housekeeping). Note that the demo needs to be installed with the other Open Match components under the same cluster with the same namespace:
 
 - Matchmaking function.
 - Evaluator, a piece of Open Match which can be customized, but isn't in this
