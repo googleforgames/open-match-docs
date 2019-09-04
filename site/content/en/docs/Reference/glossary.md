@@ -24,8 +24,8 @@ of distroless for the popular languages.
 
 [Docker](https://docs.docker.com/engine/docker-overview/) is what generally mean when they say
 "containers". It allows you to run Docker Images on a host operating system. Containers provide
-a thin layer of isolation between the host and the application that makes it think it's running
-in it's own environment.
+a thin layer of isolation between the host and the application that makes it think it is running
+in its own environment.
 
 **Kubernetes**
 
@@ -41,7 +41,7 @@ communicate outside the network. It's possible to open up ports through
 Lastly, it provides configuration management including secrets
 (like passwords and auth tokens) and auto-healing (service health monitoring and restart).
 
-Open Match uses Kubernetes to schedule and run it's services. It also uses secrets to
+Open Match uses Kubernetes to schedule and run its services. It also uses secrets to
 hold TLS certificates and Redis passwords.
 
 **Helm**
@@ -51,7 +51,7 @@ Kubernetes deployments as templates and parameters. Helm deployments are called 
 For example, you can create a Open Match deployment that has 50 frontend servers via
 `--set openmatch.frontend.replicas=50`.
 
-Open Match uses Helm to simplify it's Kubernetes deployment. By default, the Helm chart
+Open Match uses Helm to simplify its Kubernetes deployment. By default, the Helm chart
 deploys Redis, Open Match, Prometheus, and Grafana.
 
 _Helm is not required for Open Match._
