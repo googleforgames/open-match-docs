@@ -12,7 +12,7 @@ download the schema and [generate clients](https://swagger.io/tools/swagger-code
 in many different languages.
 
 ## Open Match default host names and endpoints
-The following defines the in-cluster hostnames and endpoints of Open Match's external services. The corresponding Helm configurations used to generate these configs could be found at [here](https://github.com/googleforgames/open-match/blob/master/install/helm/open-match/values.yaml)
+The following defines the in-cluster hostnames and endpoints of Open Match's external services. The corresponding Helm configurations used to generate these configs could be found at [here](https://github.com/googleforgames/open-match/blob/master/install/helm/open-match/values.yaml).
 ```yaml
 swaggerui:
   hostName: om-swaggerui
@@ -72,7 +72,7 @@ fmt.Println("Open Match assigned id %s to the ticket", resp.GetTicket().GetId())
 
 ## Interacting with Open Match via the HTTP endpoint
 Open Match provides REST API for all of its external components using the [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) plugin.
-Below is a vanilla example in Go of interacting with Open Match via its HTTP endpoint under the same Kubernetes namespace.
+Below is a vanilla in-cluster Go program to interact with Open Match via its HTTP endpoint.
 ```go
 import (
   "fmt"
