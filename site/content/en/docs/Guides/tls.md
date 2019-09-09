@@ -161,7 +161,7 @@ spec:
 
 * There may only be 1 trusted CA installed in an Open Match server.
   Each server may have it's own.
-* The `om-swaggerui` and `om-demo` services do not support serving TLS but
+* The `om-swaggerui` service does not support serving TLS but
   will communicate with other Open Match servers using TLS encryption
   if configured.
 * Health checks and monitoring may not work. Prometheus supports TLS but
