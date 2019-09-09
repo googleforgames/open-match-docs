@@ -36,8 +36,12 @@ We recommend using [gRPC](https://grpc.io/) to talk to Open Match.
 The following is an example of an in-cluster program that creates a vanilla gRPC client to talk to Open Match Frontend and then calls `frontend.CreateTicket` method.
 ```go
 import (
+  "fmt"
+  "log"
+
   "google.golang.org/grpc"
   "open-match.dev/open-match/pkg/pb"
+  "open-match.dev/open-match/pkg/structs"
 )
 
 ...
@@ -72,10 +76,12 @@ Below is a vanilla example in Go of interacting with Open Match via its HTTP end
 ```go
 import (
   "fmt"
-  "open-match.dev/open-match/pkg/pb"
-  "github.com/golang/protobuf/jsonpb"
   "net/http"
   "io/ioutil"
+
+  "github.com/golang/protobuf/jsonpb"
+  "open-match.dev/open-match/pkg/pb"
+  "open-match.dev/open-match/pkg/structs"
 )
 
 ...
