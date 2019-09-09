@@ -72,7 +72,7 @@ fmt.Println("Open Match assigned id %s to the ticket", resp.GetTicket().GetId())
 
 ## Interacting with Open Match via the HTTP endpoint
 Open Match provides REST API for all of its external components using the [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) plugin.
-Below is a vanilla in-cluster Go program to interact with Open Match via its HTTP endpoint.
+Below is a vanilla in-cluster Go program to interact with Open Match via its HTTP endpoint. Please see the [Open Match's API definitions](https://github.com/googleforgames/open-match/tree/master/api) for the latest HTTP endpoints each service is using.
 ```go
 import (
   "fmt"
