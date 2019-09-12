@@ -9,7 +9,7 @@ description: >
 You can talk to Open Match either via an in-cluster or out-of-cluster service client.
 
 ## Access Open Match via an out-of-cluster service client
-To access Open Match via an out-of-cluster client, the first step is to expose a service onto an external IP address. We recommend exposing your service using Kubernetes Load Balancers in production for a public IP if needed. Open Match provides two ways to expose your service onto a public IP. The following provides an example to expose the `backend` service with code examples in Go.
+To access Open Match via an out-of-cluster client, the first step is to expose a service onto an external IP address. We recommend exposing your service using Kubernetes Load Balancers in production for a public IP if needed. Open Match provides two different ways to configure your service with Load Balancer. The following provide examples to expose the `backend` service with code examples in Go.
 
 ### 1.a Exposing the Service using Cloud Load Balancer - Modify the install.yaml files of the latest release
 ```bash
