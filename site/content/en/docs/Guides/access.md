@@ -1,6 +1,6 @@
 ---
-title: "Access Open Match under different senarios"
-linkTitle: "Access Open Match under different senarios"
+title: "Access Open Match under different cluster settings"
+linkTitle: "Access Open Match under different cluster settings"
 weight: 1
 description: >
   This guide covers how you can access Open Match using an in-cluster or out-of-cluster client.
@@ -11,7 +11,8 @@ You can talk to Open Match either via an in-cluster or out-of-cluster service cl
 ## Access Open Match via an out-of-cluster service client
 To access Open Match via an out-of-cluster client, the first step is to expose a service onto an external IP address. We recommend exposing your service using Kubernetes Load Balancers in production for a public IP if needed. Open Match provides two different ways to configure your service with Load Balancer. The following provide examples to expose the `backend` service with code examples in Go.
 
-### 1.a Exposing the Service using Cloud Load Balancer - Modify the install.yaml files of the latest release
+### 1 Exposing the Service using Cloud Load Balancer
+#### a. Modify the install.yaml files of the latest release
 ```bash
 # Download the latest install.yaml file
 wget http://open-match.dev/install/v0.6.0/yaml/install.yaml
@@ -31,7 +32,7 @@ Save the changes and deploy Open Match
 ```bash
 kubectl apply -f ./install.yaml
 ```
-### 1.b Exposing the Service using Cloud Load Balancer - Configure Load Balancer using the Helm chart
+#### b. Configure Load Balancer using the Helm chart
 
 > If you don't have `Helm` installed locally, or `Tiller` installed in your Kubernetes cluster, read the [Using Helm](https://docs.helm.sh/using_helm/) documentation to get started.
 
@@ -64,6 +65,7 @@ beClient := pb.NewBackendClient(conn)
 ```
 > Note that if you want to obtain the external IP programatically, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration)
 example from the Kubernetes client and use the code below for your reference.
+
 ```go
 import (
     ...
