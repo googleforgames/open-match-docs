@@ -40,7 +40,7 @@ Open Match.
 
 Run this command to install:
 ```bash
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install-demo.yaml --namespace open-match
+kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/02-open-match-demo.yaml --namespace open-match
 ```
 
 Now run this command to make the demo’s service available locally:
