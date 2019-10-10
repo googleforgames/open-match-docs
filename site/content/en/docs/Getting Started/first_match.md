@@ -70,10 +70,7 @@ player takes these steps:
 
 - Sleeps to emulate a player on the main menu of the game before searching for a
 match.
-- Creates a ticket and sends the request to open match.  In the properties of
-this ticket it sets the player name, and a dummy value for mode.demo (which
-matches an index in the open match configuration, and currently indexes are
-required when querying for tickets.)
+- Creates a ticket and sends the request to open match.
 - Waits to be given an assignment.
 - Sleeps to emulate playing a game connected to the given assignment.
 
@@ -84,9 +81,8 @@ This emulates the component that tells Open Match what kind of matches to find
 and gives found matches assignments. The steps it takes:
 
 - Send request to open match to find matches out of tickets with the given pool.
-Note that it requests tickets with mode.demo with a range that includes all of
-the tickets created by clients.go. A limitation of the current version is that
-these filters must be specified as indexes.
+As no filters are specified, all currently searching tickets are included in the
+pool.
 - For each match found, assigns the tickets in that match to a random IP
 address.  In a normal system, this would be asking a dedicated game server host
 (Such as Agones) for an IP of a game server instance.  
