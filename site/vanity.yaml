@@ -23,3 +23,7 @@ paths:
     repo: https://github.com/googleforgames/open-match-docs.git
     display: "https://github.com/googleforgames/open-match-docs https://github.com/googleforgames/open-match-docs/tree/master{/dir} https://github.com/googleforgames/open-match-docs/blob/master{/dir}/{file}#L{line}"
     vcs: git
+  /open-match-ecosystem:
+    repo: https://github.com/googleforgames/open-match-ecosystem.git
+    display: "https://github.com/googleforgames/open-match-ecosystem https://github.com/googleforgames/open-match-ecosystem/tree/master{/dir} https://github.com/googleforgames/open-match-ecosystem/blob/master{/dir}/{file}#L{line}"
+    vcs: git
