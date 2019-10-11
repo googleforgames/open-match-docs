@@ -15,7 +15,7 @@ To access Open Match via an out-of-cluster client, the first step is to expose a
 #### a. Modify the install.yaml files of the latest release
 ```bash
 # Download the latest install.yaml file
-wget http://open-match.dev/install/v0.6.0/yaml/install.yaml
+wget http://open-match.dev/install/v0.7.0/yaml/01-open-match-core.yaml
 ```
 Find and modify the `spec.type` fields of the Service that you want to expose to `LoadBalancer`.
 
@@ -102,7 +102,7 @@ beClient := pb.NewBackendClient(conn)
 To access Open Match with a service client deployed in other namespaces than Open Match
 ```go
 // Create a gRPC backend client
-// [OPEN-MATCH-NAMESPACE] is usually open-match if you install Open Match via the official install.yaml files.
+// [OPEN-MATCH-NAMESPACE] is usually open-match if you install Open Match via the official yaml files.
 conn, err := grpc.Dial("om-backend.[OPEN-MATCH-NAMESPACE]:50505", grpc.WithInsecure())
 ...
 beClient := pb.NewBackendClient(conn)

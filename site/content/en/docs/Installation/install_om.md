@@ -9,7 +9,7 @@ description: >
 Open Match comprises of a set of services that enable core functionality such as Ticket management, filtering, Match generation etc. It also includes a
 state storage that Open Match uses to persist state needed for its functioning.
 
-The simplest way to install Open Match is to use the install.yaml files for the latest release.
+The simplest way to install Open Match is to use the static yaml files for the latest release.
 This installs Open Match with the default configuration.
 
 ```bash
@@ -25,6 +25,6 @@ kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-ad
 # Create a namespace to place all the Open Match components in.
 kubectl create namespace open-match
 
-# Install the core Open Match services and monitoring services.
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml --namespace open-match
+# Install the core Open Match services.
+kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml --namespace open-match
 ```
