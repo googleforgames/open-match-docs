@@ -1,6 +1,6 @@
 ---
 title: "Understand Open Match"
-linkTitle: "Core Concepts"
+linkTitle: "Open Match Concepts"
 weight: 10
 description: Overview of Open Match core concepts.
 ---
@@ -69,3 +69,7 @@ Here are the external components that the described matchmaking flow assumes to 
 11. The Director requests the Game Backend for a Game Server allocation for this Match.
 12. The Director then sets an Assignment for all the Tickets in the Match to the Game Server that was returned.
 13. The Open Match Frontend returns the Assignment set on this Ticket to the GetAssignments call from the Game Frontend that was waiting for assignments.
+
+## Next Steps
+
+Add a link to the Tutorial to build a basic Matchmaker.

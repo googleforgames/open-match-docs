@@ -12,13 +12,68 @@ In this quickstart, we'll create a Kubernetes cluster, install Open Match, and c
 
 This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section.
 
-* [Set up a Google Cloud Kubernetes Cluster]({{< relref "./setup_gke.md" >}}) (*this may involve extra charges unless you are on free tier*)
-* [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
+### Setup a GKE Cluster
+
+(*this may involve extra charges unless you are on free tier*)
+
+Below are the steps to create a GKE cluster in Google Cloud Platform.
+
+* Create a GCP project via [Google Cloud Console](https://console.cloud.google.com/).
+* Billing must be enabled. If you're a new customer you can get some [free credits](https://cloud.google.com/free/).
+* When you create a project you'll need to set a Project ID, if you forget it you can see it here, https://console.cloud.google.com/iam-admin/settings/project.
+* Install [Google Cloud SDK](https://cloud.google.com/sdk/) which is the command line tool to work against your project.
+
+Here are the next steps using the gcloud tool.
+
+```bash
+# Login to your Google Account for GCP
+gcloud auth login
+gcloud config set project $YOUR_GCP_PROJECT_ID
+
+# Enable necessary GCP services
+gcloud services enable containerregistry.googleapis.com
+gcloud services enable container.googleapis.com
+
+# Enable optional GCP services for security hardening
+gcloud services enable containeranalysis.googleapis.com
+gcloud services enable binaryauthorization.googleapis.com
+
+# Test that everything is good, this command should work.
+gcloud compute zones list
+
+# Create a GKE Cluster in this project
+gcloud container clusters create --machine-type n1-standard-2 open-match-dev-cluster --zone us-west1-a --tags open-match
+```
+
+### Setup a Minikube Cluster
+
+[Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
 
 ## Install Core Open Match
 
-Once the cluster is set up, the next step is to install core Open Match services in the kubernetes cluster. To do this, please follow the instructions in the
-[Install Open Match Core]({{< relref "./install_om.md" >}}) guide.
+Open Match comprises of a set of services that enable core functionality such as Ticket management, filtering, Match generation etc. It also includes a
+state storage that Open Match uses to persist state needed for its functioning.
+
+The simplest way to install Open Match is to use the install.yaml files for the latest release.
+This installs Open Match with the default configuration.
+
+```bash
+# Create a cluster role binding (if using gcloud on Linux or OSX)
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user `gcloud config get-value account`
+
+# Create a cluster role binding (if using gcloud on Windows)
+for /F %i in ('gcloud config get-value account') do kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user %i
+
+# Create a cluster role binding (if using minikube)
+kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:default
+
+# Create a namespace to place all the Open Match components in.
+kubectl create namespace open-match
+
+# Install the core Open Match services and monitoring services.
+kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml --namespace open-match
+```
+
 
 ## Install Components and Configure Open Match
 

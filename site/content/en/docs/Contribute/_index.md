@@ -1,7 +1,7 @@
 ---
 title: "Contribute"
 linkTitle: "Contribute"
-weight: 6
+weight: 7
 description: >
   How to contribute to Open Match
 ---

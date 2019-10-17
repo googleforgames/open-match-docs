@@ -1,7 +1,7 @@
 ---
 title: "Access Open Match under different cluster settings"
 linkTitle: "Access Open Match under different cluster settings"
-weight: 1
+weight: 6
 description: >
   This guide covers how you can access Open Match using an in-cluster or out-of-cluster client.
 ---
