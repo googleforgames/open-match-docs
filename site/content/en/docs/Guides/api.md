@@ -44,30 +44,30 @@ import (
   "open-match.dev/open-match/pkg/structs"
 )
 
-...
-// Create a gRPC frontend client
-conn, err := grpc.Dial("om-frontend:50504"), grpc.WithInsecure())
-if err != nil {
-  log.Fatalf("grpc.Dial failed with %v", err)
-}
-defer conn.Close()
-feClient := pb.NewFrontendClient(conn)
+func main() {
+  // Create a gRPC frontend client
+  conn, err := grpc.Dial("om-frontend:50504"), grpc.WithInsecure())
+  if err != nil {
+    log.Fatalf("grpc.Dial failed with %v", err)
+  }
+  defer conn.Close()
+  feClient := pb.NewFrontendClient(conn)
 
-// Create an Open Match CreateTicketRequest with Open Match's public package 
-sent := &pb.CreateTicketRequest{
-  Ticket: &pb.Ticket{
-    Properties: structs.Struct{
-      "test-property": structs.Number(1),
-    }.S(),
-  },
-}
-resp, err := feClient.CreateTicket(sent)
-if err != nil {
-  log.Errorf("feClient.CreateTicket failed with %v", err)
-}
+  // Create an Open Match CreateTicketRequest with Open Match's public package 
+  sent := &pb.CreateTicketRequest{
+    Ticket: &pb.Ticket{
+      SearchFields: &pb.SearchFields{
+        Tags: []string{"beta-gameplay"},
+      },
+    },
+  }
+  resp, err := feClient.CreateTicket(sent)
+  if err != nil {
+    log.Errorf("feClient.CreateTicket failed with %v", err)
+  }
 
-fmt.Println("Open Match assigned id %s to the ticket", resp.GetTicket().GetId())
-...
+  fmt.Println("Open Match assigned id %s to the ticket", resp.GetTicket().GetId())
+}
 ```
 
 ## Interacting with Open Match via the HTTP endpoint
@@ -84,40 +84,40 @@ import (
   "open-match.dev/open-match/pkg/structs"
 )
 
-...
-var m jsonpb.Marshaler
-// The HTTP endpoint of frontend.CreateTicket API
-apiURL := fmt.Sprintf("http://om-frontend:%d/v1/frontend/tickets", 51504)
-// Create an Open Match CreateTicketRequest with Open Match's public package 
-sent := &pb.CreateTicketRequest{
-  Ticket: &pb.Ticket{
-    Properties: structs.Struct{
-      "test-property": structs.Number(1),
-    }.S(),
-  },
-}
-payload, err := m.MarshalToString(&sent)
-if err != nil {
-	log.Fatalf("m.MarshalToString(%#v) failed with %v; want success", payload, err)
-}
-// Send the Request to frontend.CreateTicket endpoint
-resp, err := http.Post(apiURL, "application/json", strings.NewReader(payload))
-if err != nil {
-  log.Fatalf("http.Post(%q) failed with %v, want success", apiURL, err)
-}
-defer resp.Close()
-buf, err := ioutil.ReadAll(resp.Body)
-if err != nil {
-  log.Errorf("ioutil.ReadAll(resp.Body) failed with %v; want success", err)
-}
-// Unmarshal the response to a Go struct
-var received *pb.CreateTicketResponse
-if err := jsonpb.UnmarshalString(string(buf), received); err != nil {
-  log.Errorf("jsonpb.UnmarshalString(%s, &msg) failed with %v; want success", buf, err)
-}
+func main() {
+  var m jsonpb.Marshaler
+  // The HTTP endpoint of frontend.CreateTicket API
+  apiURL := fmt.Sprintf("http://om-frontend:%d/v1/frontend/tickets", 51504)
+  // Create an Open Match CreateTicketRequest with Open Match's public package 
+  sent := &pb.CreateTicketRequest{
+    Ticket: &pb.Ticket{
+      SearchFields: &pb.SearchFields{
+        Tags: []string{"beta-gameplay"},
+      },
+    },
+  }
+  payload, err := m.MarshalToString(&sent)
+  if err != nil {
+    log.Fatalf("m.MarshalToString(%#v) failed with %v; want success", payload, err)
+  }
+  // Send the Request to frontend.CreateTicket endpoint
+  resp, err := http.Post(apiURL, "application/json", strings.NewReader(payload))
+  if err != nil {
+    log.Fatalf("http.Post(%q) failed with %v, want success", apiURL, err)
+  }
+  defer resp.Close()
+  buf, err := ioutil.ReadAll(resp.Body)
+  if err != nil {
+    log.Errorf("ioutil.ReadAll(resp.Body) failed with %v; want success", err)
+  }
+  // Unmarshal the response to a Go struct
+  var received *pb.CreateTicketResponse
+  if err := jsonpb.UnmarshalString(string(buf), received); err != nil {
+    log.Errorf("jsonpb.UnmarshalString(%s, &msg) failed with %v; want success", buf, err)
+  }
 
-fmt.Println("Open Match assigned id %s to the ticket", received.GetTicket.GetId())
-...
+  fmt.Println("Open Match assigned id %s to the ticket", received.GetTicket.GetId())
+}
 ```
 
 ## Interacting with Open Match via the Swagger UI
@@ -162,3 +162,6 @@ openmatch:
   swaggerui:
     install: false
 ```
+
+## Next Steps
+- Learn how to [interact with Open Match using gRPC and HTTP APIs]({{< relref "./access.md" >}}).
