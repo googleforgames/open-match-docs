@@ -15,7 +15,7 @@ To access Open Match via an out-of-cluster client, the first step is to expose a
 #### a. Modify the install.yaml files of the latest release
 ```bash
 # Download the latest install.yaml file
-wget http://open-match.dev/install/v0.7.0/yaml/01-open-match-core.yaml
+wget http://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml
 ```
 Find and modify the `spec.type` fields of the Service that you want to expose to `LoadBalancer`.
 
