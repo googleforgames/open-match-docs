@@ -116,7 +116,7 @@ func main() {
     log.Errorf("jsonpb.UnmarshalString(%s, &msg) failed with %v; want success", buf, err)
   }
 
-  fmt.Println("Open Match assigned id %s to the ticket", received.GetTicket.GetId())
+  fmt.Println("Open Match assigned id %s to the ticket", received.GetTicket().GetId())
 }
 ```
 
