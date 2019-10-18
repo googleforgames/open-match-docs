@@ -108,6 +108,3 @@ conn, err := grpc.Dial("om-backend.[OPEN-MATCH-NAMESPACE]:50505", grpc.WithInsec
 beClient := pb.NewBackendClient(conn)
 ...
 ```
-
-## Next Steps
-- Learn how to [interact with Open Match using gRPC and HTTP APIs]({{< relref "./api.md" >}}).
