@@ -6,11 +6,11 @@ description: >
   Follow this guide to setup Open Match in your Kubernetes cluster.
 ---
 
-In this quickstart, we'll create a Kubernetes cluster, install Open Match, and create matches with the example tools.
+In this quickstart, we'll create a Kubernetes cluster and install Open Match.
 
 ## Setup Kubernetes Cluster
 
-This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section.
+This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section and see [how to install Open Match into your cluster]({{< ref "#install-core-open-match" >}}).
 
 ### Setup a GKE Cluster
 
@@ -46,13 +46,14 @@ gcloud container clusters create --machine-type n1-standard-2 open-match-dev-clu
 ```
 
 ### Setup a Minikube Cluster
+Minikube is a tool that allows you to run Kubernetes locally. It deploy a single-node cluster inside a VM for local development purpose. Pleae see Kubernetes doc below for tutorials in detailed.
 
 [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
 
 ## Install Core Open Match
 
-Open Match comprises of a set of services that enable core functionality such as Ticket management, filtering, Match generation etc. It also includes a
-state storage that Open Match uses to persist state needed for its functioning.
+Open Match comprises of a set of services that enable core functionality such as Ticket Management and Filtering etc. It also includes a
+state storage to persist state needed for its functioning.
 
 The simplest way to install Open Match is to use the install.yaml files for the latest release.
 This installs Open Match with the default configuration.
@@ -67,27 +68,27 @@ for /F %i in ('gcloud config get-value account') do kubectl create clusterrolebi
 # Create a cluster role binding (if using minikube)
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:default
 
-# Create a namespace to place all the Open Match components in.
-kubectl create namespace open-match
-
 # Install the core Open Match services and monitoring services.
 kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml --namespace open-match
 ```
 
+You should be able to see the output below from your console. The `01-open-match-core.yaml` file contains:
 
-## Install Components and Configure Open Match
+  - A Redis deployment as Open Match's state storage system.
+  - ServiceAccounts, Roles and RoleBindings to define Open Match deployments' IAMs. 
+  - Several Services for Open Match endpoints. 
+  - HorizontalAutoScalars to auto-scale Open Match based on pods' average CPU utilization. 
 
-In order to run Open Match, it must be configured by:
-
-- Installing a match making function and evaluator.
-- Updating the configmap with the correct indexes.
-
-[Getting Started]({{< ref "/docs/Getting Started" >}}) contains an example which covers this.
-
-### Delete Open Match
+## Delete Open Match
 
 To delete Open Match and the corresponding sample components from this cluster, simply run:
 
 ```bash
 kubectl delete namespace open-match
 ```
+
+## What Next?
+
+Use Open Match as a match maker by installing a match making function and evaluator:
+
+ - Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.
