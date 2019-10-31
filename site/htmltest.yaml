@@ -18,3 +18,5 @@ OutputDir: /tmp/open-match-site/
 OutputLogFile: .htmltest.log
 IgnoreURLs:
   - http://localhost
+IgnoreDirs:
+  - site/docs/reference/api
