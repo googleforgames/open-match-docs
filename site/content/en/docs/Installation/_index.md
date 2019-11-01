@@ -68,22 +68,64 @@ for /F %i in ('gcloud config get-value account') do kubectl create clusterrolebi
 # Create a cluster role binding (if using minikube)
 kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:default
 
-# Install the core Open Match services and monitoring services.
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml --namespace open-match
+# Install the core Open Match services.
+kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml --namespace open-match
 ```
 
-You should be able to see the output below from your console. The `01-open-match-core.yaml` file contains:
+The `01-open-match-core.yaml` file contains:
 
   - A Redis deployment as Open Match's state storage system.
   - ServiceAccounts, Roles and RoleBindings to define Open Match deployments' IAMs. 
   - Several Services for Open Match endpoints. 
   - HorizontalAutoScalars to auto-scale Open Match based on pods' average CPU utilization. 
 
+## Install ConfigMap `om-configmap-override`
+If you wait a minute then do `kubectl get -n open-match pod`, you should be able to see something similar below:
+```
+yufanfei@yufanfei:~/go/src/open-match.dev/open-match$ kubectl get -n open-match pod
+NAME                                READY   STATUS              RESTARTS   AGE
+om-backend-76d8d76c96-fmhmn         0/1     ContainerCreating   0          3m53s
+om-frontend-57fc9f6b66-86hxj        0/1     ContainerCreating   0          3m53s
+om-mmlogic-799d8549d4-5qpgx         0/1     ContainerCreating   0          3m53s
+om-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
+om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
+```
+
+Open Match as a match making framework requires a configmap `om-configmap-override` that mounts a `matchmaker_config_override.yaml` file to components before all components will start. If you are proceeding to [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following a [Tutorial]({{< relref "../Tutorials/_index.md" >}}), it will contain the commands to apply the required configuration.
+
+For writing your own, a yaml which is useful as a starting point for further edits is available at [here](https://open-match.dev/install/v{{< param release_version >}}/yaml/06-open-match-override-configmap.yaml). Try running `kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/06-open-match-override-configmap.yaml --namespace open-match`, wait for a few seconds, and you should be able to see Open Match start up as expected.
+
+The configmap contains two important configurations to initialize Open Match:
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: om-configmap-override
+  namespace: open-match
+data:
+  matchmaker_config_override.yaml: |-
+    # Specifies the hostname and port of the evaluator that Open Match should talk to.
+    api:
+      evaluator:
+        hostname: "om-evaluator"
+        grpcport: "50508"
+        httpport: "51508"
+    # Specifies if we should turn on/off the synchronizer.
+    #   - If on, specifies the registrationInterval and proposalCollectionInterval in milliseconds.
+    synchronizer:
+      enabled: true
+      registrationIntervalMs: 3000ms
+      proposalCollectionIntervalMs: 2000ms
+```
+
+To configure Open Match outside of a tutorial, download this file, prepare your edits, and run `kubectl apply -f <filename_here>`.
+
 ## Delete Open Match
 
 To delete Open Match and the corresponding sample components from this cluster, simply run:
 
 ```bash
+kubectl delete psp,clusterrole,clusterrolebinding --selector=release=open-match
 kubectl delete namespace open-match
 ```
 
