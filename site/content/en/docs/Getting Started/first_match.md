@@ -1,7 +1,7 @@
 ---
 title: "Create Your First Match"
 linkTitle: "First Match"
-weight: 1
+weight: 2
 description: >
   This guide covers how you can deploy the Demo matchmaker and create your first match.
 ---
@@ -85,5 +85,5 @@ As no filters are specified, all currently searching tickets are included in the
 pool.
 - For each match found, assigns the tickets in that match to a random IP
 address.  In a normal system, this would be asking a dedicated game server host
-(Such as Agones) for an IP of a game server instance.  
+(Such as Agones) for an IP of a game server instance.
 - Sleeps for a bit before restarting.

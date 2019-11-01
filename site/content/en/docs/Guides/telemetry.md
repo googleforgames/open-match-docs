@@ -1,7 +1,7 @@
 ---
 title: "Telemetry"
 linkTitle: "Telemetry"
-weight: 2
+weight: 3
 description: >
   This guide covers how you can monitor your Open Match deployment.
 ---

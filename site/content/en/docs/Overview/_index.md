@@ -3,7 +3,7 @@ title: "Overview"
 linkTitle: "Overview"
 weight: 1
 description: >
-  Open Match is an open source *matchmaking framework* that simplifies building your own game matchmaker.
+  Open Match is an open source matchmaking framework that simplifies building your own game matchmaker.
 ---
 
 ## Disclaimer
@@ -11,13 +11,13 @@ description: >
 This software is currently [alpha](https://github.com/googleforgames/open-match/releases), and
 subject to change. Not to be used in production systems.
 
-## What is Open Match?
+## What is Open Match
 
-Open Match is an open source *game matchmaking framework* that simplifies building a scalable and extensible Matchmaker.
+Open Match is an open source game matchmaking framework that simplifies building a scalable and extensible Matchmaker.
 It is designed to give the game developer full control over how to make matches while removing the burden of dealing
 with the challenges of running a production service at scale.
 
-## Why Open Match?
+## Why Open Match
 
 Building your own Matchmaker is hard! Along with implementing the core logic to generate quality matches, it also involves solving
 challenging problems such as such as handling massive player population, effectively searching through them and concurrently
@@ -31,12 +31,11 @@ Matchmaker that can account for the unique requirements of the game.
 
 Participation in this project comes under the [Contributor Covenant Code of Conduct](https://github.com/googleforgames/open-match/blob/master/code-of-conduct.md)
 
-## What's Next?
+## What's Next
 
- * [Get Started]({{< relref "../Getting Started/_index.md" >}}) with Open Match by understanding core concepts and setting up a demo.
- * [Install Open Match]({{< relref "../Installation/_index.md" >}}) in your Kubernetes cluster and build a simple prototype Matchmaker for your game.
+Here are the recommended next steps to explore Open Match:
 
-## Kubernetes and Docker Explainers
-
-Knowledge of Kubernetes and Docker is **NOT immediately required** to use Open Match. We'll guide you through
-them when it's necessary. For more information about these tools see the [glossary]({{< relref "../Reference/glossary.md" >}}).
+* [Installation Guide]({{< relref "../Installation/_index.md" >}}): Set up your Kubernetes cluster and install Open Match in it.
+* [Quickstart Guide]({{< relref "../Getting Started/_index.md" >}}): Install a demo application to see E2E Matchmaking using Open Match.
+* [Matchmaking Guide]({{< relref "../Guides/Matchmaker/_index.md" >}}): Deep dive into using Open Match to build your own Matchmaker.
+* [Matchmaker Tutorial]({{< relref "../Tutorials/Matchmaker101/_index.md" >}}): Step by step tutorial to authoring your first Open Match based Matchmaker.

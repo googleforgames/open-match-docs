@@ -4,6 +4,8 @@ linkTitle: "Step1 - Game Frontend"
 weight: 1
 ---
 
+This section is work in progress. Please revisit later.
+
 ## Overview
 
 In an Online Game Service Architecture using Open Match based Matchmaking, the Players will connect to a Game Frontend which will typically perform the following tasks:
@@ -58,3 +60,73 @@ docker push $REGISTRY/mm101-tutorial-frontend
 ```
 
 Lets proceed to the next step to build the Director.
+
+## Overview
+
+## Open Match Interactions
+
+
+message CreateTicketRequest {
+  // Ticket object with the properties of the Ticket to be created.
+  Ticket ticket = 1;
+}
+
+message CreateTicketResponse {
+  // Ticket object for the created Ticket - with the ticket ID populated.
+  Ticket ticket = 1;
+}
+
+
+  // DeleteTicket removes the Ticket from state storage and from corresponding
+  // configured indices and lazily removes t`he ticket from state storage.
+  // Deleting a ticket immediately stops the ticket from being
+  // considered for future matchmaking requests, yet when the ticket itself will be deleted
+  // is undeterministic. Users may still be able to assign/get a ticket after calling DeleteTicket on it.
+  rpc DeleteTicket(DeleteTicketRequest) returns (DeleteTicketResponse) {
+    option (google.api.http) = {
+      delete: "/v1/frontend/tickets/{ticket_id}"
+    };
+  }
+
+message DeleteTicketRequest {
+  // Ticket ID of the Ticket to be deleted.
+  string ticket_id = 1;
+}
+
+message DeleteTicketResponse {}
+
+message GetTicketRequest {
+  // Ticket ID of the Ticket to fetch.
+  string ticket_id = 1;
+}
+
+message GetAssignmentsRequest {
+  // Ticket ID of the Ticket to get updates on.
+  string ticket_id = 1;
+}
+
+message GetAssignmentsResponse {
+  // The updated Ticket object.
+  Assignment assignment = 1;
+}
+
+// The Frontend service enables creating Tickets for matchmaking and fetching
+// the status of these Tickets.
+service Frontend {
+  // CreateTicket will create a new ticket, assign a Ticket ID to it and put the
+  // Ticket in state storage. It will then look through the 'properties' field
+  // for the attributes defined as indices the matchmakaking config. If the
+  // attributes exist and are valid integers, they will be indexed. Creating a
+  // ticket adds the Ticket to the pool of Tickets considered for matchmaking.
+  rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse) {
+    option (google.api.http) = {
+      post: "/v1/frontend/tickets"
+      body: "*"
+    };
+  }
+
+
+
+
+}
+

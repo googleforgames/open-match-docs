@@ -1,7 +1,7 @@
 ---
 title: "Load Balancing Open Match services"
 linkTitle: "Load Balancing"
-weight: 5
+weight: 6
 description: >
   This guide covers how to set up Load Balancing to access Open Match services.
 ---

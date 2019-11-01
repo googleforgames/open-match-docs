@@ -1,7 +1,7 @@
 ---
 title: "Interact with Open Match via its API"
 linkTitle: "Interact with Open Match via its API"
-weight: 1
+weight: 2
 description: >
   This guide covers how you can interact with the Open Match API.
 ---
