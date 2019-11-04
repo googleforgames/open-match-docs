@@ -40,7 +40,7 @@ REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 ### Get the Code
 
-Make a local copy of the [Open Match repository]("https://github.com/googleforgames/open-match"). Use <SRCROOT>/tutorials/matchmaker as your working copy for all the instructions in this tutorial.
+Make a local copy of the Open Match repository. Use <SRCROOT>/tutorials/matchmaker as your working copy for all the instructions in this tutorial.
 
 Once you have the pre-requsisites ready, please proceed with the below steps:
 

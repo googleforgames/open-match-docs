@@ -18,9 +18,9 @@ The tutorial provides a very basic Game Frontend scaffold (*[TUTORIALROOT]/front
 
 ## Make Changes
 
-The frontend uses a helper function *makeTicket* in ticket.go to generate a fake Ticket. Any property that is intended to be used for Matchmaking (for instance, game mode in this case) is set as a [SearchField]({{< relref "../../reference/api.md#searchfields" >}}) on the Ticket. SearchFields can be of different types (double, string, tag) and an appropriate one should be chosen based on the nature of the property and filtering requirements.
+The frontend uses a helper function *makeTicket* in ticket.go to generate a fake Ticket. Any property that is intended to be used for Matchmaking (for instance, game mode in this case) is set as a SearchField on the Ticket. SearchFields can be of different types (double, string, tag) and an appropriate one should be chosen based on the nature of the property and filtering requirements.
 
-For this tutorial, we can create a Ticket that has a game mode specified as a [Tag](({{< relref "../../reference/api.md#tags" >}})) SearchField. The below code snippet picks a random game mode and sets it as a Tag on a fake Ticket.
+For this tutorial, we can create a Ticket that has a game mode specified as a Tag SearchField. The below code snippet picks a random game mode and sets it as a Tag on a fake Ticket.
 
 ```
 func makeTicket() *pb.Ticket {
