@@ -1,7 +1,7 @@
 ---
 title: "Guides"
 linkTitle: "Guides"
-weight: 5
+weight: 4
 description: >
   Guides on using Open Match
 ---

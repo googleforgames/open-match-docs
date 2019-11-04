@@ -1,7 +1,7 @@
 ---
 title: "Tutorials"
 linkTitle: "Tutorials"
-weight: 4
+weight: 5
 description: >
   Open Match Tutorials
 ---
