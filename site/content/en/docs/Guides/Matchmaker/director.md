@@ -1,8 +1,10 @@
 ---
 title: "Step2 - Build your own Director"
 linkTitle: "Step2 - Director"
-weight: 2
+weight: 4
 ---
+
+This section is work in progress. Please revisit later.
 
 ## Overview
 
@@ -68,3 +70,53 @@ docker push $REGISTRY/mm101-tutorial-director
 ```
 
 Lets proceed to the next step to build the MatchFunction.
+
+## Overview
+
+## Open Match Interactions
+
+### Fetching Matches
+
+```
+rpc FetchMatches(FetchMatchesRequest) returns (stream FetchMatchesResponse) {
+  option (google.api.http) = {
+    post: "/v1/backend/matches:fetch"
+    body: "*"
+  };
+}
+
+message FetchMatchesRequest {
+  // Configuration of the MatchFunction to be executed for the given list of MatchProfiles
+  FunctionConfig config = 1;
+
+  // MatchProfiles for which this MatchFunction should be executed.
+  repeated MatchProfile profiles = 2;
+}
+
+message FetchMatchesResponse {
+  // Result Match for the requested MatchProfile.
+  // Note that OpenMatch will validate the proposals, a valid match should contain at least one ticket.
+  Match match = 1;
+}
+```
+
+### Assigning Tickets
+
+```
+  // AssignTickets sets the specified Assignment on the Tickets for the Ticket
+  // IDs passed.
+rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
+    option (google.api.http) = {
+      post: "/v1/backend/tickets:assign"
+      body: "*"
+    };
+message AssignTicketsRequest {
+  // List of Ticket IDs for which the Assignment is to be made.
+  repeated string ticket_ids = 1;
+
+  // Assignment to be associated with the Ticket IDs.
+  Assignment assignment = 2;
+}
+
+message AssignTicketsResponse {}
+```
