@@ -18,7 +18,7 @@ The tutorial provides a very basic Director scaffold *[TUTORIALROOT]/director* t
 
 ## Make Changes
 
-The Director uses a helper function *generateProfiles* in profile.go to generate [MatchProfiles](({{< relref "../../reference/api.md#matchprofile" >}})). A MatchProfiles describes a Match specifying a set of [Pools](({{< relref "../../reference/api.md#pool" >}})) for the match. A Pool comprises of a set of filtering criteria that can be applied to the all the current matchmaking Tickets to shortlist Tickets that meet all the criteria. The Profile gets passed to the MatchFunction which can query the Tickets for all the Pools in that profile and using those Tickets, generate Match proposals.
+The Director uses a helper function *generateProfiles* in profile.go to generate MatchProfiles. A MatchProfiles describes a Match specifying a set of Pools for the match. A Pool comprises of a set of filtering criteria that can be applied to the all the current matchmaking Tickets to shortlist Tickets that meet all the criteria. The Profile gets passed to the MatchFunction which can query the Tickets for all the Pools in that profile and using those Tickets, generate Match proposals.
 
 For this tutorial, we will generate a MatchProfile for each game-mode. The MatchProfile will have a single Pool that has a single filtering criteria searching for the desired game-mode. Director will call FetchMatches for each of the generated Profiles. Below is a sample snippet to achieve this:
 
