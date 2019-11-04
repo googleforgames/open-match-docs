@@ -46,7 +46,7 @@ Once you have the pre-requsisites ready, please proceed with the below steps:
 
 ### Reference Reading
 
-It is highly recommended to familiarize yourself with [Open Match Core Concepts]({{< relref "../../getting started/concepts.md" >}}) as the Matchmaker in this tutorial is modeled around the components introduced there. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
+It is highly recommended to read through the Matchmaking Guide as the Matchmaker in this tutorial is modeled around the components introduced there. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
 
 ## Overview
 
