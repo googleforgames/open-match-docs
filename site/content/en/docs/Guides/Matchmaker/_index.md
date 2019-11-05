@@ -8,7 +8,7 @@ description: >
 
 ## Objective
 
-The guide presents a high level Online Game Services architecture that leverages Open Match for matchmaking. It expains in details the core customizations that need to be added to Open Match to build your Matchmaker. It also takes a deep dive into the external components that interact with Open Match. Along the way, it covers the Open Match concepts needed for building these components.
+The guide presents a high-level Online Game Services architecture that leverages Open Match for matchmaking. It explains in details the core customizations that need to be added to Open Match to build your Matchmaker. It also takes a deep dive into the external components that interact with Open Match. Along the way, it covers the Open Match concepts needed for building these components.
 
 This guide is a pre-reading for the tutorial for [building a basic Matchmaker]({{< relref "../../Tutorials/Matchmaker101/_index.md" >}}). You can use this [Tutorial Solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101) as a reference when going through each component in this guide.
 
@@ -18,7 +18,7 @@ This guide is a pre-reading for the tutorial for [building a basic Matchmaker]({
 
 ### Open Match Core
 
-Open Match comprises of a set of services hosted in a Kubernetes cluster. The core functionality of Open Match is exposed by these services over gRPC and HTTP.
+Open Match comprises of a set of services hosted in a Kubernetes cluster. These services expose the core functionality of Open Match over gRPC and HTTP
 
 #### Open Match Frontend
 
