@@ -8,8 +8,8 @@ weight: 3
 
 The MatchFunction is a service that implements the core matchmaking logic. A MatchFunction receives a MatchProfile as an input should return Match proposals for this MatchProfile. Here are the tasks it typically performs:
 
-- Query for Tickets for each Pool in the Match Profile (Open Match provides a helper library for this)
-- Use these Tickets to generate Match Proposals. (The Match Profile also has a Roster Field that can be used to influence the match shape)
+- Query for Tickets for each Pool in the MatchProfile (Open Match provides a helper library for this)
+- Use these Tickets to generate Match Proposals. (The MatchProfile also has a Roster Field that can be used to influence the match shape)
 - Stream the Match Proposals back to to Open Match.
 
 The tutorial provides a very basic MatchFunction scaffold *[TUTORIALROOT]/matchfunction* that simply groups the filtered tickets into Proposals forming matches of a configurable number of players.

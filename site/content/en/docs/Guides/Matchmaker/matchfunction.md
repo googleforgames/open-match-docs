@@ -1,149 +1,60 @@
 ---
-title: "Step3 - Build your own Match Function"
-linkTitle: "Step3 - Match Function"
+title: "Match Function"
+linkTitle: "Match Function"
 weight: 3
+description:
+  What is a Match Function? What should it do?
 ---
 
-This section is work in progress. Please revisit later.
-
 ## Overview
 
-The MatchFunction is a service that implements the core matchmaking logic. A MatchFunction receives a MatchProfile as an input should return Match proposals for this MatchProfile. Here are the tasks it typically performs:
+The Match Function is the component that implements the core matchmaking logic. A Match Function receives a MatchProfile as an input should return matches for this MatchProfile.
 
-- Query for Tickets for each Pool in the Match Profile (Open Match provides a helper library for this)
-- Use these Tickets to generate Match Proposals. (The Match Profile also has a Roster Field that can be used to influence the match shape)
-- Stream the Match Proposals back to to Open Match.
+## Details
 
-The tutorial provides a very basic MatchFunction scaffold *[TUTORIALROOT]/matchfunction* that simply groups the filtered tickets into Proposals forming matches of a configurable number of players.
+A Match Function is a GRPC or HTTP service that implements the Match Function definition prescribed by Open Match.
 
-## Make Changes
-
-The MatchFunction scaffolding creates a GRPC service that implements the interface prescribed by Open Match for MatchFunctions. It integrates with Open Match library to Query the Tickets for the given MatchProfile and has logic to stream proposals back to Open Match. It uses a helper function *makeMatches* that accepts a map of Pool names to Tickets in that Pool and returns Match proposals. A Match comprises of a group of Tickets with some optional metadata.
-
-For this tutorial, the MatchProfile passed in to the MatchFunction has a single Pool that filters Tickets for a game-mode. Thus the makeMatches receives a Pool with Tickets belonging to a game-mode and groups these Tickets into matches till it runs out of Tickets. Below is a sample snippet to achieve this:
+### Definition
 
 ```
-func makeMatches(p *pb.MatchProfile, poolTickets map[string][]*pb.Ticket) ([]*pb.Match, error) {
-  var matches []*pb.Match
-  count := 0
-  for {
-    insufficientTickets := false
-    matchTickets := []*pb.Ticket{}
-    for pool, tickets := range poolTickets {
-      if len(tickets) < ticketsPerPoolPerMatch {
-        // This pool is completely drained out. Stop creating matches.
-        insufficientTickets = true
-        break
-      }
-
-      // Remove the Tickets from this pool and add to the match proposal.
-      matchTickets = append(matchTickets, tickets[0:ticketsPerPoolPerMatch]...)
-      poolTickets[pool] = tickets[ticketsPerPoolPerMatch:]
-    }
-
-    if insufficientTickets {
-      break
-    }
-
-    matches = append(matches, &pb.Match{
-      MatchId:       fmt.Sprintf("profile-%v-time-%v-%v", p.GetName(), time.Now().Format("2006-01-02T15:04:05.00"), count),
-      MatchProfile:  p.GetName(),
-      MatchFunction: matchName,
-      Tickets:       matchTickets,
-    })
-
-    count++
-  }
-
-  return matches, nil
+rpc Run(RunRequest) returns (stream RunResponse) {
+  option (google.api.http) = {
+    post: "/v1/matchfunction:run"
+    body: "*"
+  };
 }
-```
-
-Please copy the above helper or add your own matchmaking logic to *[TUTORIALROOT]/matchfunction/mmf/matchfunction.go*. Also, you may make simple changes such as the number of Tickets per match to observe its impact on the matchmaker run.
-
-### Configuring
-
-The following values need to be set in the MatchFunction (currently specified as a const in the *[TUTORIALROOT]/matchfunction/main.go*):
-
-- Open Match MMLogic endpoint: The current value assumes the tutorial setup where Open Match is deployed in an open-match namespace with the default configuration and the MatchFunction is deployed in the same cluster in the mmf101-tutorial namespace.
-- MatchFunction Port: This is used to set up the GRPC service. The current value uses the port specified in deployment yaml (covered later in the Deploy and Run step)
-
-Please update this value if your setup is different from the default.
-
-## Build and Push
-
-Now that you have customized the MatchFunction, please run the below commands (from [TUTORIALROOT]) to build a new image and push it to your configured image registry.
-
-```
-# Build the MatchFunction image.
-docker build -t $REGISTRY/mm101-tutorial-matchfunction .
-
-# Push the MatchFunction image to the configured Registry.
-docker push $REGISTRY/mm101-tutorial-matchfunction
-```
-
-Lets proceed to the next step to deploy and run the Matchmaker.
-
-## Overview
-
-## Method to Implement
-
-## Open Match Interactions
 
 message RunRequest {
-  // The MatchProfile that describes the Match that this MatchFunction needs to
-  // generate proposals for.
   MatchProfile profile = 1;
-
-  message PoolTickets {
-    string pool_name = 1;
-    repeated Ticket tickets = 2;
-  }
-
-  // If the match function config specifies ticket hydration, this result includes
-  // tickets belonging to each pool present int he MatchProfile.
-  repeated PoolTickets pool_ticket_map = 2;
 }
 
 message RunResponse {
-  // The proposal generated by this MatchFunction Run.
-  // Note that OpenMatch will validate the proposals, a valid match should contain at least one ticket.
   Match proposal = 1;
 }
+```
 
-// This proto defines the API for running Match Functions as long-lived,
-// 'serving' functions.
-service MatchFunction {
-  // This is the function that is executed when by the Open Match backend to
-  // generate Match proposals.
-  rpc Run(RunRequest) returns (stream RunResponse) {
-    option (google.api.http) = {
-      post: "/v1/matchfunction:run"
-      body: "*"
-    };
-  }
+This method is triggered at runtime whenever a FetchMatches call is received by Open Match Backend for a MatchProfile. At a high level, here is what a Match Function typically should do:
+
+#### Query Tickets
+
+The MatchProfile that the Match Function receives has a set of Pools specified. Typically, the Match Function will call into Open Match to fetch all the Tickets belonging to each of the pools in the Match function. This can be done using the following API exposed by the Open Match MMLogic service:
+
+```
+rpc QueryTickets(QueryTicketsRequest) returns (stream QueryTicketsResponse) {
+  option (google.api.http) = {
+    post: "/v1/mmlogic/tickets:query"
+    body: "*"
+  };
 }
+```
 
+Given that this functionality will be most commonly required for Match Functions, Open Match provides a golang library ("open-match.dev/open-match/pkg/matchfunction") to abstract this logic:
 
-message QueryTicketsRequest {
-  // The Pool representing the set of Filters to be queried.
-  Pool pool = 1;
+```
+func QueryPools(ctx context.Context, mml pb.MmLogicClient, pools []*pb.Pool) (map[string][]*pb.Ticket, error) {
 }
+```
 
-message QueryTicketsResponse {
-  // The Tickets that meet the Filter criteria requested by the Pool.
-  repeated Ticket tickets = 1;
-}
+#### Generate Match Proposals
 
-// The MMLogic API provides utility functions for common MMF functionality such
-// as retreiving Tickets from state storage.
-service MmLogic {
-  // QueryTickets gets the list of Tickets that match every Filter in the
-  // specified Pool.
-  rpc QueryTickets(QueryTicketsRequest) returns (stream QueryTicketsResponse) {
-    option (google.api.http) = {
-      post: "/v1/mmlogic/tickets:query"
-      body: "*"
-    };
-  }
-}
+Now that we have the Tickets belonging to each pool, the Match Function can group them into matches as per the game's requirements. Note that each Ticket with all its SearchFields and extensions are available to the Match Function. Once the proposals are generated, they are streamed back to Open Match.
