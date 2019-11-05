@@ -4,11 +4,11 @@ linkTitle: "Step4 - Deploy and Run"
 weight: 4
 ---
 
-This step assumes that you have completed the Tutorial prerequisites and all prior steps and have the Game Frontend, Director and MatchFunction built and pushed to your configured image registry. If you have done all of this, lets proceed.
+This step assumes that you have completed the Tutorial prerequisites and all prior steps and have the Game Frontend, Director and Match Function built and pushed to your configured image registry. If you have done all of this, lets proceed.
 
 ## Customizing Open Match Installation
 
-Open Match Core although installed needs to be customized to be operational. The core customizations Open Match needs are the MatchFunction and Evaluator. We already built and pushed the Match Function in the previous step. The next step is to build and push an Evaluator.
+Open Match Core although installed needs to be customized to be operational. The core customizations Open Match needs are the Match Function and Evaluator. We already built and pushed the Match Function in the previous step. The next step is to build and push an Evaluator.
 
 ### Build and Push Evaluator
 
@@ -24,7 +24,7 @@ docker push $REGISTRY/mm101-tutorial-evaluator
 
 ### Deploy and Customize
 
-Next step is to deploy the MatchFunction and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The [TUTORIALROOT]/customization.yaml deploys these components as Services to a 'mm101-tutorial' namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the [TUTORIALROOT] path to apply this yaml:
+Next step is to deploy the Match Function and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The [TUTORIALROOT]/customization.yaml deploys these components as Services to a 'mm101-tutorial' namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the [TUTORIALROOT] path to apply this yaml:
 
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" customization.yaml | kubectl apply -f -
@@ -74,7 +74,7 @@ kubectl logs -n mmf101-tutorial pod/om-tutorial-director
 
 ```
 
-### MatchFunction
+### Match Function
 
 ```
 # Command

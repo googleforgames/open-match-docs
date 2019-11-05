@@ -52,7 +52,7 @@ It is highly recommended to read through the Matchmaking Guide as the Matchmaker
 
 This tutorial targets a basic game mode based Matchmaker where there are fixed set of game modes and each Player intends to find a match for a specific game mode.
 
-To implement this, at a high level, the Game Frontend creates tickets that has specify a game mode and the Game Backend requests for matches for a specific game mode. The Match Function queries for Tickets from the current pool that match this constraint and groups available Tickets into match proposals. The backend then assigns fake assignments to these matches which get returned back to the Game Frontend.
+To implement this, at a high-level, the Game Frontend creates tickets that has specify a game mode and the Game Backend requests for matches for a specific game mode. The Match Function queries for Tickets from the current pool that match this constraint and groups available Tickets into match proposals. The backend then assigns fake assignments to these matches which get returned back to the Game Frontend.
 
 Also note taht the the current version of the tutorial uses Pod logs as output mechanism and so watching these logs will be critical to track progress, debug issues at a later stage when running the Matchmaker.
 
