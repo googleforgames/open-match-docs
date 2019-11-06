@@ -3,27 +3,26 @@ title: "How to build a basic Matchmaker"
 linkTitle: "Build a basic Matchmaker"
 weight: 1
 description: >
-  This tutorial teaches how to build a basic game mode based Matchmaker.
+  A step-by-step tutorial on how to build a basic game mode based Matchmaker.
 ---
 
 ## Objectives
 
 - Understand how to use Open Match for Matchmaking.
-- Learn to author a simple Match Function, Game Frontend and Director.
-- Build an E2E Matchmaker by connecting all these components to an Open Match deployment.
-- Run the Matchmaker with fake data to generate matches.
+- Author a simple Match Function, Game Frontend and Director.
+- Build and run an E2E Matchmaker by connecting these components to an Open Match deployment.
 
 ## Prerequisites
 
-### Cluster Setup
+### Set up a Kubernetes Cluster
 
-Setup a Kubernetes Cluster using these [Setup Instructions]({{< relref "../../Installation/_index.md#setup-kubernetes-cluster" >}}). Once the Cluster is setup, please install and configure kubectl to connect to this cluster. Some basic understanding of kubectl is required to effeciently completely this tutorial.
+Some basic understanding of kubernetes, kubectl is required to effeciently completely this tutorial. Follow the instructions to [setup a Kubernetes cluster]({{< relref "../../Installation/_index.md#setup-kubernetes-cluster" >}}), install and configure kubectl to connect to this cluster.
 
-### Open Match Installation
+### Install Open Match
 
 Lets setup Open Match next by running the steps in [Install Open Match Core]({{< relref "../../Installation/_index.md#install-core-open-match" >}}).
 
-**Note:** As stated in the installation guide, after installing Open Match Core, the pods for core Open Match servies stay in CreatingContainer state. This is expected and is because Open Match requires a ConfigMap that has the configuration for your tutorial. We will update this ConfigMap during the last step of the tutorial when we deploy all the custom components for the tutorial.
+**Note:** After installing Open Match Core, the pods for core Open Match services stay in CreatingContainer state. This is because Open Match requires a ConfigMap that has your tutorial's custom configuration. We will update this ConfigMap during the last step of the tutorial once we have deployed the tutorial's components.
 
 ### Set up Image Registry
 
@@ -38,27 +37,34 @@ If using GKE, the below command can be used to populate the image registry:
 ```
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
-### Get the Code
 
-Make a local copy of the Open Match repository. Use <SRCROOT>/tutorials/matchmaker as your working copy for all the instructions in this tutorial.
+### Get the Tutorial template
 
-Once you have the pre-requsisites ready, please proceed with the below steps:
+Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/). Use ```tutorials/matchmaker``` as a working copy for all the instructions in this tutorial.
+
+For convenience, set the following variable:
+
+```
+TUTORIALROOT=[SRCROOT]/tutorials/matchmaker]
+```
 
 ### Reference Reading
 
-It is highly recommended to read through the Matchmaking Guide as the Matchmaker in this tutorial is modeled around the components introduced there. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
+Please read through the [Matchmaking Guide]({{< relref "../../Guides/Matchmaker/_index.md" >}}) as the Matchmaker in this tutorial is modeled around the components introduced in the Guide. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
 
 ## Overview
 
-This tutorial targets a basic game mode based Matchmaker where there are fixed set of game modes and each Player intends to find a match for a specific game mode.
+The goal is to build a basic game mode based Matchmaker where there are a fixed set of game modes and each Player intends to find a match for a specific game mode.
 
-To implement this, at a high-level, the Game Frontend creates tickets that has specify a game mode and the Game Backend requests for matches for a specific game mode. The Match Function queries for Tickets from the current pool that match this constraint and groups available Tickets into match proposals. The backend then assigns fake assignments to these matches which get returned back to the Game Frontend.
+The tutorial walks through building the Game Frontend, Director, Match Function and then deploy them together. Here is a high level flow once all these components are set up:
 
-Also note taht the the current version of the tutorial uses Pod logs as output mechanism and so watching these logs will be critical to track progress, debug issues at a later stage when running the Matchmaker.
+- The Game Frontend creates Tickets that has specify a game mode.
+- The Director requests for matches for a specific game mode.
+- The Match Function queries for Tickets from the current pool that match this constraint and groups available Tickets into match proposals.
+- The Director receives the matches and sets fake assignments for Tickets in these.
+- The Game Frontend receives these assignments and then deletes the Tickets.
 
-For the rest of this tutorial, we will refer to [SRCROOT]/tutorials/matchmaker as [TUTORIALROOT]
-
-**A complete solution for this tutorial can be found at [TUTORIALROOT]/tutorials/matchmaker101. To use the solution directly, please perform the "Build and Push" step in each of the sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})**
+**A complete solution for this tutorial can be found at ```tutorials/matchmaker101```. To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})**
 
 ## Next Steps
 
@@ -66,4 +72,4 @@ For the rest of this tutorial, we will refer to [SRCROOT]/tutorials/matchmaker a
 
 ## For the curious mind
 
-Open Match enables the user to plug in a custom component called the Evaluator. The Evaluator is responsible for deduplicating any concurrently generated proposals, discarding or promoting the proposals as result Matches. This tutorial is designed not to generate concurrent conflicting proposals and so does not need an Evaluator. However, disabling evaluation although possible is not recommended and so this tutorial comes packaged with a default Evaluator. The deployment step deploys this evaluator in the tutorial namespace and configures this in Open Match but going into the details of using it is out of scope for this tutorial. (Advanced tutorial to follow)
+Open Match enables the user to plug in a custom component called the Evaluator. The Evaluator is responsible for deduplicating any concurrently generated proposals, discarding or promoting the proposals as result Matches. Open Match provides a default Evaluator that this tutorial uses. This tutorial is designed not to generate concurrent conflicting proposals so Evaluation is a no-op. The deployment step deploys the default Evaluator in the tutorial namespace and configures this in Open Match. See [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) for details on proposal evaluation.

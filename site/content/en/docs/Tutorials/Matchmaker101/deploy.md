@@ -12,11 +12,11 @@ Open Match Core although installed needs to be customized to be operational. The
 
 ### Build and Push Evaluator
 
-Although using an Evaluator is out of scope for this document, we still need to set up a default Evaluator for Open Match. This tutorial comes packaged with a default Evaluator (see [TUTORIALROOT]/evaluator). Please run the below steps to build this evaluator and push its image to the configured image registry.
+Although using an Evaluator is out of scope for this document, we still need to set up a default Evaluator for Open Match. This tutorial comes packaged with a default Evaluator (see ```$TUTORIALROOT/evaluator```). Please run the below steps from ```$TUTORIALROOT``` to build this Evaluator and push its image to the configured image registry.
 
 ```
 # Build the Evaluator image.
-docker build -t $REGISTRY/mm101-tutorial-evaluator .
+docker build -t $REGISTRY/mm101-tutorial-evaluator evaluator/.
 
 # Push the Evaluator image.
 docker push $REGISTRY/mm101-tutorial-evaluator
@@ -24,13 +24,13 @@ docker push $REGISTRY/mm101-tutorial-evaluator
 
 ### Deploy and Customize
 
-Next step is to deploy the Match Function and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The [TUTORIALROOT]/customization.yaml deploys these components as Services to a 'mm101-tutorial' namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the [TUTORIALROOT] path to apply this yaml:
+Next step is to deploy the Match Function and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The ```$TUTORIALROOT/customization.yaml``` deploys these components as Services to ```mm101-tutorial``` namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the ```$TUTORIALROOT``` path to apply this yaml:
 
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" customization.yaml | kubectl apply -f -
 ```
 
-Please validate that all the Open Match pods and the customizations are in Running state before proceeding to the next step. Here is a command to do this:
+Please validate that all the Open Match pods and the customizations are in running state before proceeding to the next step. Here is a command to do this:
 
 ```
 # Check status for all Open Match Core pods
@@ -44,7 +44,7 @@ kubectl get -n mm101-tutorial pod
 
 Now that Open Match is setup and customized, it is ready to be used by the Game Frontend and Director.
 
-The [TUTORIALROOT]/matchmaker.yaml deploys these components as single Pods to a 'mm101-tutorial' namespace. Run the below command in the [TUTORIALROOT] path to apply this yaml:
+The ```$TUTORIALROOT/matchmaker.yaml``` deploys these components as single Pods to a ```mm101-tutorial``` namespace. Run the below command in the ```$TUTORIALROOT``` path to apply this yaml:
 
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
@@ -57,29 +57,26 @@ All the components authored in this tutorial simply log their progress. Thus to 
 ### Game Frontend
 
 ```
-# Command
 kubectl logs -n mmf101-tutorial pod/om-tutorial-frontend
 
 # Output
-
+<Please fill>
 ```
 
 ### Director
 
 ```
-# Command
 kubectl logs -n mmf101-tutorial pod/om-tutorial-director
 
 # Output
-
+<Please fill>
 ```
 
 ### Match Function
 
 ```
-# Command
 kubectl logs -n mmf101-tutorial pod/om-tutorial-matchfunction
 
 # Output
-
+<Please fill>
 ```
