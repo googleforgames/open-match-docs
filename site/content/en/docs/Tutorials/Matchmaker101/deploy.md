@@ -22,6 +22,11 @@ docker build -t $REGISTRY/mm101-tutorial-evaluator evaluator/.
 docker push $REGISTRY/mm101-tutorial-evaluator
 ```
 
+## Links to API Definitions for this tutorial
+
+| [pb.DefaultEvaluationCriteria]({{< relref "../../reference/api.md#defaultevaluationcriteria" >}}) | [evaluator.Evaluate]({{< relref "../../reference/api.md#api-evaluator-proto" >}}) |
+| ----- | ---- | 
+
 ### Deploy and Customize
 
 Next step is to deploy the Match Function and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The ```$TUTORIALROOT/customization.yaml``` deploys these components as Services to ```mm101-tutorial``` namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the ```$TUTORIALROOT``` path to apply this yaml:
