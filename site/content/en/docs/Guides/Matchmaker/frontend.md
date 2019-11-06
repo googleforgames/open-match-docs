@@ -42,7 +42,7 @@ message Ticket {
 
 #### SearchFields
 
-When creating a Ticket, the Open Match frontend populates SearchFields which specify the properties for the Ticket that can be used for filtering the Tickets. Here is a sample SearchField specifying the mmr, role and game mode.
+When creating a Ticket, the Open Match frontend populates SearchFields which specify the properties for the Ticket that can be used for filtering the Tickets. SearchFields can be of different types (double, string, tag) and an appropriate one should be chosen based on the nature of the property and filtering requirements. Here is a sample SearchField specifying the mmr, role and game mode.
 
 ```
 SearchFields: &pb.SearchFields{
