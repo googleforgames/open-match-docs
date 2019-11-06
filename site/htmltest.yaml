@@ -14,8 +14,9 @@
 
 TestFilesConcurrently: false
 IgnoreInternalEmptyHash: true
+CheckInternal: false
 OutputDir: /tmp/open-match-site/
-OutputLogFile: .htmltest.log
+OutputLogFile: htmltest.log
 IgnoreURLs:
   - http://localhost
 IgnoreDirs:

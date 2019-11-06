@@ -1,16 +1,25 @@
 ---
-title: "Step1 - Build your own Game Frontend"
-linkTitle: "Step1 - Game Frontend"
+title: "Step 1 - Build your own Game Frontend"
+linkTitle: "Step 1 - Game Frontend"
 weight: 1
 ---
 
 ## Overview
 
-In a typical setup, the Game Frontend receives the matchmaking request from the Player's Game Client. It can authenticate the player and fetch the player data from some backend storage (or Platform Services if required). It submits the matchmaking request to Open Match by creating a Ticket. Once an assignment is set for this Ticket, the Game Frontend communicates the assignment back to the Game Client.
+The Game Frontend serves as a layer that transfers players' matchmaking requests from players' Game Client to proto messages that Open Match can understand. The Game Frontend typically performs the following tasks:
 
-The tutorial provides a very basic Game Frontend scaffold (```$TUTORIALROOT/frontend```) that generates batches of fake Tickets at periodic intervals and adds them to Open Match. It then polls these Tickets at periodic interval for Assignment. Once an Assignment is received it emits a log with the Assignment details (as a proxy for returning the assignment to the Player) and deletes the Ticket from Open Match.
+- Fetches the player data from some backend storage (or Platform Services if required) and authenticates players. 
+- Submits the matchmaking requests to Open Match by creating a Ticket.
+- Communicates the assignment result back to the Game Client once Open Match found an assignment for this Ticket.
 
-**Note:** In a real setup, polling each Ticket for Assignment is not recommended. You would likely use some eventing mechanism to communicate Ticket Assignments from the Director to the Game Frontend.
+This tutorial provides a very basic Game Frontend scaffold (```$TUTORIALROOT/frontend```) that periodically generates batches of fake Tickets, adds them to Open Match, and polls these Tickets for Assignment. Once an Assignment is received it emits a log with the Assignment details (as a proxy for returning the assignment to the Player) and deletes the Ticket from Open Match.
+
+**Note:** Under production environment, polling each Ticket for Assignment is not recommended. We recommend using event handlers/listeners to communicate Assignments result to the Game Frontend.
+
+## Links to API Definitions for this tutorial
+
+| [pb.Ticket]({{< relref "../../reference/api.md#openmatch.Ticket" >}}) | [frontend.CreateTicket]({{< relref "../../reference/api.md#frontend" >}}) | [frontend.GetTicket]({{< relref "../../reference/api.md#frontend" >}}) | [frontend.DeleteTicket]({{< relref "../../reference/api.md#frontend" >}})
+| ----- | ---- | ----- | ----------- |
 
 ## Make Changes
 
@@ -35,11 +44,9 @@ Please copy the above helper or add your own fake Ticket creation logic to ```$T
 
 ### Configuring
 
-The following values need to be set in the Frontend (currently specified as a const in the ```$TUTORIALROOT]/frontend/main.go```:
+The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/frontend/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mmf101-tutorial``` namespace in the same cluster:
 
-**Open Match Frontend endpoint**: The current value assumes the default tutorial setup where Open Match is deployed in an ```open-match``` namespace with the default configuration and the Game Frontend is deployed in the same cluster in the ```mmf101-tutorial``` namespace.
-
-Please update this value if your setup is different from the default.
+> `omFrontendEndpoint` - Open Match Frontend endpoint
 
 ## Build and Push
 
@@ -53,4 +60,6 @@ docker build -t $REGISTRY/mm101-tutorial-frontend frontend/.
 docker push $REGISTRY/mm101-tutorial-frontend
 ```
 
-Lets proceed to the next step to build the Director.
+## Whats's Next:
+
+Lets proceed to build the [Director]({{< relref "./director.md" >}}).

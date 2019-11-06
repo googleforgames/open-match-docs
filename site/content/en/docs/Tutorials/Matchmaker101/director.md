@@ -1,22 +1,27 @@
 ---
-title: "Step2 - Build your own Director"
-linkTitle: "Step2 - Director"
+title: "Step 2 - Build your own Director"
+linkTitle: "Step 2 - Director"
 weight: 2
 ---
 
 ## Overview
 
-The Director is a component in the Online Game Service Backend that will typically perform the following tasks:
+The Director is a backend component in the Online Game Service that typically performs the following tasks:
 
-- Fetch Matches from Open Match for each MatchProfile
-- Fetch allocation from a DGS allocation system.
-- Make Assignments for matches to game servers and set those Assignments in Open Match.
+- Fetch Matches from Open Match for each MatchProfile.
+- Fetch game allocations from a DGS (Dedicated Game Server) system.
+- Establish connections from players to game servers and set Assignments based on connections in Open Match.
 
-The tutorial provides a very basic Director scaffold ```$TUTORIALROOT/director``` that generates all the profiles to be queried for and then fetches matches for these profiles from Open Match. For all the Tickets on the generated match, it sets Assignment to a fake assignment string to simulate a DGS allocation.
+The tutorial provides a very basic Director scaffold ```$TUTORIALROOT/director``` that generates some MatchProfiles and then call FetchMatches for these profiles from Open Match. The director then sets Assignment to a fake connection string to simulate a DGS allocation for every Tickets in a generated match.
+
+## Links to API Definitions for this tutorial
+
+| [pb.Match]({{< relref "../../reference/api.md#match" >}}) | [pb.MatchProfile]({{< relref "../../reference/api.md#matchprofile" >}}) | [pb.FunctionConfig]({{< relref "../../reference/api.md#openmatch.FunctionConfig" >}}) | [backend.AssignTickets]({{< relref "../../reference/api.md#frontend" >}}) | [backend.FetchMatches]({{< relref "../../reference/api.md#frontend" >}}) |
+| ----- | ---- | ----- | ----------- | ----------- |
 
 ## Make Changes
 
-The Director uses a helper function ```generateProfiles()``` in ```$TUTORIALROOT\profile.go``` to generate MatchProfiles. For this tutorial, we will generate a MatchProfile for each game-mode. The MatchProfile will have a single Pool that has a single filtering criteria searching for the desired game-mode. Director will call FetchMatches for each of the generated Profiles. Below is a sample snippet to achieve this:
+The Director uses a helper function ```generateProfiles()``` in ```$TUTORIALROOT/profile.go``` to generate MatchProfiles. For this tutorial, we will generate a MatchProfile for each game-mode. The MatchProfile will have a single Pool that has a single filtering criteria searching for the desired game-mode. Director will call FetchMatches for each of the generated Profiles. Below is a sample snippet to achieve this:
 
 ```
 func generateProfiles() []*pb.MatchProfile {
@@ -42,16 +47,17 @@ func generateProfiles() []*pb.MatchProfile {
 }
 ```
 
-Please copy the above helper or add your own profile generation logic to ```$TUTORIALROOT/director/profiles.go```. Also, you may tweak the behavior of the Director to change the interval duration between profile polls, assignment logic etc. by making changes to ```$TUTORIALROOT/director/main.go```
+Please copy the above helper or add your own profile generation logic to ```$TUTORIALROOT/director/profiles.go```. Also, you may tweak the profile polls interval, assignment logic etc. in ```$TUTORIALROOT/director/main.go```.
 
 ### Configuring
 
-The following values need to be set in the Director (currently specified as a const in the ```$TUTORIALROOT/director/main.go```:
+The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/director/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mmf101-tutorial``` namespace in the same cluster:
 
-**Open Match Backend endpoint:** The current value assumes the tutorial setup where Open Match is deployed in an ```open-match``` namespace with the default configuration and the Director is deployed in the same cluster in the ```mmf101-tutorial``` namespace.
-**Match Function Host and Port:** The current value uses the host, port specified in deployment yaml (covered later in the Deploy and Run step)
-
-Please update this value if your setup is different from the default.
+> `omBackendEndpoint` - Open Match Backend endpoint
+> 
+> `functionHostName` - Kubernetes Internal Hostname of your Match Function
+> 
+> `functionPort` - Port Number that you host your Match Function service on
 
 ## Build and Push
 
@@ -65,4 +71,6 @@ docker build -t $REGISTRY/mm101-tutorial-director director/.
 docker push $REGISTRY/mm101-tutorial-director
 ```
 
-Lets proceed to the next step to build the Match Function.
+## Whats's Next:
+
+Lets proceed to build the [Match Function]({{< relref "./matchfunction.md" >}}).

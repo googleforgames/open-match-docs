@@ -1,22 +1,27 @@
 ---
-title: "Step3 - Build your own Match Function"
-linkTitle: "Step3 - Match Function"
+title: "Step 3 - Build your own Match Function"
+linkTitle: "Step 3 - Match Function"
 weight: 3
 ---
 
 ## Overview
 
-The MatchFunction is a service that implements the core matchmaking logic. A MatchFunction receives a MatchProfile as an input should return Match proposals for this MatchProfile. Here are the tasks it typically performs:
+The MatchFunction is a service that implements the core matchmaking logic. A MatchFunction accepts a MatchProfile and should return Match proposals for this MatchProfile. The MatchFunction typically performs the following tasks:
 
-- Query for Tickets for each Pool in the MatchProfile (Open Match provides a helper library for this)
-- Use these Tickets to generate Match Proposals. (The MatchProfile also has a Roster Field that can be used to influence the match shape)
-- Stream the Match Proposals back to to Open Match.
+- Queries Tickets for each Pool in the MatchProfile (Open Match provides a helper library for this).
+- Uses these Tickets to generate Proposals (The MatchProfile can also describe the match shape using the Roster Field).
+- Streams the Proposals back to to Open Match.
 
-The tutorial provides a very basic MatchFunction scaffold ```$TUTORIALROOT/matchfunction``` that simply groups the filtered tickets into proposals forming matches of a configurable number of players.
+The tutorial provides a very basic MatchFunction scaffold ```$TUTORIALROOT/matchfunction``` that simply groups the filtered tickets into Proposals of a configurable number of players.
+
+## Links to API Definitions for this tutorial
+
+| [pb.Pool]({{< relref "../../reference/api.md#pool" >}}) | [pb.MatchProfile]({{< relref "../../reference/api.md#matchprofile" >}}) | [pb.Match]({{< relref "../../reference/api.md#match" >}}) | [matchfunction.Run]({{< relref "../../reference/api.md#matchfunction" >}}) |
+| ----- | ---- | ----- | ----------- |
 
 ## Make Changes
 
-The MatchFunction scaffolding creates a GRPC service that implements the interface prescribed by Open Match for MatchFunctions. It integrates with Open Match library to Query the Tickets for the given MatchProfile and has logic to stream proposals back to Open Match. It uses a helper function ```makeMatches()``` that accepts a map of Pool names to Tickets in that Pool and returns Match proposals. For this tutorial, the MatchProfile passed in to the MatchFunction has a single Pool that filters Tickets for a game-mode. Thus the ```makeMatches()``` receives a Pool with Tickets belonging to a game-mode and groups these Tickets into matches till it runs out of Tickets. Below is a sample snippet to achieve this:
+The MatchFunction scaffolding creates a gRPC service that implements the interface prescribed by Open Match for MatchFunctions. It integrates with Open Match library to Query the Tickets for the given MatchProfile and has logic to stream proposals back to Open Match. It uses a helper function ```makeMatches()``` that accepts a map of Pool names to Tickets in that Pool and returns Match proposals. For this tutorial, the MatchProfile passed in to the MatchFunction has a single Pool that filters Tickets for a game-mode. Thus the ```makeMatches()``` receives a Pool with Tickets belonging to a game-mode and groups these Tickets into matches till it runs out of Tickets. Below is a sample snippet to achieve this:
 
 ```
 func makeMatches(p *pb.MatchProfile, poolTickets map[string][]*pb.Ticket) ([]*pb.Match, error) {
@@ -55,16 +60,15 @@ func makeMatches(p *pb.MatchProfile, poolTickets map[string][]*pb.Ticket) ([]*pb
 }
 ```
 
-Please copy the above helper or add your own matchmaking logic to ```$TUTORIALROOT/matchfunction/mmf/matchfunction.go```. Also, you may make simple changes such as the number of Tickets per match to observe its impact on the matchmaker run.
+Please copy the above helper or add your own matchmaking logic to ```$TUTORIALROOT/matchfunction/mmf/matchfunction.go```. Also, you may change the number of Tickets per match to observe its impact on the matchmaker run.
 
 ### Configuring
 
-The following values need to be set in the MatchFunction (currently specified as a const in the ```$TUTORIALROOT/matchfunction/main.go```):
+The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/frontend/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mmf101-tutorial``` namespace in the same cluster:
 
-**Open Match MMLogic endpoint:** The current value assumes the tutorial setup where Open Match is deployed in an open-match namespace with the default configuration and the MatchFunction is deployed in the same cluster in the mmf101-tutorial namespace.
-**MatchFunction Port:** This is used to set up the GRPC service. The current value uses the port specified in deployment yaml (covered later in the Deploy and Run step)
-
-Please update this value if your setup is different from the default.
+> `mmlogicAddress` - Open Match Mmlogic endpoint
+> 
+> `serverPort` - Port Number that you host your Match Function service on, needs to be consistent with `functionPort` in the director. The current value uses the port specified in deployment yaml (covered later in the Deploy and Run step)
 
 ## Build and Push
 
@@ -78,4 +82,4 @@ docker build -t $REGISTRY/mm101-tutorial-matchfunction .
 docker push $REGISTRY/mm101-tutorial-matchfunction
 ```
 
-Lets proceed to the next step to deploy and run the Matchmaker.
+Lets proceed to the next step to [Deploy and Run the Matchmaker]({{< relref "./deploy.md" >}}).

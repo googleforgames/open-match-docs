@@ -1,6 +1,6 @@
 ---
-title: "Step4 - Deploy and Run"
-linkTitle: "Step4 - Deploy and Run"
+title: "Step 4 - Deploy and Run"
+linkTitle: "Step 4 - Deploy and Run"
 weight: 4
 ---
 
@@ -8,7 +8,7 @@ This step assumes that you have completed the Tutorial prerequisites and all pri
 
 ## Customizing Open Match Installation
 
-Open Match Core although installed needs to be customized to be operational. The core customizations Open Match needs are the Match Function and Evaluator. We already built and pushed the Match Function in the previous step. The next step is to build and push an Evaluator.
+Open Match Core needs some customizations to be fully operational. The two customizations Open Match needs are the Match Function and Evaluator. We already built and pushed the Match Function image in the previous step. The next step is to build and push an Evaluator image.
 
 ### Build and Push Evaluator
 
@@ -21,6 +21,11 @@ docker build -t $REGISTRY/mm101-tutorial-evaluator evaluator/.
 # Push the Evaluator image.
 docker push $REGISTRY/mm101-tutorial-evaluator
 ```
+
+## Links to API Definitions for this tutorial
+
+| [pb.DefaultEvaluationCriteria]({{< relref "../../reference/api.md#defaultevaluationcriteria" >}}) | [evaluator.Evaluate]({{< relref "../../reference/api.md#api-evaluator-proto" >}}) |
+| ----- | ---- | 
 
 ### Deploy and Customize
 
