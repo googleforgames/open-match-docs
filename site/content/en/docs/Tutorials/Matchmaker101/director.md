@@ -51,12 +51,12 @@ Please copy the above helper or add your own profile generation logic to ```$TUT
 
 ### Configuring
 
-The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/director/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mmf101-tutorial``` namespace in the same cluster:
+The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/director/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mm101-tutorial``` namespace in the same cluster:
 
 > `omBackendEndpoint` - Open Match Backend endpoint
-> 
+>
 > `functionHostName` - Kubernetes Internal Hostname of your Match Function
-> 
+>
 > `functionPort` - Port Number that you host your Match Function service on
 
 ## Build and Push

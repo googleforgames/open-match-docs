@@ -48,6 +48,14 @@ For convenience, set the following variable:
 TUTORIALROOT=[SRCROOT]/tutorials/matchmaker
 ```
 
+### Create the Tutorial namespace
+
+Run this command to create a namespace mm101-tutorial in which all the components for this Tutorial will be deployed.
+
+```
+kubectl create namespace mm101-tutorial
+```
+
 ### Reference Reading
 
 Please read through the [Matchmaking Guide]({{< relref "../../Guides/Matchmaker/_index.md" >}}) as the Matchmaker in this tutorial is modeled around the components introduced in the Guide. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
