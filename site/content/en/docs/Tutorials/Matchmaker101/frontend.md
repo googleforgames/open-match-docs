@@ -8,7 +8,7 @@ weight: 1
 
 The Game Frontend serves as a layer that transfers players' matchmaking requests from players' Game Client to proto messages that Open Match can understand. The Game Frontend typically performs the following tasks:
 
-- Fetches the player data from some backend storage (or Platform Services if required) and authenticates players. 
+- Fetches the player data from some backend storage (or Platform Services if required) and authenticates players.
 - Submits the matchmaking requests to Open Match by creating a Ticket.
 - Communicates the assignment result back to the Game Client once Open Match found an assignment for this Ticket.
 
@@ -44,7 +44,7 @@ Please copy the above helper or add your own fake Ticket creation logic to ```$T
 
 ### Configuring
 
-The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/frontend/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mmf101-tutorial``` namespace in the same cluster:
+The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/frontend/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mm101-tutorial``` namespace in the same cluster:
 
 > `omFrontendEndpoint` - Open Match Frontend endpoint
 

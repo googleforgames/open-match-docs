@@ -64,10 +64,10 @@ Please copy the above helper or add your own matchmaking logic to ```$TUTORIALRO
 
 ### Configuring
 
-The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/frontend/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mmf101-tutorial``` namespace in the same cluster:
+The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/frontend/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mm101-tutorial``` namespace in the same cluster:
 
 > `mmlogicAddress` - Open Match Mmlogic endpoint
-> 
+>
 > `serverPort` - Port Number that you host your Match Function service on, needs to be consistent with `functionPort` in the director. The current value uses the port specified in deployment yaml (covered later in the Deploy and Run step)
 
 ## Build and Push
@@ -76,7 +76,7 @@ Now that you have customized the MatchFunction, please run the below commands fr
 
 ```
 # Build the MatchFunction image.
-docker build -t $REGISTRY/mm101-tutorial-matchfunction .
+docker build -t $REGISTRY/mm101-tutorial-matchfunction matchfunction/.
 
 # Push the MatchFunction image to the configured Registry.
 docker push $REGISTRY/mm101-tutorial-matchfunction
