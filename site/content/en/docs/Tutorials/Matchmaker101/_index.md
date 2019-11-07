@@ -3,13 +3,13 @@ title: "How to build a basic Matchmaker"
 linkTitle: "Build a basic Matchmaker"
 weight: 1
 description: >
-  A step-by-step tutorial on how to build a basic game mode based Matchmaker.
+  A step-by-step tutorial on how to build a basic game mode based Matchmaker in Golang.
 ---
 
 ## Objectives
 
 - Understand how to use Open Match for Matchmaking.
-- Author a simple Match Function, Game Frontend and Director.
+- Author a simple Match Function, Game Frontend and Director in Golang.
 - Build and run an E2E Matchmaker by connecting these components to an Open Match deployment.
 
 ## Prerequisites
@@ -40,12 +40,12 @@ REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 
 ### Get the Tutorial template
 
-Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/). Use ```tutorials/matchmaker``` as a working copy for all the instructions in this tutorial.
+Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker). Use ```tutorials/matchmaker``` as a working copy for all the instructions in this tutorial.
 
 For convenience, set the following variable:
 
 ```
-TUTORIALROOT=[SRCROOT]/tutorials/matchmaker]
+TUTORIALROOT=[SRCROOT]/tutorials/matchmaker
 ```
 
 ### Reference Reading
