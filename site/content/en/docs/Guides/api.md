@@ -1,18 +1,20 @@
 ---
-title: "Interact with Open Match via its API"
-linkTitle: "Interact with Open Match via its API"
+title: "Invoking Open Match APIs"
+linkTitle: "Invoking Open Match APIs"
 weight: 2
 description: >
-  This guide covers how you can interact with the Open Match API.
+  This guide covers how you can invoke Open Match APIs.
 ---
 
 Open Match has a resource based REST API that is served from HTTP and gRPC. It also
-complies with the OpenAPI (fka Swagger) API Specification which means it's easy to
+complies with the OpenAPI (fka Swagger) API specification which means it's easy to
 download the schema and [generate clients](https://swagger.io/tools/swagger-codegen/)
 in many different languages.
 
 ## Open Match default host names and endpoints
+
 The following defines the in-cluster hostnames and endpoints of Open Match's external services. The corresponding Helm configurations used to generate these configs could be found at [here](https://github.com/googleforgames/open-match/blob/master/install/helm/open-match/values.yaml).
+
 ```yaml
 swaggerui:
   hostName: om-swaggerui
@@ -31,9 +33,11 @@ backend:
   httpPort: 51505
 ```
 
-## Interacting with Open Match via gRPC
+## Invoking Open Match gRPC APIs
+
 We recommend using [gRPC](https://grpc.io/) to talk to Open Match.
 The following is an example of an in-cluster program that creates a vanilla gRPC client to talk to Open Match Frontend and then calls `frontend.CreateTicket` method.
+
 ```go
 import (
   "fmt"
@@ -53,7 +57,7 @@ func main() {
   defer conn.Close()
   feClient := pb.NewFrontendClient(conn)
 
-  // Create an Open Match CreateTicketRequest with Open Match's public package 
+  // Create an Open Match CreateTicketRequest with Open Match's public package
   sent := &pb.CreateTicketRequest{
     Ticket: &pb.Ticket{
       SearchFields: &pb.SearchFields{
@@ -70,9 +74,11 @@ func main() {
 }
 ```
 
-## Interacting with Open Match via the HTTP endpoint
+## Invoking Open Match HTTP APIs
+
 Open Match provides REST API for all of its external components using the [grpc-gateway](https://github.com/grpc-ecosystem/grpc-gateway) plugin.
 Below is a vanilla in-cluster Go program to interact with Open Match via its HTTP endpoint. Please see the [Open Match's API definitions](https://github.com/googleforgames/open-match/tree/master/api) for the latest HTTP endpoints each service is using.
+
 ```go
 import (
   "fmt"
@@ -88,7 +94,7 @@ func main() {
   var m jsonpb.Marshaler
   // The HTTP endpoint of frontend.CreateTicket API
   apiURL := fmt.Sprintf("http://om-frontend:%d/v1/frontend/tickets", 51504)
-  // Create an Open Match CreateTicketRequest with Open Match's public package 
+  // Create an Open Match CreateTicketRequest with Open Match's public package
   sent := &pb.CreateTicketRequest{
     Ticket: &pb.Ticket{
       SearchFields: &pb.SearchFields{
@@ -120,18 +126,19 @@ func main() {
 }
 ```
 
-## Interacting with Open Match via the Swagger UI
-You can view and talk to this API via the Swagger UI application that is deployed
-with your Open Match cluster.
+## Invoking Open Match APIs via the Swagger UI
+
+You can view and talk to this API via the Swagger UI application that is deployed with your Open Match cluster.
 
 ### Google Kubernetes Engine
+
 If your cluster runs on GKE you can access the tool from your cluster using a Public IP address.
 Go to `Cloud Console > Kubernetes Engine > Services & Ingress` and look for `om-swaggerui`.
 In that row there's a link to view the API browser.
 
 ### Locally
-The Swagger UI is accessible from your cluster via port 51500. Kubernetes's
-virtual network is by default private so you'll need to add a proxy to communicate with it.
+
+The Swagger UI is accessible from your cluster via port 51500. Kubernetes's virtual network is by default private so you'll need to add a proxy to communicate with it.
 
 ```bash
 # Open the port to the pod so that it can be accessed locally.
@@ -140,7 +147,7 @@ kubectl port-forward --namespace open-match service/om-swaggerui 51500:51500
 
 From there you can access the proxy from http://localhost:51500.
 
-## Using the Swagger UI
+### Using the Swagger UI
 
 Swagger UI is a generic tool for viewing APIs and interacting with them.
 Open Match has many APIs but the default one is the `Frontend`.
@@ -151,7 +158,7 @@ By clicking on a function you can see the schema of the API. To call an API clic
 `Try it out` and then fill in body and then select `Execute`. You'll then see the
 HTTP code and response.
 
-## Disable Swagger UI
+### Disable Swagger UI
 
 For security purposes you will want to disable the Swagger UI application by setting
 `--set openmatch.swaggerui.install=false` in the helm command or add the following
@@ -162,6 +169,3 @@ openmatch:
   swaggerui:
     install: false
 ```
-
-## Next Steps
-- Learn how to [interact with Open Match using gRPC and HTTP APIs]({{< relref "./access.md" >}}).
