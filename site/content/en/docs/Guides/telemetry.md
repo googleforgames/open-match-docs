@@ -57,9 +57,9 @@ minute sliding window period.
 
 Let's break down each part of the query.
 
- * `sum()` - This will take the sum over each individual rate produced by
+* `sum()` - This will take the sum over each individual rate produced by
    each server (there may be more than 1 backend server).
- * `rate(metric_name[5m])` - Take the rate of a particular metric.
+* `rate(metric_name[5m])` - Take the rate of a particular metric.
    Since a rate is not instanteous we must use a sliding window where we take
    *metric_name[now]* - *metric_name[5m ago]* at every time point. The
    smaller the time window the more exact but choppy the data appears.
@@ -73,14 +73,14 @@ tutorial.
 You can configure where and what telemetry you want to emit from your Open Match
 deployment. At this type we support:
 
- * Prometheus
- * Stackdriver
+* Prometheus
+* Stackdriver
 
 Preliminary support for:
 
- * OpenZipkin
- * Jaeger
- * OpenCensus Agent
+* OpenZipkin
+* Jaeger
+* OpenCensus Agent
 
 Below is an example of `matchmaker_config.yaml` section to configure your
 telemetry:

@@ -1,48 +1,61 @@
 ---
 title: "Load Balancing Open Match services"
 linkTitle: "Load Balancing"
-weight: 6
+weight: 8
 description: >
   This guide covers how to set up Load Balancing to access Open Match services.
 ---
 
-Work in progress. Please check back again later.
+[TODO: Please update with latest demo steps]
 
 ## Load Balancing issues accessing GRPC services
-Work in Progress
+
+[Add Content]
 
 ## Client Side load balancing
-Work in Progress
+
+[Add Content]
 
 ### Round Robin Solution
-Work in Progress
+
+[Add Content]
 
 ### When (and when not) to use this solution
-Work in Progress
+
+[Add Content]
 
 ### How to author clients to use this
-Work in Progress
+
+[Add Content]
 
 ## Using Service Mesh
-Work in Progress
+
+[Add Content]
 
 ### LinkerD based solution
-Work in Progress
+
+[Add Content]
 
 ### When (and when not) to use this solution
-Work in Progress
+
+[Add Content]
 
 ### How to set this up
-Work in Progress
+
+[Add Content]
 
 ## Using L7 Load Balancers
-Work in Progress
+
+[Add Content]
 
 ### Ingress Controllers based solutions
-Work in Progress
+
+[Add Content]
 
 ### When (and when not) to use this solution
-Work in Progress
+
+[Add Content]
 
 ### How to set this up
-Work in Progress
+
+[Add Content]

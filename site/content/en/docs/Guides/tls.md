@@ -1,7 +1,7 @@
 ---
 title: "TLS Encryption"
 linkTitle: "TLS Encryption"
-weight: 4
+weight: 9
 description: >
   This guide covers how you can enable TLS transport encryption.
 ---

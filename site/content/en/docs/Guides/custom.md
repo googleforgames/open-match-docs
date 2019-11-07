@@ -1,7 +1,7 @@
 ---
 title: "Customize core Open Match"
 linkTitle: "Customize core Open Match"
-weight: 9
+weight: 5
 description: >
   This guide covers how to customize your Open Match deployment.
 ---
