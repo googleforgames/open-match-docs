@@ -97,7 +97,7 @@ Open Match needs to be customized to your Matchmaker. This custom configuration 
 
 If you are proceeding with the [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following a [Tutorial]({{< relref "../Tutorials/_index.md" >}}), these guides have steps to deploy their custom configuration and the Open Match is installed and ready to proceed.
 
-If you are building a matchmaker outside of these guides, use the [Customization Guide]({{< relref "./custom.md" >}}) for steps to customize your Open Match installation.
+If you are building a matchmaker outside of these guides, use the [Customization Guide]({{< relref "../Guides/custom.md" >}}) for steps to customize your Open Match installation.
 
 ## Delete Open Match
 
