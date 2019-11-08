@@ -11,7 +11,7 @@ description: >
 ## Objectives
 
 - Deploy and run an Open Match based Demo Matchmaker to generate matches.
-- Get an overview of the basic concepts and components in an E2E mathmaking setup.
+- Get an overview of the basic concepts and components in an E2E matchmaking setup.
 
 ## Prerequisites
 
@@ -80,7 +80,7 @@ This emulates requests coming from players wanting to be matched. Each fake play
 This emulates the component that tells Open Match what kind of matches to find and gives found matches assignments. The steps it takes:
 
 - Request Open Match to fetch matches from Tickets belonging to the specified pool. The Director does not specify any constraints for the Pool so all the currently searching tickets are considered.
-- For each match found, assign the Tickets in that match to a random IP address.  In a normal system, this would be asking a dedicated game server host (Such as Agones) for an IP of a game server instance.
+- For each match found, assign the Tickets in that match to a random IP address.  In a normal system, this would be asking a dedicated game server host (such as [Agones](https://agones.dev/site/)) for an IP of a game server instance.
 - Sleeps for a bit before restarting.
 
 ### Delete the Demo
