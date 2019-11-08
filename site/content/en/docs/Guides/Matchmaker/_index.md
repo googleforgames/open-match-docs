@@ -46,7 +46,7 @@ Open Match allows for concurrent Match Functions to execute on the same player p
 
 ### External Components
 
-Although Open Match based Matchmaker offers core matchmaking functionality, some other Game Services need to handle key functionality such as handling player connections, fetching DGS allocation etc. These services interact with Open Match to enable key matchmaking scenarios. Here is an overview of these services that are external to an Open Match based Matchmaker but are a part of an E2E setup:
+Although Open Match based Matchmaker offers core matchmaking functionality, some other Game Services need to handle key functionality such as handling player connections, fetching DGS (Dedicated Game Server) allocation etc. These services interact with Open Match to enable key matchmaking scenarios. Here is an overview of these services that are external to an Open Match based Matchmaker but are a part of an E2E setup:
 
 #### Game Frontend
 

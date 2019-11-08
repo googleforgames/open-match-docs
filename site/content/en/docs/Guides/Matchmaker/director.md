@@ -81,7 +81,7 @@ MatchProfile{
 
 ### Assigning Tickets
 
-Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS allocation system and then set that as assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
+Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS (Dedicated Game Server) allocation system and then set that as an assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
 
 ```
 rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
