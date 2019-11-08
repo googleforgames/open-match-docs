@@ -43,6 +43,9 @@ gcloud compute zones list
 
 # Create a GKE Cluster in this project
 gcloud container clusters create --machine-type n1-standard-2 open-match-dev-cluster --zone us-west1-a --tags open-match
+
+# Get kubectl credentials against GKE
+gcloud container clusters get-credentials open-match-dev-cluster --zone us-west1-a
 ```
 
 ### Setup a Minikube Cluster
