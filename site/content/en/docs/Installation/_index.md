@@ -34,15 +34,11 @@ gcloud config set project $YOUR_GCP_PROJECT_ID
 gcloud services enable containerregistry.googleapis.com
 gcloud services enable container.googleapis.com
 
-# Enable optional GCP services for security hardening
-gcloud services enable containeranalysis.googleapis.com
-gcloud services enable binaryauthorization.googleapis.com
-
 # Test that everything is good, this command should work.
 gcloud compute zones list
 
 # Create a GKE Cluster in this project
-gcloud container clusters create --machine-type n1-standard-2 open-match-dev-cluster --zone us-west1-a --tags open-match
+gcloud container clusters create --machine-type n1-standard-2 open-match-cluster --zone us-west1-a --tags open-match
 ```
 
 ### Setup a Minikube Cluster
@@ -62,18 +58,9 @@ The `01-open-match-core.yaml` contains:
 * ServiceAccounts, Roles, and RoleBindings to define Open Match deployments' IAMs.
 * HorizontalAutoScalars to auto-scale Open Match based on pods' average CPU utilization.
 
-Here are the commands to install the Open Match core in your cluster:
+Here is the command to install the Open Match core in your cluster:
 
-```bash
-# Create a cluster role binding (if using gcloud on Linux or OSX)
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user `gcloud config get-value account`
-
-# Create a cluster role binding (if using gcloud on Windows)
-for /F %i in ('gcloud config get-value account') do kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user %i
-
-# Create a cluster role binding (if using minikube)
-kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --serviceaccount=kube-system:default
-
+```
 # Install the core Open Match services.
 kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml --namespace open-match
 ```
@@ -93,11 +80,20 @@ om-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
 om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
 ```
 
-Open Match needs to be customized to your Matchmaker. This custom configuration is provided to the Open Match components via a ConfigMap (`om-configmap-override`). Thus, starting the core service pods waits on this config map being available.
+Open Match needs to be customized to your Matchmaker. This custom configuration is provided to the Open Match components via a ConfigMap (`om-configmap-override`). Thus, starting the core service pods waits on this config map to become available.
 
-If you are proceeding with the [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following a [Tutorial]({{< relref "../Tutorials/_index.md" >}}), these guides have steps to deploy their custom configuration and the Open Match is installed and ready to proceed.
+If you are proceeding with the [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following the [Tutorials]({{< relref "../Tutorials/_index.md" >}}), proceed with this guide to [install the default Evaluator]({{< ref "#install-the-default-evaluator" >}}) and configure Open Match to use it.
 
-If you are building a matchmaker outside of these guides, use the [Customization Guide]({{< relref "../Guides/custom.md" >}}) for steps to customize your Open Match installation.
+If you are building your own custom matchmaker and need to deploy a custom evaluator, then skip the next step and instead use the [Customization Guide]({{< relref "../Guides/custom.md" >}}) for steps to customize your Open Match installation.
+
+## Install the default evaluator
+
+Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use the default installation.
+
+```
+kubectl apply -f https://open-match.dev/install/v0.0.0-dev/yaml/07-open-match-default-evaluator.yaml -f https://open-match.dev/install/v0.0.0-dev/yaml/06-open-match-override-configmap.yaml --namespace open-match
+
+```
 
 ## Delete Open Match
 
