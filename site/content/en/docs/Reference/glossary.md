@@ -3,7 +3,7 @@ title: "Glossary"
 linkTitle: "Glossary"
 weight: 3
 description: >
-  Open Match uses a lot of Cloud native tools. Here's what they mean.
+  Open Match uses a lot of Cloud-native tools. Here's what they mean.
 ---
 
 **Docker Image**
@@ -17,15 +17,15 @@ included without the need for virtualization. Docker Images are stored in Docker
 Repositories and are versioned.
 
 Open Match uses [distroless/static:nonroot](https://github.com/GoogleContainerTools/distroless)
-images which provide just enough Linux OS to run a mostly-static binary. There are other flavors
-of distroless for the popular languages.
+images that provide just enough Linux OS to run a mostly-static binary. There are other flavors
+of distroless for popular languages.
 
 **Docker**
 
 [Docker](https://docs.docker.com/engine/docker-overview/) is what generally mean when they say
 "containers". It allows you to run Docker Images on a host operating system. Containers provide
 a thin layer of isolation between the host and the application that makes it think it is running
-in its own environment.
+in its environment.
 
 **Kubernetes**
 
@@ -41,15 +41,15 @@ communicate outside the network. It's possible to open up ports through
 Lastly, it provides configuration management including secrets
 (like passwords and auth tokens) and auto-healing (service health monitoring and restart).
 
-Open Match uses Kubernetes to schedule and run its services. It also uses secrets to
+Open Match uses Kubernetes to schedule and runs its services. It also uses secrets to
 hold TLS certificates and Redis passwords.
 
 **Helm**
 
 [Helm](https://helm.sh/) is the Kubernetes package manager. It allows you to create
 Kubernetes deployments as templates and parameters. Helm deployments are called charts.
-For example, you can create a Open Match deployment that has 50 frontend servers via
-`--set openmatch.frontend.replicas=50`.
+For example, you can create an Open Match deployment that has 50 frontend servers via
+`--set frontend.replicas=50`.
 
 Open Match uses Helm to simplify its Kubernetes deployment. By default, the Helm chart
 deploys Redis, Open Match, Prometheus, and Grafana.

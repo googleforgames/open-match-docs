@@ -7,7 +7,7 @@ description: >
 ---
 
 Open Match API is served in HTTP and gRPC. By default, these are served
-over unencrypted channels which is not good for security posture. Open Match
+over unencrypted channels which are not good for security posture. Open Match
 provides support for TLS transport mode.
 
 ## Certificates
@@ -19,9 +19,9 @@ used to secure communication between each server.
 ### Certgen
 
 *Certgen uses the golang tls library and has not been reviewed by a security*
-*expert. Use at your own risk.*
+*expert. Use it at your own risk.*
 
-Open Match provides a certgen tool for your convience to generate certificates.
+Open Match provides a certgen tool for your convenience to generate certificates.
 This tool is used to generate the TLS certificates for development and may
 be used to quickly configure a secure cluster while waiting for your final
 certificates.
@@ -46,12 +46,12 @@ per server follow the OpenSSL instructions below.
 ### OpenSSL
 
 OpenSSL is a popular library to support SSL/TLS. We'll be using the tool
-OpenSSL ships with the generate public certificate-private key pairs for each
+OpenSSL ships with the generated public certificate-private key pairs for each
 Open Match server you run.
 
 The steps below will do the following:
 
-  1. Create a self-signed certificate authority. Basically this is the root key.
+  1. Create a self-signed certificate authority. Basically, this is the root key.
     The public key will be trusted by all servers and clients and the private
     key must be stored securely somewhere, it's only used to generate derived
     keys. A compromise of the root private key compromises the whole Open Match

@@ -8,7 +8,7 @@ description: >
 
 Open Match needs to be customized to your Matchmaker. This custom configuration is provided to the Open Match components via a ConfigMap (`om-configmap-override`). Thus, starting the core service pods waits on this config map being available.
 
-To customize an Open Match installation, we need to provide a ConfigMap with the sample configuration. Here is a sample yaml that contains the customization ConfigMap:
+To customize an Open Match installation, we need to provide a ConfigMap with the sample configuration. Here is a sample YAML that contains the customization ConfigMap:
 
 ```yaml
 apiVersion: v1
@@ -32,7 +32,7 @@ data:
       proposalCollectionIntervalMs: 2000ms
 ```
 
-To configure Open Match with your custom config, create a new yaml file with this content, make your edits and run this command:
+To configure Open Match with your custom config, create a new YAML file with this content, make your edits and run this command:
 
 ```
 kubectl apply -f <filename_here>

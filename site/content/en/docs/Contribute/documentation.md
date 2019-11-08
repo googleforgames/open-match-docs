@@ -6,7 +6,7 @@ description: >
   How to contribute to the documentation.
 ---
 
-Editing the documentation is pretty simple if your familiar with [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+Editing the documentation is pretty simple if you are familiar with [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 ## Simple Edits
 
@@ -20,7 +20,7 @@ If you want to make simple edits to a page (changes that do not require formatti
 
 If you're adding a new page, changing the landing page, or making substantial changes.
 
- 1. Checkout the repository.
+ 1. Check out the repository.
  1. Create a branch via `git checkout -b mychange upstream/master`.
  1. Run `make run-site` to start the webserver. It'll be hosted on http://localhost:8080/.
  1. Open your favorite editor and navigate to the documentation which is stored at `$(REPOSITORY_ROOT)/site/content/en/`.
@@ -29,7 +29,7 @@ If you're adding a new page, changing the landing page, or making substantial ch
 
 ## Platform
 
-This site and documentation is built with a combination of Hugo, static site generator,
+This site and documentation are built with a combination of Hugo, static site generator,
 with the Docsy theme for open source documentation.
 
 - [Hugo Documentation](https://gohugo.io/documentation/)
