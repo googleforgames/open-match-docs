@@ -6,14 +6,14 @@ description: >
   This guide covers how you can invoke Open Match APIs.
 ---
 
-Open Match has a resource based REST API that is served from HTTP and gRPC. It also
+Open Match has a resource-based REST API that is served from HTTP and gRPC. It also
 complies with the OpenAPI (fka Swagger) API specification which means it's easy to
 download the schema and [generate clients](https://swagger.io/tools/swagger-codegen/)
 in many different languages.
 
-## Open Match default host names and endpoints
+## Open Match default hostnames and endpoints
 
-The following defines the in-cluster hostnames and endpoints of Open Match's external services. The corresponding Helm configurations used to generate these configs could be found at [here](https://github.com/googleforgames/open-match/blob/master/install/helm/open-match/values.yaml).
+The following defines the in-cluster hostnames and endpoints of Open Match's external services. The corresponding Helm configurations used to generate these configs could be found [here](https://github.com/googleforgames/open-match/blob/master/install/helm/open-match/values.yaml).
 
 ```yaml
 swaggerui:
@@ -134,7 +134,7 @@ You can view and talk to this API via the Swagger UI application that is deploye
 
 If your cluster runs on GKE you can access the tool from your cluster using a Public IP address.
 Go to `Cloud Console > Kubernetes Engine > Services & Ingress` and look for `om-swaggerui`.
-In that row there's a link to view the API browser.
+In that row, there's a link to view the API browser.
 
 ### Locally
 

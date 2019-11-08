@@ -8,7 +8,7 @@ description:
 
 ## Overview
 
-The Game Frontend receives the matchmaking request from the Player's Game Client. It can authenticate the player and fetch the player data from some backend storage (or Platform Services if required). It submits the matchmaking request to Open Match by creating a Ticket. Once an assignment is set for this Ticket, the Game Frontend communicates the assignment back to the Game Client. Game Frontend may handle creating lobbies, groups etc.
+The Game Frontend receives the matchmaking request from the Player's Game Client. It can authenticate the player and fetch the player data from some backend storage (or Platform Services if required). It submits the matchmaking request to Open Match by creating a Ticket. Once an assignment is set for this Ticket, the Game Frontend communicates the assignment back to the Game Client. Game Frontend may handle creating lobbies, groups, etc.
 
 ## Open Match Interactions
 
@@ -42,7 +42,7 @@ message Ticket {
 
 #### SearchFields
 
-When creating a Ticket, the Open Match frontend populates SearchFields which specify the properties for the Ticket that can be used for filtering the Tickets. SearchFields can be of different types (double, string, tag) and an appropriate one should be chosen based on the nature of the property and filtering requirements. Here is a sample SearchField specifying the mmr, role and game mode.
+When creating a Ticket, the Open Match frontend populates SearchFields which specify the properties for the Ticket that can be used for filtering the Tickets. SearchFields can be of different types (double, string, tag) and an appropriate one should be chosen based on the nature of the property and filtering requirements. Here is a sample SearchField specifying the MMR, role and game mode.
 
 ```
 SearchFields: &pb.SearchFields{
@@ -64,7 +64,7 @@ rpc GetTicket(GetTicketRequest) returns (Ticket) {
 }
 ```
 
-Note: Open Match does not gurantee persistent storage and hence should not be used as the authoritative source for Game Client assignment information. Once the assignment for a Ticket is fetched, the Game Frontent should (if necessary) persist this information in its own persistant storage for future lookup.
+Note: Open Match does not guarantee persistent storage and hence should not be used as the authoritative source for Game Client assignment information. Once the assignment for a Ticket is fetched, the Game Frontent should (if necessary) persist this information in its own persistent storage for future lookup.
 
 ### Deleting a Ticket
 

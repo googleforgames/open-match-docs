@@ -1,10 +1,10 @@
 ---
-title: "Open Match API References" 
-linkTitle: "Open Match API References" 
-weight: 2 
-description: 
-  This document provides API references for Open Match services. 
---- 
+title: "Open Match API References"
+linkTitle: "Open Match API References"
+weight: 2
+description:
+  This document provides API references for Open Match services.
+---
 
 # Protocol Documentation
 <a name="top"></a>
@@ -17,28 +17,28 @@ description:
     - [FetchMatchesRequest](#openmatch.FetchMatchesRequest)
     - [FetchMatchesResponse](#openmatch.FetchMatchesResponse)
     - [FunctionConfig](#openmatch.FunctionConfig)
-  
+
     - [FunctionConfig.Type](#openmatch.FunctionConfig.Type)
-  
-  
+
+
     - [Backend](#openmatch.Backend)
-  
+
 
 - [api/evaluator.proto](#api/evaluator.proto)
     - [EvaluateRequest](#openmatch.EvaluateRequest)
     - [EvaluateResponse](#openmatch.EvaluateResponse)
-  
-  
-  
+
+
+
     - [Evaluator](#openmatch.Evaluator)
-  
+
 
 - [api/extensions.proto](#api/extensions.proto)
     - [DefaultEvaluationCriteria](#openmatch.DefaultEvaluationCriteria)
-  
-  
-  
-  
+
+
+
+
 
 - [api/frontend.proto](#api/frontend.proto)
     - [CreateTicketRequest](#openmatch.CreateTicketRequest)
@@ -48,20 +48,20 @@ description:
     - [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest)
     - [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse)
     - [GetTicketRequest](#openmatch.GetTicketRequest)
-  
-  
-  
+
+
+
     - [Frontend](#openmatch.Frontend)
-  
+
 
 - [api/matchfunction.proto](#api/matchfunction.proto)
     - [RunRequest](#openmatch.RunRequest)
     - [RunResponse](#openmatch.RunResponse)
-  
-  
-  
+
+
+
     - [MatchFunction](#openmatch.MatchFunction)
-  
+
 
 - [api/messages.proto](#api/messages.proto)
     - [Assignment](#openmatch.Assignment)
@@ -76,19 +76,19 @@ description:
     - [StringEqualsFilter](#openmatch.StringEqualsFilter)
     - [TagPresentFilter](#openmatch.TagPresentFilter)
     - [Ticket](#openmatch.Ticket)
-  
-  
-  
-  
+
+
+
+
 
 - [api/mmlogic.proto](#api/mmlogic.proto)
     - [QueryTicketsRequest](#openmatch.QueryTicketsRequest)
     - [QueryTicketsResponse](#openmatch.QueryTicketsResponse)
-  
-  
-  
+
+
+
     - [MmLogic](#openmatch.MmLogic)
-  
+
 
 - [Scalar Value Types](#scalar-value-types)
 
@@ -174,7 +174,7 @@ FunctionConfig specifies a MMF address and client type for Backend to establish 
 
 
 
- 
+
 
 
 <a name="openmatch.FunctionConfig.Type"></a>
@@ -188,9 +188,9 @@ FunctionConfig specifies a MMF address and client type for Backend to establish 
 | REST | 1 |  |
 
 
- 
 
- 
+
+
 
 
 <a name="openmatch.Backend"></a>
@@ -203,7 +203,7 @@ The Backent service implements APIs to generate matches and handle ticket assign
 | FetchMatches | [FetchMatchesRequest](#openmatch.FetchMatchesRequest) | [FetchMatchesResponse](#openmatch.FetchMatchesResponse) stream | FetchMatches triggers a MatchFunction with the specified MatchProfiles, while each MatchProfile returns a set of match proposals. FetchMatches method streams the results back to the caller. FetchMatches immediately returns an error if it encounters any execution failures. - If the synchronizer is enabled, FetchMatch will then call the synchronizer to deduplicate proposals with overlapped tickets. |
 | AssignTickets | [AssignTicketsRequest](#openmatch.AssignTicketsRequest) | [AssignTicketsResponse](#openmatch.AssignTicketsResponse) | AssignTickets overwrites the Assignment field of the input TicketIds. |
 
- 
+
 
 
 
@@ -243,11 +243,11 @@ The Backent service implements APIs to generate matches and handle ticket assign
 
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="openmatch.Evaluator"></a>
@@ -259,7 +259,7 @@ The Evaluator service implements APIs used to evaluate and shortlist matches pro
 | ----------- | ------------ | ------------- | ------------|
 | Evaluate | [EvaluateRequest](#openmatch.EvaluateRequest) stream | [EvaluateResponse](#openmatch.EvaluateResponse) stream | Evaluate evaluates a list of proposed matches based on quality, collision status, and etc, then shortlist the matches and returns the final results. |
 
- 
+
 
 
 
@@ -285,13 +285,13 @@ the default evaluator.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -401,11 +401,11 @@ the default evaluator.
 
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="openmatch.Frontend"></a>
@@ -420,7 +420,7 @@ The Frontend service implements APIs to manage and query status of a Tickets.
 | GetTicket | [GetTicketRequest](#openmatch.GetTicketRequest) | [Ticket](#openmatch.Ticket) | GetTicket get the Ticket associated with the specified TicketId. |
 | GetAssignments | [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest) | [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse) stream | GetAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
 
- 
+
 
 
 
@@ -454,17 +454,17 @@ The Frontend service implements APIs to manage and query status of a Tickets.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| proposal | [Match](#openmatch.Match) |  | A Proposal represents a Match candidate that satifies the constraints defined in the input Profile. A valid Proposal response will contain at least one ticket. |
+| proposal | [Match](#openmatch.Match) |  | A Proposal represents a Match candidate that satisfies the constraints defined in the input Profile. A valid Proposal response will contain at least one ticket. |
 
 
 
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="openmatch.MatchFunction"></a>
@@ -476,7 +476,7 @@ The MatchFunction service implements APIs to run user-defined matchmaking logics
 | ----------- | ------------ | ------------- | ------------|
 | Run | [RunRequest](#openmatch.RunRequest) | [RunResponse](#openmatch.RunResponse) stream | DO NOT CALL THIS FUNCTION MANUALLY. USE backend.FetchMatches INSTEAD. Run pulls Tickets that satisify Profile constraints from Mmlogic, runs matchmaking logics against them, then constructs and streams back match candidates to the Backend service. |
 
- 
+
 
 
 
@@ -540,7 +540,7 @@ does not match:
 A Match is used to represent a completed match object. It can be generated by
 a MatchFunction as a proposal or can be returned by OpenMatch as a result in
 response to the FetchMatches call.
-When a match is returned by the FetchMatches call, it should contain at least 
+When a match is returned by the FetchMatches call, it should contain at least
 one ticket to be considered as valid.
 
 
@@ -735,13 +735,13 @@ Assignment to be associated with this Ticket.
 
 
 
- 
 
- 
 
- 
 
- 
+
+
+
+
 
 
 
@@ -775,17 +775,17 @@ Assignment to be associated with this Ticket.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets is a list of Ticket representing one or more Tickets which meet all Filter criterias. |
+| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets is a list of Ticket representing one or more Tickets which meet all Filter criteria. |
 
 
 
 
 
- 
 
- 
 
- 
+
+
+
 
 
 <a name="openmatch.MmLogic"></a>
@@ -797,7 +797,7 @@ The MmLogic service implements helper APIs for Match Function to query Tickets f
 | ----------- | ------------ | ------------- | ------------|
 | QueryTickets | [QueryTicketsRequest](#openmatch.QueryTicketsRequest) | [QueryTicketsResponse](#openmatch.QueryTicketsResponse) stream | QueryTickets gets a list of Tickets that match all Filters of the input Pool. - If the Pool contains no Filters, QueryTickets will return all Tickets in the state storage. QueryTickets pages the Tickets by `storage.pool.size` and stream back response. - storage.pool.size is default to 1000 if not set, and has a mininum of 10 and maximum of 10000 |
 
- 
+
 
 
 

@@ -21,7 +21,7 @@ how they successfully executed this multiplayer experience.
 https://www.youtube.com/watch?v=qasAmy_ko2o
 
 Matchmaking is an essential component of today’s most popular multiplayer games.
-Unity is helping lead a new open-source project designed to tackle this common and
+Unity is helping to lead a new open-source project designed to tackle this common and
 challenging aspect of multiplayer game creation. Learn how it works and how you can get involved.
 
 **Matchmaking Innovation & Best Practices with Unity (GDC '19)**
@@ -31,5 +31,5 @@ https://www.youtube.com/watch?v=44gqtGRXmrg
 Creating a multiplayer game? You're going to need matchmaking! Google Cloud and Unity have been
 leading a new open source matchmaking project that's extensible and scalable to millions of
 players. In this session, learn how Open Match works and how to innovate using standard
-matchmaking techniques, patterns and best practices. Then, learn how Open Match is even more
+matchmaking techniques, patterns, and best practices. Then, learn how Open Match is even more
 approachable and useful when combined with Unity's game server hosting technology.

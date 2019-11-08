@@ -30,7 +30,7 @@ Here are some of the Open Match concepts that you will encounter as you run the 
 
 Here are the components external to core Open Match that are implemented as a part of the demo:
 
-* **Match Function(MMF)**: The core matchmaking logic implemented as a service. It is invoked by Open Match to generate matches. It takes lists of tickets (which meet certain constraints) as input, and returns any number of matches. For this basic demo, the Match Function simply pairs any two players into a Match.
+* **Match Function(MMF)**: The core matchmaking logic implemented as a service. It is invoked by Open Match to generate matches. It takes lists of tickets (which meet certain constraints) as input and returns any number of matches. For this basic demo, the Match Function simply pairs any two players into a Match.
 * **Director**: A component that requests Open Match for matches and then sets assignments on the Tickets in the matches found.
 
 Here is a sequence diagram of Open Match matching two players.
@@ -54,7 +54,7 @@ The live working demo is now available at: **[localhost:51507](http://localhost:
 
 ## Demo Components
 
-This demo shows the current status of several different concurrent processes driving the demo. There are three top level fields in this demo, which are covered in the following sections.
+This demo shows the current status of several different concurrent processes driving the demo. There are three top-level fields in this demo, which are covered in the following sections.
 
 ### Uptime
 
@@ -69,7 +69,7 @@ This simply counts up every second, to show how long the demo has been running.
 This emulates requests coming from players wanting to be matched. Each fake player takes these steps:
 
 - Sleeps to emulate a player on the main menu of the game before searching for a match.
-- Creates a ticket and sends the request to open match.
+- Creates a ticket and sends the request to Open Match.
 - Waits to be given an assignment.
 - Sleeps to emulate playing a game connected to the given assignment.
 
