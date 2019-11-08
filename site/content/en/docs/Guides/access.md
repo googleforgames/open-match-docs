@@ -10,7 +10,7 @@ You can talk to Open Match either via an in-cluster or out-of-cluster service cl
 
 ## Access Open Match via an out-of-cluster service client
 
-To access Open Match via an out-of-cluster client, the first step is to expose a service onto an external IP address. We recommend exposing your service using Kubernetes Load Balancers in production for a public IP if needed. Open Match provides two different ways to configure your service with Load Balancer. The following provide examples to expose the `backend` service with code examples in Go.
+To access Open Match via an out-of-cluster client, the first step is to expose a Service onto an external IP address. We recommend exposing your service using Kubernetes Load Balancers in production for a public IP if needed. Open Match provides two different ways to configure your service with Load Balancer. The following provides examples to expose the `backend` service with code examples in Go.
 
 ### 1 Exposing the Service using Cloud Load Balancer
 
@@ -46,7 +46,7 @@ kubectl apply -f ./install.yaml
 Open Match's helm chart lives under the `install/helm/open-match` folder of the root directory. To install Open Match with Load Balancer enabled:
 
 ```bash
-# Change directoy to the helm chart folder
+# Change directory to the helm chart folder
 kubectl create clusterrolebinding default-view-open-match --clusterrole=view --serviceaccount=open-match:default
 # Expose Service onto a public IP using helm cli
 helm upgrade [YOUR_HELM_RELEASE_NAME] --install --wait --debug -n open-match \
@@ -75,7 +75,7 @@ beClient := pb.NewBackendClient(conn)
 ...
 ```
 
-> Note that if you want to obtain the external IP programatically, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration)
+> Note that if you want to obtain the external IP programmaticallyarearea, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration)
 example from the Kubernetes client and use the code below for your reference.
 
 ```go

@@ -8,7 +8,7 @@ description:
 
 ## Overview
 
-The Match Function is the component that implements the core matchmaking logic. A Match Function receives a MatchProfile as an input should return matches for this MatchProfile.
+The Match Function is the component that implements the core matchmaking logic. A Match Function receives a MatchProfile as input should return matches for this MatchProfile.
 
 ## Details
 
