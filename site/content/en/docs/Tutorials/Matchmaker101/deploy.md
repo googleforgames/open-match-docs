@@ -4,7 +4,7 @@ linkTitle: "Step 4 - Deploy and Run"
 weight: 4
 ---
 
-This step assumes that you have completed the Tutorial prerequisites and all prior steps and have the Game Frontend, Director and Match Function built and pushed to your configured image registry. If you have done all of this, lets proceed.
+This step assumes that you have completed the Tutorial prerequisites and all prior steps and have the Game Frontend, Director and Match Function built and pushed to your configured image registry. If you have done all of this, let's proceed.
 
 ## Customizing Open Match Installation
 
@@ -29,7 +29,7 @@ docker push $REGISTRY/mm101-tutorial-evaluator
 
 ### Deploy and Customize
 
-Next step is to deploy the Match Function and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The ```$TUTORIALROOT/customization.yaml``` deploys these components as Services to ```mm101-tutorial``` namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the ```$TUTORIALROOT``` path to apply this yaml:
+The next step is to deploy the Match Function and the Evaluator to the same cluster as Open Match deployment but to a different namespace. The ```$TUTORIALROOT/customization.yaml``` deploys these components as Services to ```mm101-tutorial``` namespace and adds a ConfigMap to Open Match namespace with the configuration of the Evaluator. Run the below command in the ```$TUTORIALROOT``` path to apply this YAML:
 
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" customization.yaml | kubectl apply -f -
@@ -47,9 +47,9 @@ kubectl get -n mm101-tutorial pod
 
 ## Deploy Game Frontend, Director
 
-Now that Open Match is setup and customized, it is ready to be used by the Game Frontend and Director.
+Now that Open Match is set up and customized, it is ready to be used by the Game Frontend and Director.
 
-The ```$TUTORIALROOT/matchmaker.yaml``` deploys these components as single Pods to a ```mm101-tutorial``` namespace. Run the below command in the ```$TUTORIALROOT``` path to apply this yaml:
+The ```$TUTORIALROOT/matchmaker.yaml``` deploys these components as single Pods to a ```mm101-tutorial``` namespace. Run the below command in the ```$TUTORIALROOT``` path to apply this YAML:
 
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
@@ -100,4 +100,4 @@ To remove the tutorial and its custom components, here is the command you need t
 kubectl delete namespace mm101-tutorial
 ```
 
-This will delete all the components (including the match function and the evaluator). Note that the Open Match core in open-match namespace can then be used for other exercies but you will need to re-customize it.
+This will delete all the components (including the match function and the evaluator). Note that the Open Match core in open-match namespace can then be used for other exercises but you will need to re-customize it.

@@ -3,7 +3,7 @@ title: "Director"
 linkTitle: "Director"
 weight: 2
 description:
-  What is a Director? How does it interact with Open Match?
+  What is the Director? How does it interact with Open Match?
 ---
 
 ## Overview
@@ -51,9 +51,9 @@ MatchProfile is a representation of a Match specification. It bears the followin
 
 - Profile name that is then specified in the generated matches to identify which profile a Match belongs to.
 - Pools of Tickets to be considered for the Match (each pool has the search criteria to filter players belonging to that Pool)
-- Roster (Optional) that specifies an named grouping of Ticket Ids, primarily used in Backfill scenarios.
+- Roster (Optional) specifies a named grouping of Ticket Ids, primarily used in Backfill scenarios.
 
-Here is a sample MatchProfile that specifies two different Pools of Tickets with tank and dps roles for a ctf game mode. The director could query concurrently for another MatchProfile that specifies the same roles but for a battleroyale game mode.
+Here is a sample MatchProfile that specifies two different Pools of Tickets with tank and dps roles for a CTF game mode. The director could query concurrently for another MatchProfile that specifies the same roles but for a battle-royale game mode.
 
 ```
 MatchProfile{
@@ -81,7 +81,7 @@ MatchProfile{
 
 ### Assigning Tickets
 
-Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS allocation system and then set that as assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
+Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS allocation system and then set that as an assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
 
 ```
 rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
@@ -91,7 +91,7 @@ rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
 };
 ```
 
-The API takes a list of TicketIDs to make the assignment to and an assignment object.
+The API takes a list of TicketIDs to make the assignment and an assignment object.
 
 #### Assignment
 

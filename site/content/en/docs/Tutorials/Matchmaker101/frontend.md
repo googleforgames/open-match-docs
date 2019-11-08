@@ -40,7 +40,7 @@ func makeTicket() *pb.Ticket {
 }
 ```
 
-Please copy the above helper or add your own fake Ticket creation logic to ```$TUTORIALROOT/frontend/ticket.go```. Also, you may tweak the size of the Ticket creation batches, polling interval etc. in ```$TUTORIALROOT/frontend/main.go```.
+Please copy the above helper or add your own fake Ticket creation logic to ```$TUTORIALROOT/frontend/ticket.go```. Also, you may tweak the size of the Ticket creation batches, polling interval, etc. in ```$TUTORIALROOT/frontend/main.go```.
 
 ### Configuring
 
@@ -62,4 +62,4 @@ docker push $REGISTRY/mm101-tutorial-frontend
 
 ## Whats's Next:
 
-Lets proceed to build the [Director]({{< relref "./director.md" >}}).
+Let's proceed to build the [Director]({{< relref "./director.md" >}}).

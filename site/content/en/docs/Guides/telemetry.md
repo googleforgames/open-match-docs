@@ -7,7 +7,7 @@ description: >
 ---
 
 Open Match is instrumented with [OpenCensus](https://opencensus.io/),
-a telemetry library. The metrics that Open Match provides gives you
+a telemetry library. The metrics that Open Match provides give you
 insight into the performance and health of your Open Match cluster.
 
 ## Dashboard
@@ -50,8 +50,7 @@ Next visit http://localhost:9090 in your browser.
 
 Let's try an example query, `sum(rate(backend_tickets_assigned[5m]))`
 
-This returns the number of tickets assigned by the backend server over a 5
-minute sliding window period.
+This returns the number of tickets assigned by the backend server over a 5-minute sliding window period.
 
 ![Prometheus](../../../images/guides/telemetry-prometheus.png)
 
@@ -60,7 +59,7 @@ Let's break down each part of the query.
 * `sum()` - This will take the sum over each individual rate produced by
    each server (there may be more than 1 backend server).
 * `rate(metric_name[5m])` - Take the rate of a particular metric.
-   Since a rate is not instanteous we must use a sliding window where we take
+   Since a rate is not instantaneous we must use a sliding window where we take
    *metric_name[now]* - *metric_name[5m ago]* at every time point. The
    smaller the time window the more exact but choppy the data appears.
 

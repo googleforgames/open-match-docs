@@ -12,7 +12,7 @@ The guide presents a high-level Online Game Services architecture that leverages
 
 This guide is a pre-reading for the tutorial for [building a basic Matchmaker]({{< relref "../../Tutorials/Matchmaker101/_index.md" >}}). You can use this [Tutorial Solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101) as a reference when going through each component in this guide.
 
-## Game Services Architecure
+## Game Services Architecture
 
 ![Architecture](../../../images/architecture.png)
 
