@@ -119,7 +119,7 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if pc == nil {
-		http.NotFound(w, r)
+		http.ServeFile(w, r, "./public/webfonts/404.html")
 		return
 	}
 
