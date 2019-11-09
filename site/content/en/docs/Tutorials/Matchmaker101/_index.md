@@ -22,6 +22,10 @@ Some basic understanding of Kubernetes, kubectl is required to efficiently compl
 
 Lets setup Open Match next by running the steps in [Install Open Match Core]({{< relref "../../Installation/_index.md#install-core-open-match" >}}). Please be sure to also [install the default Evaluator]({{< relref "../../Installation/_index.md#install-the-default-evaluator" >}}).
 
+{{% alert title="Note" color="info" %}}
+If you already installed Open Match for the [Getting Started Demo]({{< relref "../../Getting Started/_index.md" >}}), you can skip this step. Simply [delete the demo namespace]({{< relref "../../Getting Started/_index.md#delete-the-demo" >}}) and proceed.
+{{% /alert %}}
+
 ### Set up Image Registry
 
 Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images that will be generated in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
