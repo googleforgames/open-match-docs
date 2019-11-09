@@ -39,15 +39,17 @@ Here is a sequence diagram of Open Match matching two players.
 
 ## Install the Demo
 
-The demo is installed in the `om-demo` namespace. Run this command to install the Demo:
+This step deploys a Match Function and the core demo application in under the `open-match-demo` namespace:
 
 ```bash
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/02-open-match-demo.yaml
+kubectl create namespace open-match-demo
+kubectl apply --namespace open-match-demo \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/02-open-match-demo.yaml
 ```
 
 Run this command to make the Demo’s service available locally:
 ```bash
-kubectl port-forward --namespace open-match service/om-demo 51507:51507
+kubectl port-forward --namespace open-match-demo service/om-demo 51507:51507
 ```
 
 The live working demo is now available at: **[localhost:51507](http://localhost:51507)**.
@@ -88,7 +90,7 @@ This emulates the component that tells Open Match what kind of matches to find a
 The demo is installed in its own namespace. Run the below command to delete the demo and reuse the Open Match installation for the next steps:
 
 ```bash
-kubectl delete namespace om-demo
+kubectl delete namespace open-match-demo
 ```
 
 ### What's Next
