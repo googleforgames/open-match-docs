@@ -35,7 +35,7 @@ Here are the components external to core Open Match that are implemented as a pa
 
 Here is a sequence diagram of Open Match matching two players.
 
-![Demo Match Sequence Diagram](../../../images/demo-match-sequence.png)
+![Demo Match Sequence Diagram](../../images/demo-match-sequence.png)
 
 ## Install the Demo
 
