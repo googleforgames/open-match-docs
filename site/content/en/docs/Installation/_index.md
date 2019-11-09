@@ -80,7 +80,14 @@ om-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
 om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
 ```
 
-Open Match needs to be customized to your Matchmaker. This custom configuration is provided to the Open Match components via a ConfigMap (`om-configmap-override`). Thus, starting the core service pods waits on this config map to become available.
+{{% alert title="Note" color="info" %}}
+Open Match needs to be customized to your Matchmaker. 
+This custom configuration is provided to the Open Match components via a ConfigMap 
+(<code>om-configmap-override</code>).<br/><br/>
+
+Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is
+ available.
+{{% /alert %}}
 
 If you are proceeding with the [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following the [Tutorials]({{< relref "../Tutorials/_index.md" >}}), proceed with this guide to [install the default Evaluator]({{< ref "#install-the-default-evaluator" >}}) and configure Open Match to use it.
 
