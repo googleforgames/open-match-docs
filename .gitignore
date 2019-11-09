@@ -83,8 +83,9 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 
-# Goland
+# Goland / Intellij
 .idea/
+*.iml
 
 # Nodejs files placed when building Hugo, ok to allow if we actually start using Nodejs.
 package.json
