@@ -39,15 +39,34 @@ Here is a sequence diagram of Open Match matching two players.
 
 ## Install the Demo
 
-The demo is installed in the `om-demo` namespace. Run this command to install the Demo:
+This demo deploys the following kubernetes resources.
+
+Under `open-match` namespace:
+
+- A default Evaluator. User could optionally choose to [customize it]({{ relref "../guides/evaluator.md "}}).
+- A configmap om-configmap-override that mounts a `matchmaker_config_override.yaml` to boot up Open Match core services.
+ 
+Under `open-match-demo` namespace:
+
+- A MMF (Matchmaking function).  
+- The demo itself, which emulates a director and clients connecting to
+Open Match.
 
 ```bash
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/02-open-match-demo.yaml
+# Install the MMF and the demo
+kubectl create namespace open-match-demo
+kubectl apply --namespace open-match-demo \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/02-open-match-demo.yaml
+
+# Install the configmap and the evaluator
+kubectl apply --namespace open-match \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/06-open-match-override-configmap.yaml \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/07-open-match-default-evaluator.yaml
 ```
 
 Run this command to make the Demo’s service available locally:
 ```bash
-kubectl port-forward --namespace open-match service/om-demo 51507:51507
+kubectl port-forward --namespace open-match-demo service/om-demo 51507:51507
 ```
 
 The live working demo is now available at: **[localhost:51507](http://localhost:51507)**.
@@ -88,7 +107,7 @@ This emulates the component that tells Open Match what kind of matches to find a
 The demo is installed in its own namespace. Run the below command to delete the demo and reuse the Open Match installation for the next steps:
 
 ```bash
-kubectl delete namespace om-demo
+kubectl delete namespace open-match-demo
 ```
 
 ### What's Next
