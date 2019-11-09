@@ -67,8 +67,8 @@ The tutorial walks through building the Game Frontend, Director, Match Function 
 - The Game Frontend creates Tickets that specified a game mode.
 - The Director requests for matches for a specific game mode.
 - The Match Function queries for Tickets from the current pool that match this constraint and groups available Tickets into match proposals.
-- The Director receives the matches and sets fake assignments for Tickets in these.
-- The Game Frontend receives these assignments and then deletes the Tickets.
+- The Director receives the matches and sets fake Assignments for Tickets in these.
+- The Game Frontend receives these Assignments and then deletes the Tickets.
 
 **A complete solution for this tutorial can be found at ```tutorials/matchmaker101```. To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})**
 

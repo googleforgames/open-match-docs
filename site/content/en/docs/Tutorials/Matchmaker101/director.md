@@ -47,7 +47,7 @@ func generateProfiles() []*pb.MatchProfile {
 }
 ```
 
-Please copy the above helper or add your own profile generation logic to ```$TUTORIALROOT/director/profiles.go```. Also, you may tweak the profile polling interval, assignment logic, etc. in ```$TUTORIALROOT/director/main.go```.
+Please copy the above helper or add your own profile generation logic to ```$TUTORIALROOT/director/profiles.go```. Also, you may tweak the profile polling interval, Assignment logic, etc. in ```$TUTORIALROOT/director/main.go```.
 
 ### Configuring
 
