@@ -20,9 +20,7 @@ Some basic understanding of Kubernetes, kubectl is required to efficiently compl
 
 ### Install Open Match
 
-Lets setup Open Match next by running the steps in [Install Open Match Core]({{< relref "../../Installation/_index.md#install-core-open-match" >}}).
-
-**Note:** After installing Open Match Core, the pods for core Open Match services stay in CreatingContainer state. This is because Open Match requires a ConfigMap that has your tutorial's custom configuration. We will update this ConfigMap during the last step of the tutorial once we have deployed the tutorial's components.
+Lets setup Open Match next by running the steps in [Install Open Match Core]({{< relref "../../Installation/_index.md#install-core-open-match" >}}). Please be sure to also [install the default Evaluator]({{< relref "../../Installation/_index.md#install-the-default-evaluator" >}}).
 
 ### Set up Image Registry
 
