@@ -237,7 +237,7 @@ site-test: $(RENDERED_SITE_DIR_REL)/ $(HTMLTEST_REL)
 	rm -rf $(TEMP_SITE_DIR)
 	mkdir -p $(TEMP_SITE_DIR)/site/
 	cp -rf $(RENDERED_SITE_DIR)/public/* $(TEMP_SITE_DIR)/site/
-	$(HTMLTEST) -l 0 --conf $(SITE_DIR)/htmltest.yaml $(TEMP_SITE_DIR)
+	$(HTMLTEST) -l 1 --conf $(SITE_DIR)/htmltest.yaml $(TEMP_SITE_DIR)
 
 browse-site: $(RENDERED_SITE_DIR_REL)/
 	cd $(RENDERED_SITE_DIR) && dev_appserver.py .app.yaml
