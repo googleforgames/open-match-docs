@@ -8,7 +8,7 @@ description:
 
 ## Overview
 
-The Game Frontend receives the matchmaking request from the Player's Game Client. It can authenticate the player and fetch the player data from some backend storage (or Platform Services if required). It submits the matchmaking request to Open Match by creating a Ticket. Once an assignment is set for this Ticket, the Game Frontend communicates the assignment back to the Game Client. Game Frontend may handle creating lobbies, groups, etc.
+The Game Frontend receives the matchmaking request from the Player's Game Client. It can authenticate the player and fetch the player data from some backend storage (or Platform Services if required). It submits the matchmaking request to Open Match by creating a Ticket. Once an Assignment is set for this Ticket, the Game Frontend communicates the Assignment back to the Game Client. Game Frontend may handle creating lobbies, groups, etc.
 
 ## Open Match Interactions
 
@@ -54,7 +54,7 @@ SearchFields: &pb.SearchFields{
 
 ### Fetching the Assignment
 
-The Game Frontend can get the current Ticket from Open Match and check if the Ticket has assignment information populated. Here is the API to get a Ticket:
+The Game Frontend can get the current Ticket from Open Match and check if the Ticket has Assignment information populated. Here is the API to get a Ticket:
 
 ```
 rpc GetTicket(GetTicketRequest) returns (Ticket) {
@@ -64,11 +64,11 @@ rpc GetTicket(GetTicketRequest) returns (Ticket) {
 }
 ```
 
-Note: Open Match does not guarantee persistent storage and hence should not be used as the authoritative source for Game Client assignment information. Once the assignment for a Ticket is fetched, the Game Frontent should (if necessary) persist this information in its own persistent storage for future lookup.
+Note: Open Match does not guarantee persistent storage and hence should not be used as the authoritative source for Game Client Assignment information. Once the Assignment for a Ticket is fetched, the Game Frontent should (if necessary) persist this information in its own persistent storage for future lookup.
 
 ### Deleting a Ticket
 
-Once the player assignment has been stored & communicated to the Game Client, the Game Frontend may delete the Ticket from Open Match. Here is the API exposed on Open Match Frontend to delete a Ticket:
+Once the player Assignment has been stored & communicated to the Game Client, the Game Frontend may delete the Ticket from Open Match. Here is the API exposed on Open Match Frontend to delete a Ticket:
 
 ```
 rpc DeleteTicket(DeleteTicketRequest) returns (DeleteTicketResponse) {

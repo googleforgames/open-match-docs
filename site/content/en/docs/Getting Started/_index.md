@@ -31,7 +31,7 @@ Here are some of the Open Match concepts that you will encounter as you run the 
 Here are the components external to core Open Match that are implemented as a part of the demo:
 
 * **Match Function(MMF)**: The core matchmaking logic implemented as a service. It is invoked by Open Match to generate matches. It takes lists of tickets (which meet certain constraints) as input and returns any number of matches. For this basic demo, the Match Function simply pairs any two players into a Match.
-* **Director**: A component that requests Open Match for matches and then sets assignments on the Tickets in the matches found.
+* **Director**: A component that requests Open Match for matches and then sets Assignments on the Tickets in the matches found.
 
 Here is a sequence diagram of Open Match matching two players.
 
@@ -70,14 +70,14 @@ This emulates requests coming from players wanting to be matched. Each fake play
 
 - Sleeps to emulate a player on the main menu of the game before searching for a match.
 - Creates a ticket and sends the request to Open Match.
-- Waits to be given an assignment.
-- Sleeps to emulate playing a game connected to the given assignment.
+- Waits to be given an Assignment.
+- Sleeps to emulate playing a game connected to the given Assignment.
 
 ### Director
 
 [Source code](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/examples/demo/components/director/director.go)
 
-This emulates the component that tells Open Match what kind of matches to find and gives found matches assignments. The steps it takes:
+This emulates the component that tells Open Match what kind of matches to find and gives found matches Assignments. The steps it takes:
 
 - Request Open Match to fetch matches from Tickets belonging to the specified pool. The Director does not specify any constraints for the Pool so all the currently searching tickets are considered.
 - For each match found, assign the Tickets in that match to a random IP address.  In a normal system, this would be asking a dedicated game server host (such as [Agones](https://agones.dev/site/)) for an IP of a game server instance.

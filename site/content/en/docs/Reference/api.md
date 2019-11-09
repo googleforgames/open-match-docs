@@ -196,7 +196,7 @@ FunctionConfig specifies a MMF address and client type for Backend to establish 
 <a name="openmatch.Backend"></a>
 
 ### Backend
-The Backent service implements APIs to generate matches and handle ticket assignments.
+The Backent service implements APIs to generate matches and handle ticket Assignments.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
