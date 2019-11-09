@@ -39,29 +39,12 @@ Here is a sequence diagram of Open Match matching two players.
 
 ## Install the Demo
 
-This demo deploys the following kubernetes resources.
-
-Under `open-match` namespace:
-
-- A default Evaluator. User could optionally choose to [customize it]({{ relref "../guides/evaluator.md "}}).
-- A configmap om-configmap-override that mounts a `matchmaker_config_override.yaml` to boot up Open Match core services.
- 
-Under `open-match-demo` namespace:
-
-- A MMF (Matchmaking function).  
-- The demo itself, which emulates a director and clients connecting to
-Open Match.
+This step deploys a Match Function and the core demo application in under the `open-match-demo` namespace:
 
 ```bash
-# Install the MMF and the demo
 kubectl create namespace open-match-demo
 kubectl apply --namespace open-match-demo \
   -f https://open-match.dev/install/v{{< param release_version >}}/yaml/02-open-match-demo.yaml
-
-# Install the configmap and the evaluator
-kubectl apply --namespace open-match \
-  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/06-open-match-override-configmap.yaml \
-  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/07-open-match-default-evaluator.yaml
 ```
 
 Run this command to make the Demo’s service available locally:
