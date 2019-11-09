@@ -81,8 +81,8 @@ om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
 ```
 
 {{% alert title="Note" color="info" %}}
-Open Match needs to be customized to your Matchmaker. 
-This custom configuration is provided to the Open Match components via a ConfigMap 
+Open Match needs to be customized to your Matchmaker.
+This custom configuration is provided to the Open Match components via a ConfigMap
 (<code>om-configmap-override</code>).<br/><br/>
 
 Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is
@@ -95,7 +95,7 @@ If you are building your own custom matchmaker and need to deploy a custom evalu
 
 ## Install the default evaluator
 
-Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use the default installation.
+Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use it.
 
 ```
 kubectl apply -f https://open-match.dev/install/v0.0.0-dev/yaml/07-open-match-default-evaluator.yaml -f https://open-match.dev/install/v0.0.0-dev/yaml/06-open-match-override-configmap.yaml --namespace open-match
