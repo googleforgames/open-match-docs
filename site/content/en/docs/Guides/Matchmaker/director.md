@@ -8,7 +8,7 @@ description:
 
 ## Overview
 
-The Director fetches Matches from Open Match for a set of MatchProfiles. For these matches, it fetches Game Server from a DGS allocation system. It can then communicate the assignments back to the Game Frontend.
+The Director fetches Matches from Open Match for a set of MatchProfiles. For these matches, it fetches Game Server from a DGS allocation system. It can then communicate the Assignments back to the Game Frontend.
 
 ## Open Match Interactions
 
@@ -81,7 +81,7 @@ MatchProfile{
 
 ### Assigning Tickets
 
-Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS (Dedicated Game Server) allocation system and then set that as an assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
+Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS (Dedicated Game Server) allocation system and then set that as an Assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
 
 ```
 rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
@@ -91,11 +91,11 @@ rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
 };
 ```
 
-The API takes a list of TicketIDs to make the assignment and an assignment object.
+The API takes a list of TicketIDs to make the Assignment and an Assignment object.
 
 #### Assignment
 
-Here is the proto for the assignment:
+Here is the proto for the Assignment:
 
 ```
 message Assignment {
@@ -105,4 +105,4 @@ message Assignment {
 }
 ```
 
-It comprises of the connection string, any error that the user wants to pass through to on the assignment and a set of extension blobs that Open Match passes through.
+It comprises of the connection string, any error that the user wants to pass through to on the Assignment and a set of extension blobs that Open Match passes through.
