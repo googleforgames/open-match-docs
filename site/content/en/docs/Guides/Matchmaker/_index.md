@@ -26,7 +26,10 @@ The Open Match Frontend provides management of Tickets (a basic matchmaking requ
 
 #### Open Match Backend
 
-The Open Match Backend provides the core functionality of generating matches. It accepts MatchProfiles (a match template that can be used to generate matches) and returns matches for the requested profile. It also enables setting Assignments for matches.
+The Open Match Backend provides the core functionality of generating matches. It accepts MatchProfiles (a match
+template that can be used to generate matches) and returns matches for the requested profile. 
+It also provides the functionality for creating Assignments for Matches when invoked by the Director, and returning
+Assignments to the Open Match Frontend when requested.
 
 #### MMLogic (Data Service)
 
@@ -46,7 +49,11 @@ Open Match allows for concurrent Match Functions to execute on the same player p
 
 ### External Components
 
-Although Open Match based Matchmaker offers core matchmaking functionality, some other Game Services need to handle key functionality such as handling player connections, fetching DGS (Dedicated Game Server) allocation etc. These services interact with Open Match to enable key matchmaking scenarios. Here is an overview of these services that are external to an Open Match based Matchmaker but are a part of an E2E setup:
+Although Open Match based Matchmaker offers core matchmaking functionality, other Game Services will be needed to handle
+key features such as handling player connections, fetching DGS (Dedicated Game Server) allocations etc. These
+services interact with Open Match to enable game specific matchmaking scenarios. 
+Here is an overview of these services that are external to an Open Match based Matchmaker but are a part of an end to
+end setup:
 
 #### Game Frontend
 
@@ -54,21 +61,25 @@ This is the component that receives the matchmaking request from the game client
 
 #### Director
 
-This is the component that understands the types of matches (MatchProfiles) that can be served and fetches matches from the Open Match Backend. The Director also interfaces with the DGS allocation system to fetch Game Servers for matches and sets Game Server Assignments in Open Match.
+This is the component that understands the types of matches (MatchProfiles) that can be served and fetches matches
+from the Open Match Backend. The Director also interfaces with the DGS allocation system to fetch Game Servers for
+matches and creating Game Server Assignments from these details in Open Match, via communicating with the Open Match
+Backend.
 
 ### Life of a matchmaking request
 
 Here is a high level flow for a matchmaking request.
 
-1. A Game Client connects to the Game Frontend requesting for a Game Server Assignment.
+1. A Game Client connects to the Game Frontend requesting a Game Server Assignment.
 2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player.
 3. The Director calls FetchMatches on Open Match Backend to generate Matches for a MatchProfile.
 4. Open Match Backend triggers Match Function execution for this MatchProfile.
 5. The Match Function fetches all the Tickets for the the MatchProfile and generates a Match.
 6. The Open Match Backend returns the Match to the Director.
 7. The Director requests the DGS allocation system for a Game Server for the Match.
-8. The Director then sets an Assignment for all the Tickets in the Match to the Game Server that was returned.
-9. The Game Frontend fetches the Assignment and returns it back to the client.
+8. The Director then creates an Assignment for all the Tickets in the Match to the Game Server that was returned, via
+ the Open Match Backend.
+9. The Game Frontend fetches the Assignment from the Open Match Backend and returns it back to the client.
 
 ## Components Deep Dive
 
