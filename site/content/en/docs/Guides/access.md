@@ -75,8 +75,10 @@ beClient := pb.NewBackendClient(conn)
 ...
 ```
 
-> Note that if you want to obtain the external IP programmaticallyarearea, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration)
+{{% alert title="Note" color="info" %}}
+If you want to obtain the external IP programmaticallyarearea, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration)
 example from the Kubernetes client and use the code below for your reference.
+{{% /alert %}}
 
 ```go
 import (
