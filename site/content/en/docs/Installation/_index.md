@@ -10,7 +10,7 @@ In this quickstart, we'll create a Kubernetes cluster and install Open Match.
 
 ## Setup Kubernetes Cluster
 
-This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section and see [how to install Open Match into your cluster]({{< ref "#install-core-open-match" >}}).
+This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section and see [how to install Open Match into your cluster]({{< relref "./yaml.md#install-core-open-match" >}}).
 
 ### Setup a GKE Cluster
 
@@ -50,70 +50,6 @@ Minikube is a tool that allows you to run Kubernetes locally. It deploys a singl
 
 [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
 
-## Install Core Open Match
-
-Open Match comprises of a set of core services hosted in a Kubernetes cluster. The simplest way to install Open Match core is to use the 01-open-match-core.yaml for the latest release. This installs Open Match with the default configuration.
-
-The `01-open-match-core.yaml` contains:
-
-* Core Open Match service deployments.
-* A Redis deployment as Open Match's state storage system.
-* ServiceAccounts, Roles, and RoleBindings to define Open Match deployments' IAMs.
-* HorizontalAutoScalars to auto-scale Open Match based on pods' average CPU utilization.
-
-Here is the command to install the Open Match core in your cluster:
-
-```
-# Install the core Open Match services.
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml --namespace open-match
-```
-
-After installing Open Match core services, here is the expected state for the pods for these services:
-
-```
-kubectl get -n open-match pod
-
-Output:
-
-NAME                                READY   STATUS              RESTARTS   AGE
-om-backend-76d8d76c96-fmhmn         0/1     ContainerCreating   0          3m53s
-om-frontend-57fc9f6b66-86hxj        0/1     ContainerCreating   0          3m53s
-om-mmlogic-799d8549d4-5qpgx         0/1     ContainerCreating   0          3m53s
-om-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
-om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
-```
-
-{{% alert title="Note" color="info" %}}
-Open Match needs to be customized to your Matchmaker.
-This custom configuration is provided to the Open Match components via a ConfigMap
-(<code>om-configmap-override</code>).<br/><br/>
-
-Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is
- available.
-{{% /alert %}}
-
-If you are proceeding with the [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following the [Tutorials]({{< relref "../Tutorials/_index.md" >}}), proceed with this guide to [install the default Evaluator]({{< ref "#install-the-default-evaluator" >}}) and configure Open Match to use it.
-
-If you are building your own custom matchmaker and need to deploy a custom evaluator, then skip the next step and instead use the [Customization Guide]({{< relref "../Guides/custom.md" >}}) for steps to customize your Open Match installation.
-
-## Install the default evaluator
-
-Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use it.
-
-```
-kubectl apply -f https://open-match.dev/install/v0.0.0-dev/yaml/07-open-match-default-evaluator.yaml -f https://open-match.dev/install/v0.0.0-dev/yaml/06-open-match-override-configmap.yaml --namespace open-match
-
-```
-
-## Delete Open Match
-
-To delete Open Match and the corresponding sample components from this cluster, simply run:
-
-```bash
-kubectl delete psp,clusterrole,clusterrolebinding --selector=release=open-match
-kubectl delete namespace open-match
-```
-
 ## What Next?
 
-Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.
+Follow the Installation guide to install Open Match using Helm or YAML.

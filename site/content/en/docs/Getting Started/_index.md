@@ -18,7 +18,7 @@ description: >
 This demo assumes that you already have run these steps:
 
 - [Setup a Kubernetes cluster]({{< relref "../Installation/_index.md#setup-kubernetes-cluster" >}}).
-- [Install Open Match Core]({{< relref "../Installation/_index.md#install-core-open-match" >}}).
+- [Install Open Match Core]({{< relref "../Installation/yaml.md#install-core-open-match" >}}).
 
 ## Concepts for the Demo
 
