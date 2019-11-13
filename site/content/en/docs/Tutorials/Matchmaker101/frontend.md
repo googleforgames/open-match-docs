@@ -14,7 +14,9 @@ The Game Frontend serves as a layer that transfers players' matchmaking requests
 
 This tutorial provides a very basic Game Frontend scaffold (`$TUTORIALROOT/frontend`) that periodically generates batches of fake Tickets, adds them to Open Match, and polls these Tickets for Assignment. Once an Assignment is received it emits a log with the Assignment details (as a proxy for returning the Assignment to the Player) and deletes the Ticket from Open Match.
 
-**Note:** Under production environment, polling each Ticket for Assignment is not recommended. We recommend using event handlers/listeners to communicate Assignments result to the Game Frontend.
+{{% alert title="Note" color="info" %}}
+Under production environment, polling each Ticket for Assignment is not recommended. We recommend using event handlers/listeners to communicate Assignments result to the Game Frontend.
+{{% /alert %}}
 
 ## Links to API Definitions for this tutorial
 
