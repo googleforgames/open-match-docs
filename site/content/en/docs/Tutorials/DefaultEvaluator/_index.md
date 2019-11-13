@@ -1,6 +1,6 @@
 ---
-title: "Using the default Evaluator"
-linkTitle: "Using the default Evaluator"
+title: "Use the default Evaluator"
+linkTitle: "Use the default Evaluator"
 weight: 3
 description: >
   A tutorial on how to use the default Evaluator to resolve conflicting Match proposals.
@@ -15,9 +15,9 @@ The tutorial aims to:
 
 ## Prerequisites
 
-### Basic Matchmaker Tutorial
+### Basic Matchmaker tutorial
 
-It is highly recommended that you run the [Basic Matchmaker Tutorial]({{< relref "../Matchmaker101/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. After running the basic tutorial, please run the following command to delete its namespace before proceeding:
+It is highly recommended that you run the [Basic Matchmaker tutorial]({{< relref "../Matchmaker101/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. After running the basic tutorial, please run the following command to delete its namespace before proceeding:
 
 ```bash
 kubectl delete namespace mm101-tutorial
@@ -37,9 +37,9 @@ If using GKE, the below command can be used to populate the image registry:
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 
-### Get the Tutorial template
+### Get the tutorial template
 
-Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/default_evaluator). Use `tutorials/default_evaluator` as a working copy for all the instructions in this tutorial.
+Make a local copy of the [tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/default_evaluator). Use `tutorials/default_evaluator` as a working copy for all the instructions in this tutorial.
 
 For convenience, set the following variable:
 
@@ -47,9 +47,9 @@ For convenience, set the following variable:
 TUTORIALROOT=[SRCROOT]/tutorials/default_evaluator
 ```
 
-### Create the Tutorial namespace
+### Create the tutorial namespace
 
-Run this command to create a namespace default-eval-tutorial in which all the components for this Tutorial will be deployed.
+Run this command to create a namespace default-eval-tutorial in which all the components for this tutorial will be deployed.
 
 ```bash
 kubectl create namespace default-eval-tutorial
@@ -77,7 +77,7 @@ Since basic cases may either not need evaluation or may need very simple evaluat
 
 1. Your MatchProfiles completely partition the Ticket Pool and so you will never have collisions(the basic Matchmaker falls under this usage). The default Evaluator handles this scenario and you do not have to make any changes.
 2. Your MatchProfiles may use overlapping Ticket Pools - but each MatchFunction can simply generate a quality score for that Match based on certain game specific criteria (latency, mmr etc.). The default Evaluator can be used for this scenario by following instructions in this tutorial to add specific information needed for evaluation to the Match in your MatchFunction.
-3. You have complex evaluation logic that cannot be simplified to a score for a Match but rather involves actually comparing some details of the overlapping Matches. Open Match provides you with the ability to plug in your custom Evaluator to handle this case. See the [Tutorial for using a Custom Evaluator] for details.
+3. You have complex evaluation logic that cannot be simplified to a score for a Match but rather involves actually comparing some details of the overlapping Matches. Open Match provides you with the ability to plug in your custom Evaluator to handle this case. See the [tutorial for using a Custom Evaluator]({{< relref "../CustomEvaluator/_index.md" >}}) for details.
 
 ### Default Evaluator
 
