@@ -6,8 +6,6 @@ description: >
   This guide walks through how to deploy a Demo Matchmaker and create your first match.
 ---
 
-[TODO: Please update with latest demo steps]
-
 ## Objectives
 
 - Deploy and run an Open Match based Demo Matchmaker to generate matches.
@@ -18,7 +16,7 @@ description: >
 This demo assumes that you already have run these steps:
 
 - [Setup a Kubernetes cluster]({{< relref "../Installation/_index.md#setup-kubernetes-cluster" >}}).
-- [Install Open Match Core]({{< relref "../Installation/_index.md#install-core-open-match" >}}).
+- [Install Open Match Core]({{< relref "../Installation/yaml.md#install-core-open-match" >}}).
 
 ## Concepts for the Demo
 
