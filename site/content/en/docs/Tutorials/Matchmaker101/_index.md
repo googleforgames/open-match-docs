@@ -42,12 +42,12 @@ REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 
 ### Get the Tutorial template
 
-Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker). Use ```tutorials/matchmaker``` as a working copy for all the instructions in this tutorial.
+Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101). Use `tutorials/matchmaker101` as a working copy for all the instructions in this tutorial.
 
 For convenience, set the following variable:
 
 ```
-TUTORIALROOT=[SRCROOT]/tutorials/matchmaker
+TUTORIALROOT=[SRCROOT]/tutorials/matchmaker101
 ```
 
 ### Create the Tutorial namespace
@@ -74,7 +74,7 @@ The tutorial walks through building the Game Frontend, Director, Match Function 
 - The Director receives the matches and sets fake Assignments for Tickets in these.
 - The Game Frontend receives these Assignments and then deletes the Tickets.
 
-**A complete solution for this tutorial can be found at ```tutorials/matchmaker101```. To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})**
+**A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101/solution) for this tutorial can be found at `tutorials/matchmaker101/solution` To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})**
 
 ## Next Steps
 

@@ -8,7 +8,7 @@ This step assumes that you have completed the Tutorial prerequisites and all pri
 
 ## Deploy the Match Function, Game Frontend, Director
 
-The next step is to deploy the Match Function, the Game Frontend and the Director to the same cluster as Open Match deployment but to a different namespace. The ```$TUTORIALROOT/matchmaker.yaml``` deploys these components to a ```mm101-tutorial``` namespace. Run the below command in the ```$TUTORIALROOT``` path to apply this YAML:
+The next step is to deploy the Match Function, the Game Frontend and the Director to the same cluster as Open Match deployment but to a different namespace. The `$TUTORIALROOT/matchmaker.yaml` deploys these components to a `mm101-tutorial` namespace. Run the below command in the `$TUTORIALROOT` path to apply this YAML:
 
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
