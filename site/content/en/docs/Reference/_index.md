@@ -5,5 +5,3 @@ weight: 6
 description: >
   Reference documentation for Open Match
 ---
-
-{{< pagelist >}}
