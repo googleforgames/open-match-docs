@@ -6,8 +6,6 @@ description: >
   This guide walks through how to deploy a Demo Matchmaker and create your first match.
 ---
 
-[TODO: Please update with latest demo steps]
-
 ## Objectives
 
 - Deploy and run an Open Match based Demo Matchmaker to generate matches.
