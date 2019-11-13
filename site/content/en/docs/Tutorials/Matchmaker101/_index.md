@@ -42,12 +42,12 @@ REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 
 ### Get the Tutorial template
 
-Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker). Use ```tutorials/matchmaker``` as a working copy for all the instructions in this tutorial.
+Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101). Use `tutorials/matchmaker101` as a working copy for all the instructions in this tutorial.
 
 For convenience, set the following variable:
 
 ```
-TUTORIALROOT=[SRCROOT]/tutorials/matchmaker
+TUTORIALROOT=[SRCROOT]/tutorials/matchmaker101
 ```
 
 ### Create the Tutorial namespace
@@ -74,12 +74,12 @@ The tutorial walks through building the Game Frontend, Director, Match Function 
 - The Director receives the matches and sets fake Assignments for Tickets in these.
 - The Game Frontend receives these Assignments and then deletes the Tickets.
 
-**A complete solution for this tutorial can be found at ```tutorials/matchmaker101```. To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})**
-
-## Next Steps
-
-{{< pagelist >}}
+{{% alert title="Note" color="info" %}}
+A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101/solution) for this tutorial can be found at `tutorials/matchmaker101/solution` To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})
+{{% /alert %}}
 
 ## For the curious mind
 
 Open Match enables the user to plug in a custom component called the Evaluator. The Evaluator is responsible for deduplicating any concurrently generated proposals, discarding or promoting the proposals as result Matches. Open Match provides a default Evaluator that this tutorial uses. This tutorial is designed not to generate concurrent conflicting proposals so Evaluation is a no-op. The deployment step deploys the default Evaluator in the tutorial namespace and configures this in Open Match. See the [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) for details on proposal evaluation.
+
+## Next Steps

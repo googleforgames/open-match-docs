@@ -12,7 +12,7 @@ The Director is a backend component in the Online Game Service that typically pe
 - Fetch game allocations from a DGS (Dedicated Game Server) system.
 - Establish connections from players to game servers and set Assignments based on connections in Open Match.
 
-The tutorial provides a very basic Director scaffold ```$TUTORIALROOT/director``` that generates some MatchProfiles and then call FetchMatches for these profiles from Open Match. The director then sets Assignment to a fake connection string to simulate a DGS allocation for every Ticket in a generated match.
+The tutorial provides a very basic Director scaffold `$TUTORIALROOT/director` that generates some MatchProfiles and then call FetchMatches for these profiles from Open Match. The director then sets Assignment to a fake connection string to simulate a DGS allocation for every Ticket in a generated match.
 
 ## Links to API Definitions for this tutorial
 
@@ -21,7 +21,7 @@ The tutorial provides a very basic Director scaffold ```$TUTORIALROOT/director``
 
 ## Make Changes
 
-The Director uses a helper function ```generateProfiles()``` in ```$TUTORIALROOT/profile.go``` to generate MatchProfiles. For this tutorial, we will generate a MatchProfile for each game-mode. The MatchProfile will have a single Pool that has a single filtering criterion searching for the desired game-mode. Director will call FetchMatches for each of the generated Profiles. Below is a sample snippet to achieve this:
+The Director uses a helper function `generateProfiles()` in `$TUTORIALROOT/director/profile.go` to generate MatchProfiles. For this tutorial, we will generate a MatchProfile for each game-mode. The MatchProfile will have a single Pool that has a single filtering criterion searching for the desired game-mode. Director will call FetchMatches for each of the generated Profiles. Below is a sample snippet to achieve this:
 
 ```
 func generateProfiles() []*pb.MatchProfile {
@@ -47,11 +47,11 @@ func generateProfiles() []*pb.MatchProfile {
 }
 ```
 
-Please copy the above helper or add your own profile generation logic to ```$TUTORIALROOT/director/profiles.go```. Also, you may tweak the profile polling interval, Assignment logic, etc. in ```$TUTORIALROOT/director/main.go```.
+Please copy the above helper or add your own profile generation logic to `$TUTORIALROOT/director/profiles.go`. Also, you may tweak the profile polling interval, Assignment logic, etc. in `$TUTORIALROOT/director/main.go`.
 
 ### Configuring
 
-The following values need to be changed if your setup is different from the default in the ```$TUTORIALROOT/director/main.go```. The default value assumes you have Open Match deployed under ```open-match``` namespace and the Game Frontend under ```mm101-tutorial``` namespace in the same cluster:
+The following values need to be changed if your setup is different from the default in the `TUTORIALROOT/director/main.go`. The default value assumes you have Open Match deployed under `open-match` namespace and the Game Frontend under `mm101-tutorial` namespace in the same cluster:
 
 > `omBackendEndpoint` - Open Match Backend endpoint
 >
@@ -61,7 +61,7 @@ The following values need to be changed if your setup is different from the defa
 
 ## Build and Push
 
-Now that you have customized the Director, please run the below commands from ```$TUTORIALROOT``` to build a new image and push it to your configured image registry.
+Now that you have customized the Director, please run the below commands from `$TUTORIALROOT` to build a new image and push it to your configured image registry.
 
 ```
 # Build the Director image.
@@ -71,6 +71,6 @@ docker build -t $REGISTRY/mm101-tutorial-director director/.
 docker push $REGISTRY/mm101-tutorial-director
 ```
 
-## Whats's Next:
+## Whats's Next
 
 Let's proceed to build the [Match Function]({{< relref "./matchfunction.md" >}}).
