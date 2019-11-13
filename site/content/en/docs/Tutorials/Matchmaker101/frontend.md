@@ -62,6 +62,6 @@ docker build -t $REGISTRY/mm101-tutorial-frontend frontend/.
 docker push $REGISTRY/mm101-tutorial-frontend
 ```
 
-## Whats's Next:
+## Whats's Next
 
 Let's proceed to build the [Director]({{< relref "./director.md" >}}).

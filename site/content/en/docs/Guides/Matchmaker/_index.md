@@ -81,14 +81,12 @@ Here is a high level flow for a matchmaking request.
  the Open Match Backend.
 9. The Game Frontend fetches the Assignment from the Open Match Backend and returns it back to the client.
 
-## Components Deep Dive
-
-The Below sections take a deepdive into how each of these components interact with Open Match and explains the core Open Match concepts needed to build these components:
-
-{{< pagelist >}}
-
 ## Next Steps
 
 Now that you are familiar with building an Open Match based Matchmaker, its time to build one!
 
 Please proceed with the step-by-step tutorial for [building a basic Matchmaker]({{< relref "../../Tutorials/Matchmaker101/_index.md" >}})
+
+## Components Deep Dive
+
+The Below sections take a deepdive into how each of these components interact with Open Match and explains the core Open Match concepts needed to build these components:

@@ -5,5 +5,3 @@ weight: 5
 description: >
   Open Match Tutorials
 ---
-
-{{< pagelist >}}
