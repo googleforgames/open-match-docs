@@ -58,7 +58,7 @@ If you are proceeding with the [Getting Started]({{< relref "../Getting Started/
 
 If you are building your own custom matchmaker and need to deploy a custom evaluator, then skip the next step and instead use the [Customization Guide]({{< relref "../Guides/custom.md" >}}) for steps to customize your Open Match installation.
 
-## Install the default evaluator
+## Install the default Evaluator
 
 Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use it.
 
@@ -76,6 +76,6 @@ kubectl delete psp,clusterrole,clusterrolebinding --selector=release=open-match
 kubectl delete namespace open-match
 ```
 
-## What Next?
+## What Next
 
 Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.
