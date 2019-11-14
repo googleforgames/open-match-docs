@@ -1,7 +1,7 @@
 {{ $links := .Site.Params.links }}
 
 <!-- TODO: Need color transition here, change back to td-box--2 -->
-<section id="community" class="row td-box td-box--1 td-box--gradient td-box--height-auto">
+<section id="community" class="row td-box td-box--1 td-box--blue td-box--height-auto">
   <div class="col-sm-12 col-md-6 p-5">
 <h2>Learn and Connect</h2>		
 <p>Using or want to use {{ .Site.Title }}? Find out more here:
@@ -23,7 +23,7 @@
 <ul>
  {{ range . }}
  <li title="{{ .name }}">
-   <a target="_blank" href="{{ .url }}"><i class="{{ .icon }}"></i> {{ .name }}:</a> {{ .desc }}
+   <a style="color:white;" href="{{ .url }}"><i class="{{ .icon }}"></i> {{ .name }}:</a> {{ .desc }}
  </li>
   {{ end }}
 </ul>
