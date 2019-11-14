@@ -28,7 +28,7 @@ If you already installed Open Match for the [Getting Started Demo]({{< relref ".
 
 ### Set up Image Registry
 
-Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images that will be generated in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
+Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images used in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
 
 ```
 REGISTRY=[YOUR_REGISTRY_URL]
