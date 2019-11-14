@@ -50,6 +50,6 @@ Minikube is a tool that allows you to run Kubernetes locally. It deploys a singl
 
 [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
 
-## What Next?
+## What Next
 
 Follow the Installation guide to install Open Match using Helm or YAML.
