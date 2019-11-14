@@ -75,6 +75,7 @@ gcs_engine_id = "008748710159674449076:sqoelpnrdoe"
 
 release_branch = "master"
 release_version = "0.0.0-dev"
+slack_link = "https://join.slack.com/t/open-match/shared_invite/enQtNDM1NjcxNTY4MTgzLTM5ZWQxNjc1YWI3MzJmN2RiMWJmYWI0ZjFiNzNkZmNkMWQ3YWU5OGVkNzA5Yzc4OGVkOGU5MTc0OTA5ZTA5NDU"
 
 # User interface configuration
 [params.ui]
@@ -102,7 +103,7 @@ no = 'Sorry to hear that. Please <a href="https://github.com/googleforgames/open
         desc = "Discussion and help from your fellow users"
 [[params.links.user]]
 	name = "Slack"
-	url = "https://join.slack.com/t/open-match/shared_invite/enQtNDM1NjcxNTY4MTgzLWQzMzE1MGY5YmYyYWY3ZjE2MjNjZTdmYmQ1ZTQzMmNiNGViYmQyN2M4ZmVkMDY2YzZlOTUwMTYwMzI1Y2I2MjU"
+	url = "https://join.slack.com/t/open-match/shared_invite/enQtNDM1NjcxNTY4MTgzLTM5ZWQxNjc1YWI3MzJmN2RiMWJmYWI0ZjFiNzNkZmNkMWQ3YWU5OGVkNzA5Yzc4OGVkOGU5MTc0OTA5ZTA5NDU"
 	icon = "fab fa-slack"
         desc = "Chat with other project users in #users"
 # Developer relevant links. These will show up on right side of footer and in the community page if you have one.

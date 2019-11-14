@@ -51,7 +51,7 @@ kubectl logs -n mm101-tutorial pod/mm101-tutorial-matchfunction
 2019/11/07 17:45:45 Streaming 5 proposals to Open Match
 ```
 
-## Deleting the Tutorial
+## Cleanup
 
 To remove the tutorial and its custom components, here is the command you need to run:
 
