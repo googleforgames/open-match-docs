@@ -3,32 +3,29 @@ title: "Add new matchmaking criteria"
 linkTitle: "Add new matchmaking criteria"
 weight: 2
 description: >
-  A tutorial on how to add a new matchmaking criteria to the basic Matchmaker. This adds a role for each Ticket and generates matches with Tickets of each role.
+  A tutorial on how to add new matchmaking criteria to the basic Matchmaker.
 ---
 
 ## Objectives
 
-This tutorial aims to demonstrate advanced functionality such as adding a new criteria to the basic Matchmaker and picking Tickets from multiple Pools in a MatchFunction to generate Team based Matches.
+- Adds new search criteria to Open Match
+- Write a MatchFunction to get Tickets from multiple Pools and generate Team-based Matches.
 
 ## Prerequisites
 
 ### Basic Matchmaker Tutorial
 
-It is highly recommended that you run the [Basic Matchmaker Tutorial]({{< relref "../Matchmaker101/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. After running the basic tutorial, please run the following command to delete its namespace before proceeding:
-
-```bash
-kubectl delete namespace mm101-tutorial
-```
+We recommend you walk through the [Basic Matchmaker Tutorial]({{< relref "../Matchmaker101/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon.
 
 ### Set up Image Registry
 
-Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images that will be generated in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
+Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [Google Cloud Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images used in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
 
 ```bash
 REGISTRY=[YOUR_REGISTRY_URL]
 ```
 
-If using GKE, the below command can be used to populate the image registry:
+If using GKE, you can populate the image registry using the command below:
 
 ```bash
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
@@ -64,17 +61,17 @@ A complete [solution](https://github.com/googleforgames/open-match/blob/{{< para
 
 ### Overview
 
-For this tutorial, lets consider a game where each Player will chose to play the Match with a specific role (one of dps, support or tank). Assume that a Match (for each game-mode) will comprise of one Player of each role. Here are the high level changes to the Game Frontend, the Director and the MatchFunction to achieve this:
+For this tutorial, let's consider a game where each Player will choose to play the Match with a specific role (one of DPS, support or tank). Assume that a Match (for each game-mode) will comprise of one Player of each role. Here are the high-level changes to the Game Frontend, the Director and the MatchFunction to achieve this:
 
-- The Game Frontend will specify the role as a new SearchField on each Ticket.
+- The Game Frontend will specify the role on a new SearchField on each Ticket.
 - The Director will specify multiple Pools in each MatchProfile, one per role.
 - The MatchFunction will query for Tickets for each Pool and generate Matches with a Ticket of each role.
 
-The below sections cover the changes to be made to the key components to achieve this.
+The below sections cover the changes to be made to the key components to achieving this.
 
 ### Game Frontend
 
-This tutorial provides a Game Frontend scaffold (`$TUTORIALROOT/frontend`) that genererates a Ticket with the game mode specified (as implemented for the basic Matchmaker). The mock Ticket generation is implemented in `makeTicket()` in `$TUTORIALROOT/frontend/ticket.go`.
+This tutorial provides a Game Frontend scaffold (`$TUTORIALROOT/frontend`) that generates a Ticket with the game mode specified (as implemented for the basic Matchmaker). The mock Ticket generation is implemented in `makeTicket()` in `$TUTORIALROOT/frontend/ticket.go`.
 
 We need to add a new SearchField to the Ticket to represent the role property for this Player. The below code snippet picks a random role and sets it as a StringArg SearchField for the fake Ticket.
 
@@ -104,7 +101,7 @@ Please update the Ticket creation logic in `$TUTORIALROOT/frontend/ticket.go` wi
 
 ### Director
 
-This tutorial provides a Director scaffold (`$TUTORIALROOT/director`) that generates a MatchProfile per game-mode and then calls FetchMatches for eacy MatchProfile. The MatchProfile generation is implemented in `generateProfiles()` in `$TUTORIALROOT/director/profile.go`
+This tutorial provides a Director scaffold (`$TUTORIALROOT/director`) that generates a MatchProfile per game-mode and then calls FetchMatches for each MatchProfile. The MatchProfile generation is implemented in `generateProfiles()` in `$TUTORIALROOT/director/profile.go`
 
 In the basic Matchmaker, each MatchProfile had a single Pool specifying the game-mode filter. For this tutorial, we will have a Pool per role that filters the role along with the filter for the mode. Thus, the `generateProfiles()` will generate a MatchProfile for each game-mode, each of which will have a Pool per role. Below is a sample snippet to achieve this:
 
@@ -147,7 +144,7 @@ This tutorial provides a MatchFunction scaffold (`$TUTORIALROOT/matchfunction`) 
 
 The `QueryPools` helper from the `matchfunction` library already provides the ability to query Tickets for all the Pools in the MatchProfile. Also, the basic Matchmaker implementation already picks players from each Pool into the Match - hence just by the MatchProfile having one Pool per role, the existing MatchFunction will generate Match proposals with Tickets of each role.
 
-Although no changes are needed to the core matchmaking logic, you may add some logging or tweak the number of players from each role in a team etc., to observe change in matchmaking behavior.
+Although no changes are needed to the core matchmaking logic, you may add some logging or tweak the number of players from each role in a team, etc., to observe the change in matchmaking behavior.
 
 ## Build, Deploy, Run
 
@@ -184,14 +181,16 @@ kubectl logs -n mm102-tutorial pod/mm102-tutorial-matchfunction
 
 ## Cleanup
 
-Run the below command to remove all the components of this tutorial:
+Run the command below to remove all the components of this tutorial:
 
 ```bash
 kubectl delete namespace mm102-tutorial
 ```
 
-Note that this will still keep the Open Match core running in open-match namespace for reuse by the other exercises.
+{{% alert title="Note" color="info" %}}
+This will still keep the Open Match core running in `open-match` namespace for reuse by the other exercises.
+{{% /alert %}}
 
 ## What Next
 
-Given that a Ticket can only pick one game-mode, the Matchmaker implemented so far generate Matches from completely partitioned Tickets, where a Ticket is only considered for a game-mode. Next, we can learn how to [use the default evaluator]({{< relref "../DefaultEvaluator/_index.md" >}}) to handle scenarios where a Ticket may be specify multiple game mode preferences and hence may be picked by more than one MatchFunction.
+Given that a Ticket can only pick one game-mode, the Matchmaker implemented so far generate Matches from completely partitioned Tickets, where a Ticket is only considered for a game-mode. Next, we can learn how to [use the default evaluator]({{< relref "../DefaultEvaluator/_index.md" >}}) to handle scenarios where a Ticket may specify multiple game mode preferences and hence may be picked by more than one MatchFunction.
