@@ -59,7 +59,7 @@ To remove the tutorial and its custom components, here is the command you need t
 kubectl delete namespace mm101-tutorial
 ```
 
-This will delete all the components (including the match function and the evaluator). Note that the Open Match core in open-match namespace can then be used for other exercises but you will need to re-customize it.
+This will delete all the components deployed in this tutorial. Open Match core in open-match namespace can then be reused for other exercises but you will need to re-customize it.
 
 ## What Next
 
