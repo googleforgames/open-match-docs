@@ -46,9 +46,13 @@ gcloud container clusters get-credentials open-match-cluster --zone us-west1-a
 
 ### Setup a Minikube Cluster
 
-Minikube is a tool that allows you to run Kubernetes locally. It deploys a single-node cluster inside a VM for local development purpose. Please see the Kubernetes doc below for tutorials in detailed.
+Minikube is a tool that allows you to run Kubernetes locally. It deploys a single-node cluster inside a VM for local development purpose. Please see the Kubernetes doc below for tutorials in detailed. Then create a local cluster using 
 
 [Set up a Local Minikube cluster](https://kubernetes.io/docs/setup/minikube/)
+
+```bash
+minikube start --cpus=3 --memory=2500mb
+```
 
 ## What Next
 

@@ -23,9 +23,10 @@ The `01-open-match-core.yaml` contains:
 
 Here is the command to install the Open Match core in your cluster:
 
-```
+```bash
 # Install the core Open Match services.
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml --namespace open-match
+kubectl apply --namespace open-match \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/01-open-match-core.yaml
 ```
 {{% alert title="Note" color="info" %}}
 The flag `--namespace open-match` is __**Required**__. Open Match may not work as expected without this flag.
@@ -33,7 +34,7 @@ The flag `--namespace open-match` is __**Required**__. Open Match may not work a
 
 After installing Open Match core services, here is the expected state for the pods for these services:
 
-```
+```bash
 kubectl get -n open-match pod
 
 Output:
@@ -62,9 +63,10 @@ If you are building your own custom matchmaker and need to deploy a custom evalu
 
 Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use it.
 
-```
-kubectl apply -f https://open-match.dev/install/v{{< param release_version >}}/yaml/06-open-match-override-configmap.yaml -f https://open-match.dev/install/v{{< param release_version >}}/yaml/07-open-match-default-evaluator.yaml --namespace open-match
-
+```bash
+kubectl apply --namespace open-match \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/06-open-match-override-configmap.yaml \
+  -f https://open-match.dev/install/v{{< param release_version >}}/yaml/07-open-match-default-evaluator.yaml
 ```
 
 ## Delete Open Match
