@@ -233,4 +233,4 @@ Note that this will still keep the Open Match core running in open-match namespa
 
 ## What Next
 
-There are scenarios where evaluating overlapping Matches may need context from both Matches and thus the logic may not be represented by a single score computed in isolation for a Match. In such cases, you can [build your custom Evaluator] and connect that to Open Match.
+There are scenarios where evaluating overlapping Matches may need context from both Matches and thus the logic may not be represented by a single score computed in isolation for a Match. In such cases, you can [build your custom Evaluator]({{< relref "../CustomEvaluator/_index.md" >}}) and connect that to Open Match.
