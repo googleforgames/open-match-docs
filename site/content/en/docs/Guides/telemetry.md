@@ -1,6 +1,6 @@
 ---
-title: "Telemetry"
-linkTitle: "Telemetry"
+title: "Instrument Open Match with Telemetry Supports"
+linkTitle: "Instrument Open Match with Telemetry Supports"
 weight: 3
 description: >
   This guide covers how you can monitor your Open Match deployment.
@@ -8,29 +8,56 @@ description: >
 
 Open Match is instrumented with [OpenCensus](https://opencensus.io/),
 a telemetry library. The metrics that Open Match provides give you
-insight into the performance and health of your Open Match cluster.
+insight into the performance and health of your Open Match cluster. Currently, Open Match supports the following telemetry backends:
 
-## Dashboard
+* Prometheus
+* Grafana
+* Jaeger
+* Zipkin
+* Stackdriver
 
-The easiest way to view the health of your Open Match cluster is to browse
-the Grafana dashboards. Open Match ships with a few dashboards like RPC
-traffic and database transaction rates.
+## Install telemetry backend 
 
-To access Grafana you'll need to `kubectl port-forward` port 3000 from your
-Kubernetes cluster.
+ At this point we provides curated k8s YAML files to install supported telemetry backend.
 
-```bash
-# Port forward Grafana to your machine, http://localhost:3000.
-kubectl port-forward --namespace open-match service/open-match-grafana 3000:3000
+```yaml
+# Install Prometheus
+kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/03-prometheus-chart.yaml
+# Install Grafana
+kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/04-grafana-chart.yaml
+# Install Jaeger
+kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/05-jaeger-chart.yaml
+# Install the above telemetry backends with Open Match core services
+kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml
+# Install Zipkin:
+#   Zipkin's official get started guide (https://zipkin.io/pages/quickstart)
+# Install Stackdriver:
+#   No need to install, provided by GKE by default.
 ```
 
-Next visit http://localhost:3000 in your browser with
-Username: `admin` Password: `openmatch`.
+## Instrument Open Match with Telemetry Supports
+{{% alert title="Note" color="info" %}}
+The configurations to enable/disable the telemetry supports are not read at runtime. Please re-deploy Open Match if you want to change the telemetry settings.
+{{% /alert %}}
 
-Once you're in the Home Dashboard try selecting gRPC. You'll see a page like
-this:
+You can configure where and what telemetry you want to emit from your Open Match
+deployment. To instrument Open Match with telemetry supports, modify your `06-open-match-override-configmap.yaml` to override the related settings. Please refer to [how to customize your Open Match deployment]({{< relref "./custom.md/#telemetry" >}}) for more details.
 
-![Grafana gRPC Dashboard](../../../images/guides/telemetry-grafana-grpc.png)
+Below is an example of the data section in `om-configmap-override` configmap to enable all of the supported telemetry exporters:
+```yaml
+matchmaker_config_override.yaml:
+  telemetry:
+    zpages:
+      enable: 'true'
+    jaeger:
+      enable: 'true'
+    prometheus:
+      enable: 'true'
+    stackdriver:
+      enable: 'true'
+    zipkin:
+      enable: 'true'
+```
 
 ## Prometheus
 
@@ -43,7 +70,7 @@ Kubernetes cluster.
 
 ```bash
 # Port forward Prometheus to your machine, http://localhost:9090.
-kubectl port-forward --namespace open-match service/open-match-prometheus-server 9090:80
+kubectl port-forward --namespace open-match service/open-match-prometheus-server 9090:9090
 ```
 
 Next visit http://localhost:9090 in your browser.
@@ -67,39 +94,36 @@ You can learn how to query your metrics from the
 [Prometheus Query Basics](https://prometheus.io/docs/prometheus/latest/querying/basics/)
 tutorial.
 
-## Configuration
+## Grafana Dashboard
 
-You can configure where and what telemetry you want to emit from your Open Match
-deployment. At this type we support:
+The easiest way to view the health of your Open Match cluster is to browse
+the Grafana dashboards. Open Match ships with a few dashboards to monitor RPC
+traffic, database transaction rates, and database transaction time.
 
-* Prometheus
-* Stackdriver
+To access Grafana you'll need to `kubectl port-forward` port 3000 from your
+Kubernetes cluster.
 
-Preliminary support for:
-
-* OpenZipkin
-* Jaeger
-* OpenCensus Agent
-
-Below is an example of `matchmaker_config.yaml` section to configure your
-telemetry:
-
-```yaml
-telemetry:
-  jaeger:
-    agentEndpoint: 'open-match-jaeger-agent:6831'
-    collectorEndpoint: 'http://open-match-jaeger-collector:14268/api/traces'
-    enable: 'true'
-  prometheus:
-    enable: 'true'
-    endpoint: '/metrics'
-  reportingPeriod: '5s'
-  stackdriver:
-    enable: 'true'
-    gcpProjectId: 'replace_with_your_project_id'
-    metricPrefix: 'open_match'
-  zipkin:
-    enable: 'true'
-    endpoint: '/zipkin'
-    reporterEndpoint: 'zipkin'
+```bash
+# Port forward Grafana to your machine, http://localhost:3000.
+kubectl port-forward -n open-match service/open-match-grafana 3000:3000
 ```
+
+Next visit http://localhost:3000 in your browser with
+Username: `admin` Password: `openmatch`.
+
+Once you're in the Home Dashboard try selecting gRPC. You'll see a page like
+this:
+
+![Grafana gRPC Dashboard](../../../images/guides/telemetry-grafana-grpc.png)
+
+## Jaeger
+
+Jaeger is a distributed tracing tool. To view the Jaeger frontend, please run
+```bash
+# Port forward Jaeger frontend UI to your machine, http://localhost:16686.
+kubectl port-forward -n open-match service/open-match-jaeger-query 16686:16686
+```
+
+Next visit http://localhost:16686 in your browser. You'll see a page like this:
+
+![Jaeger frontend UI](../../../images/guides/telemetry-jaeger-ui.png)
