@@ -39,3 +39,25 @@ kubectl apply -f <filename_here>
 ```
 
 The [Evaluator Guide]({{< relref "../Guides/evaluator.md" >}}) gives an overview of Synchronization, Evaluation and all the related configuration.
+
+## Configurations
+The following tables lists the configurable parameters of the Open Match override configmap and their default values.
+### Telemetry
+| Supported Backend | Parameter | Description | Default |
+|-----              |-----      |-----        |-----    |
+| zPages            |           | Serves HTTP server runtime profiling data in the format expected by the [pprof](https://godoc.org/net/http/pprof) visualization tool under `/debug/pprof` path |         |
+|                   | `telemetry.zpages.enabled` |  Enable zPages support on Open Match core services |  `true`   |
+| [Jaeger](https://www.jaegertracing.io/)            | | An open source, end-to-end distributed tracing. | |
+|             | `telemetry.jaeger.enabled` | Enable Jaeger exporter on Open Match core services | `false` |
+|| `telemetry.jaeger.samplerFraction` | Setup Jaeger exporter to randomly sample a trace with this probability. For example, with `samplerFraction: 0.5` approximately 1 out of 2 traces will be sampled | `1` |
+|             | `telemetry.jaeger.agentEndpoint` | AgentEndpoint instructs exporter to send spans to jaeger-agent at this address. | `open-match-jaeger-agent:6831` |
+|             | `telemetry.jaeger.collectorEndpoint` | CollectorEndpoint is the full url to the Jaeger HTTP Thrift collector. | `open-match-jaeger-collector:14268/api/traces` |
+| [Prometheus](https://prometheus.io/)        |           |             |         |
+|             | `telemetry.prometheus.enabled` | Enable Prometheus exporter on Open Match core services | `false` |
+|| `telemetry.prometheus.endpoint` | Bind the Prometheus exporters to the specified endpoint handler, also configures the `prometheus.io/path` k8s scraping annotations  | `/metrics` |
+|             | `telemetry.prometheus.serviceDiscovery` | If Prometheus is enabled and `serviceDiscover: true`, add the Prometheus scraping annotations to each Pod of the Open Match core services | `true` |
+| [Stackdriver](https://cloud.google.com/stackdriver/)       |           |             |         |
+|             | `telemetry.stackdriverMetrics.enabled` | Enable Stackdriver Metric exporter on Open Match core services | `false` |
+|| `telemetry.stackdriverMetrics.prefix` | MetricPrefix overrides the prefix of a Stackdriver metric display names to help you better identifies your metrics | `open_match` |
+| [Grafana](https://grafana.com)           |           |             |         |
+|             | `telemetry.grafana.enabled` | Enable Grafana exporter on Open Match core services | `false` |
