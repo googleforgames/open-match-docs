@@ -58,9 +58,11 @@ Run this command to create a namespace mm101-tutorial in which all the component
 kubectl create namespace mm101-tutorial
 ```
 
-### Reference Reading
+## References
 
 Please read through the [Matchmaking Guide]({{< relref "../../Guides/Matchmaker/_index.md" >}}) as the Matchmaker in this tutorial is modeled around the components introduced in the Guide. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
+
+A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101/solution) for this tutorial can be found at `tutorials/matchmaker101/solution` To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})
 
 ## Overview
 
@@ -73,10 +75,6 @@ The tutorial walks through building the Game Frontend, Director, Match Function 
 - The Match Function queries for Tickets from the current pool that match this constraint and groups available Tickets into match proposals.
 - The Director receives the matches and sets fake Assignments for Tickets in these.
 - The Game Frontend receives these Assignments and then deletes the Tickets.
-
-{{% alert title="Note" color="info" %}}
-A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker101/solution) for this tutorial can be found at `tutorials/matchmaker101/solution` To use the solution directly, just run the "Build and Push" step in each of the component sections and then go to [Deploy and Run]({{< relref "./deploy.md" >}})
-{{% /alert %}}
 
 ## For the curious mind
 

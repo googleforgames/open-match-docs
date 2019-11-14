@@ -15,11 +15,7 @@ description: >
 
 ### Basic Matchmaker tutorial
 
-It is highly recommended that you run the [Basic Matchmaker tutorial]({{< relref "../Matchmaker101/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. After running the basic tutorial, please run the following command to delete its namespace before proceeding:
-
-```bash
-kubectl delete namespace mm101-tutorial
-```
+It is highly recommended that you run the [Basic Matchmaker tutorial]({{< relref "../Matchmaker101/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. After completion, please remember to [cleanup the basic tutorial]({{< relref "../Matchmaker101/deploy.md#cleanup" >}}) before proceeding.
 
 ### Set up Image Registry
 
@@ -53,13 +49,11 @@ Run this command to create a namespace default-eval-tutorial in which all the co
 kubectl create namespace default-eval-tutorial
 ```
 
-### Reference Reading
+## References
 
 It is highly recommended that you read the [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) to familiarize yourself with the lifecycle of a Match proposal through the synchronization and evaluation phases. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
 
-{{% alert title="Note" color="info" %}}
 A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/default_evaluator/solution) for this tutorial is in the folder `tutorials/default_evaluator/solution`.
-{{% /alert %}}
 
 ## Evaluation
 
@@ -227,9 +221,8 @@ Run the below command to remove all the components of this tutorial:
 kubectl delete namespace default-eval-tutorial
 ```
 
-{{% alert title="Note" color="info" %}}
-This will still keep the Open Match core running in `open-match` namespace for reuse by the other exercises.
-{{% /alert %}}
+This will delete all the components deployed in this tutorial. Open Match core in open-match namespace can then be reused for other exercises but you will need to re-customize it.
+
 ## What Next
 
 There are scenarios where evaluating overlapping Matches may need context from both Matches and thus the logic may not be represented by a single score computed in isolation for a Match. In such cases, you can [build your custom Evaluator]({{< relref "../CustomEvaluator/_index.md" >}}) and connect that to Open Match.

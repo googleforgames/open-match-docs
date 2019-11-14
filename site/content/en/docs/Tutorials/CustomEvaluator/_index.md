@@ -17,11 +17,7 @@ The tutorial aims to explain how to :
 
 ### Default Evaluator tutorial
 
-It is highly recommended that you run the [default Evaluator tutorial]({{< relref "../DefaultEvaluator/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. Before proceeding, please delete the namespace for the default Evaluator tutorial.
-
-```bash
-kubectl delete namespace default-eval-tutorial
-```
+It is highly recommended that you run the [default Evaluator tutorial]({{< relref "../DefaultEvaluator/_index.md" >}}) as it introduces the core concepts that this tutorial builds upon. After completion, please remember to [cleanup the default Evaluator tutorial]({{< relref "../DefaultEvaluator/_index.md#cleanup" >}}) before proceeding.
 
 {{% alert title="Note" color="info" %}}
 Given that all the other tutorials so far use the default Evaluator, the chances are, you already have the default Evaluator deployed in the open-match namespace. That is OK as at a later point, you will simply configure Open Match to point to your custom Evaluator in this tutorial's namespace.
@@ -65,13 +61,11 @@ Run this command to create a namespace custom-eval-tutorial in which all the com
 kubectl create namespace custom-eval-tutorial
 ```
 
-### Reference Reading
+## References
 
 It is highly recommended that you read the [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) to familiarize yourself with the lifecycle of a Match proposal through the synchronization and evaluation phases. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document. The tutorial also customizes the Open Match installation with the configuration of the custom Evaluator. The [Customization Guide]({{< relref "../../Guides/custom.md" >}}) is a good reference for those changes.
 
-{{% alert title="Note" color="info" %}}
 A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/custom_evaluator/solution) for this tutorial is in the folder `tutorials/custom_evaluator/solution`.
-{{% /alert %}}
 
 ## Custom Evaluator
 
@@ -183,6 +177,4 @@ Run the below command to remove all the components of this tutorial:
 kubectl delete namespace custom-eval-tutorial
 ```
 
-{{% alert title="Note" color="info" %}}
-This will still keep the Open Match core running in `open-match` namespace for reuse by the other exercises.
-{{% /alert %}}
+This will delete all the components deployed in this tutorial. Open Match core in open-match namespace can then be reused for other exercises but you will need to re-customize it.
