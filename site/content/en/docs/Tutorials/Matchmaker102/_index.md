@@ -56,7 +56,9 @@ kubectl create namespace mm102-tutorial
 
 Please read through the [Matchmaking Guide]({{< relref "../../Guides/Matchmaker/_index.md" >}}) as the Matchmaker in this tutorial is modeled around the components introduced in the Guide. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
 
-**A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker102/solution) for this tutorial is in the folder `tutorials/matchmaker102/solution`.**
+{{% alert title="Note" color="info" %}}
+A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker102/solution) for this tutorial is in the folder `tutorials/matchmaker102/solution`.
+{{% /alert %}}
 
 ## Changes to Components
 
@@ -154,12 +156,12 @@ Although no changes are needed to the core matchmaking logic, you may add some l
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
 ```bash
-docker build -t $REGISTRY/mm101-tutorial-frontend frontend/.
-docker push $REGISTRY/mm101-tutorial-frontend
-docker build -t $REGISTRY/mm101-tutorial-director director/.
-docker push $REGISTRY/mm101-tutorial-director
-docker build -t $REGISTRY/mm101-tutorial-matchfunction matchfunction/.
-docker push $REGISTRY/mm101-tutorial-matchfunction
+docker build -t $REGISTRY/mm102-tutorial-frontend frontend/.
+docker push $REGISTRY/mm102-tutorial-frontend
+docker build -t $REGISTRY/mm102-tutorial-director director/.
+docker push $REGISTRY/mm102-tutorial-director
+docker build -t $REGISTRY/mm102-tutorial-matchfunction matchfunction/.
+docker push $REGISTRY/mm102-tutorial-matchfunction
 ```
 
 ### Deploy and Run
@@ -175,9 +177,9 @@ sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
 All the components in this tutorial simply log their progress to stdout. Thus to see the progress, run the below commands:
 
 ```bash
-kubectl logs -n mm102-tutorial pod/mm101-tutorial-frontend
-kubectl logs -n mm102-tutorial pod/mm101-tutorial-director
-kubectl logs -n mm102-tutorial pod/mm101-tutorial-matchfunction
+kubectl logs -n mm102-tutorial pod/mm102-tutorial-frontend
+kubectl logs -n mm102-tutorial pod/mm102-tutorial-director
+kubectl logs -n mm102-tutorial pod/mm102-tutorial-matchfunction
 ```
 
 ## Cleanup
@@ -188,8 +190,8 @@ Run the below command to remove all the components of this tutorial:
 kubectl delete namespace mm102-tutorial
 ```
 
-Note that this will still keep the Open Match core running in open-match namespace for reuse by the other exercies.
+Note that this will still keep the Open Match core running in open-match namespace for reuse by the other exercises.
 
 ## What Next
 
-Given that a Ticket can only pick one game-mode, the Matchmaker implemented so far generate Matches from completely partitioned Tickets, where a Ticket is only considered for a game-mode. Next, we can learn how to use the default evaluator to handle scenarios where a Ticket may be specify multiple game mode preferences and hence may be picked by more than one MatchFunction.
+Given that a Ticket can only pick one game-mode, the Matchmaker implemented so far generate Matches from completely partitioned Tickets, where a Ticket is only considered for a game-mode. Next, we can learn how to [use the default evaluator]({{< relref "../DefaultEvaluator/_index.md" >}}) to handle scenarios where a Ticket may be specify multiple game mode preferences and hence may be picked by more than one MatchFunction.
