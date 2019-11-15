@@ -66,26 +66,34 @@ from the Open Match Backend. The Director also interfaces with the DGS allocatio
 matches and creating Game Server Assignments from these details in Open Match, via communicating with the Open Match
 Backend.
 
-### Life of a matchmaking request
+### Matchmaking Flow
 
-Here is a high level description of the flow between the components when a new matchmaking request is created and when an Assignment is set for a Match.
-
-#### Matchmaking request - creation
+Here is an overview of how a Game Client gets assigned to a Game Server in this architecture.
 
 ![Matchmaking request creation](../../../images/loam_create.png)
 
-1. A Game Client connects to the Game Frontend requesting for an Assignment.
-2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player. Opem Match creates a Ticket and indexes its SearchFields.
-3. The Director calls FetchMatches on Open Match Backend to generate Matches for a MatchProfile.
-4. Open Match Backend triggers Match Function execution for this MatchProfile.
-5. The Match Function fetches all the Tickets for the MatchProfile from Open Match Data Access API (MMLogic) and generates a Match.
-6. The Open Match Backend returns the Match to the Director.
+#### Creating a Matchmaking request
 
-#### Matchmaking request - assignment
+1. A Game Client (for the Player) intending to find a match connects to the Game Frontend requesting for an Assignment.
+2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player. Opem Match creates a Ticket and indexes its SearchFields.
+
+Now the Ticket representing this player is a part of a Ticket Pool actively being considered for matchmaking by Open Match.
+
+#### Creating a Match
+
+1. The Director periodically calls FetchMatches on Open Match Backend to generate Matches for a MatchProfile.
+2. Open Match Backend triggers MatchFunction execution for this MatchProfile.
+3. The MatchFunction fetches all the Tickets from the active matchmaking Pool that match the filters in the the MatchProfile from Open Match Data Access API (MMLogic)
+4. The MatchFunction generates a Match using a subset of the queried Tickets.
+5. The Open Match Backend returns this Match to the Director.
+
+At this point, the Ticket representing the Player is a part of the Match but does not have an assignment yet.
+
+#### Setting an Assignment
 
 ![Matchmaking request creation](../../../images/loam_assign.png)
 
-1. The Director requests the DGS allocation system for a Game Server for the Match.
+1. With a fetched Match needing an allocation, the Director requests the DGS allocation system for a Game Server for the Match.
 2. The Director then creates an Assignment containing the details of connecting to the allocated Game Server.
 3. The Director calls SetAssignment to set this Assignment on all the Tickets in the Match. This stores the Assignment on the Ticket in Open Match State Store.
 4. The Game Frontend fetches the Assignment from the Open Match Backend and returns it back to the Game Client.
