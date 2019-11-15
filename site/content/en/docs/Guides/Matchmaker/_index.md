@@ -75,7 +75,7 @@ Here is an overview of how a Game Client gets assigned to a Game Server in this 
 #### Creating a Matchmaking request
 
 1. A Game Client (for the Player) intending to find a match connects to the Game Frontend requesting for an Assignment.
-2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player. Opem Match creates a Ticket and indexes its SearchFields.
+2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player. Open Match creates a Ticket and indexes its SearchFields.
 
 Now the Ticket representing this player is a part of a Ticket Pool actively being considered for matchmaking by Open Match.
 
