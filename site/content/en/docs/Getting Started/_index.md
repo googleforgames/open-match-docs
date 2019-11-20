@@ -36,6 +36,8 @@ Here is a sequence diagram of Open Match matching two players.
 ![Demo Match Sequence Diagram](../../images/demo-match-sequence.png)
 
 ## Install the Demo
+| *Be sure you have run through the prerequisites above before installing the demo.* |
+| --- |
 
 This step deploys a Match Function and the core demo application in under the `open-match-demo` namespace:
 
