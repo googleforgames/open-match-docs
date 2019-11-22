@@ -56,7 +56,7 @@ Now that you have customized the Game Frontend, please run the below commands fr
 
 ```
 # Build the Frontend image.
-docker build -t $REGISTRY/mm101-tutorial-frontend frontend/.
+docker build -t $REGISTRY/mm101-tutorial-frontend frontend/
 
 # Push the Frontend image to the configured Registry.
 docker push $REGISTRY/mm101-tutorial-frontend

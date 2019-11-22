@@ -39,6 +39,12 @@ If using GKE, you can populate the image registry using the command below:
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 
+If using Minikube, please run the command below to instruct Minikube to [use local Docker images](https://kubernetes.io/docs/setup/learning-environment/minikube/#use-local-images-by-re-using-the-docker-daemon):
+```bash
+eval $(minikube docker-env)
+```
+
+
 ### Get the tutorial template
 
 Make a local copy of the [tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/custom_evaluator). Use `tutorials/custom_evaluator` as a working copy for all the instructions in this tutorial.
@@ -112,7 +118,7 @@ As a reference, you may check the implementation of the [tutorial solution Evalu
 Now that we have a custom Evaluator, please run the below commands in the `$TUTORIALROOT` to build and push the Evaluator to your configured image registry.
 
 ```bash
-docker build -t $REGISTRY/custom-eval-tutorial-evaluator evaluator/.
+docker build -t $REGISTRY/custom-eval-tutorial-evaluator evaluator/
 docker push $REGISTRY/custom-eval-tutorial-evaluator
 ```
 
@@ -137,11 +143,11 @@ kubectl apply -f customization.yaml --namespace open-match
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
 ```bash
-docker build -t $REGISTRY/custom-eval-tutorial-frontend frontend/.
+docker build -t $REGISTRY/custom-eval-tutorial-frontend frontend/
 docker push $REGISTRY/custom-eval-tutorial-frontend
-docker build -t $REGISTRY/custom-eval-tutorial-director director/.
+docker build -t $REGISTRY/custom-eval-tutorial-director director/
 docker push $REGISTRY/custom-eval-tutorial-director
-docker build -t $REGISTRY/custom-eval-tutorial-matchfunction matchfunction/.
+docker build -t $REGISTRY/custom-eval-tutorial-matchfunction matchfunction/
 docker push $REGISTRY/custom-eval-tutorial-matchfunction
 ```
 
