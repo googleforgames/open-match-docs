@@ -30,14 +30,19 @@ If you already installed Open Match for the [Getting Started Demo]({{< relref ".
 
 Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images used in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
 
-```
+```bash
 REGISTRY=[YOUR_REGISTRY_URL]
 ```
 
-If using GKE, the below command can be used to populate the image registry:
+If using GKE, you can populate the image registry using the command below:
 
-```
+```bash
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
+```
+
+If using Minikube, please run the command below to instruct Minikube to [use local Docker images](https://kubernetes.io/docs/setup/learning-environment/minikube/#use-local-images-by-re-using-the-docker-daemon):
+```bash
+eval $(minikube docker-env)
 ```
 
 ### Get the Tutorial template

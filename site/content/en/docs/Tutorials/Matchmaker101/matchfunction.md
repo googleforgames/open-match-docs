@@ -76,7 +76,7 @@ Now that you have customized the MatchFunction, please run the below commands fr
 
 ```
 # Build the MatchFunction image.
-docker build -t $REGISTRY/mm101-tutorial-matchfunction matchfunction/.
+docker build -t $REGISTRY/mm101-tutorial-matchfunction matchfunction/
 
 # Push the MatchFunction image to the configured Registry.
 docker push $REGISTRY/mm101-tutorial-matchfunction

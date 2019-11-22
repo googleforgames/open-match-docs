@@ -17,9 +17,6 @@ sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
 
 - For Minikube users, run:
 ```
-# Instructs Minikube to use local images
-# https://kubernetes.io/docs/setup/learning-environment/minikube/#use-local-images-by-re-using-the-docker-daemon
-eval $(minikube docker-env)
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | sed "s|Always|Never|g" | kubectl apply -f -
 ```
 

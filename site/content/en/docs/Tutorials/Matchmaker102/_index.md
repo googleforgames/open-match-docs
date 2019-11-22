@@ -31,6 +31,11 @@ If using GKE, you can populate the image registry using the command below:
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 
+If using Minikube, please run the command below to instruct Minikube to [use local Docker images](https://kubernetes.io/docs/setup/learning-environment/minikube/#use-local-images-by-re-using-the-docker-daemon):
+```bash
+eval $(minikube docker-env)
+```
+
 ### Get the Tutorial template
 
 Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/matchmaker102). Use `tutorials/matchmaker102` as a working copy for all the instructions in this tutorial.
@@ -151,11 +156,11 @@ Although no changes are needed to the core matchmaking logic, you may add some l
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
 ```bash
-docker build -t $REGISTRY/mm102-tutorial-frontend frontend/.
+docker build -t $REGISTRY/mm102-tutorial-frontend frontend/
 docker push $REGISTRY/mm102-tutorial-frontend
-docker build -t $REGISTRY/mm102-tutorial-director director/.
+docker build -t $REGISTRY/mm102-tutorial-director director/
 docker push $REGISTRY/mm102-tutorial-director
-docker build -t $REGISTRY/mm102-tutorial-matchfunction matchfunction/.
+docker build -t $REGISTRY/mm102-tutorial-matchfunction matchfunction/
 docker push $REGISTRY/mm102-tutorial-matchfunction
 ```
 
