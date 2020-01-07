@@ -20,7 +20,7 @@ Some basic understanding of Kubernetes, kubectl is required to efficiently compl
 
 ### Install Open Match
 
-Lets setup Open Match next by running the steps in [Install Open Match Core]({{< relref "../../Installation/yaml.md#install-core-open-match" >}}). Please be sure to also [install the default Evaluator]({{< relref "../../Installation/_index.md#install-the-default-evaluator" >}}).
+Lets setup Open Match next by running the steps in [Install Open Match Core]({{< relref "../../Installation/yaml.md#install-core-open-match" >}}). Please be sure to also [install the default Evaluator]({{< relref "../../Installation/yaml.md#install-the-default-evaluator" >}}).
 
 {{% alert title="Note" color="info" %}}
 If you already installed Open Match for the [Getting Started Demo]({{< relref "../../Getting Started/_index.md" >}}), you can skip this step. Simply [delete the demo namespace]({{< relref "../../Getting Started/_index.md#delete-the-demo" >}}) and proceed.
