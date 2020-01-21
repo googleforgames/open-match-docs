@@ -14,7 +14,7 @@ description: >
 ## Install the Open Match helm chart
 
 {{< alert title="Note" color="info">}}
-If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/intro/) documentation to get started. The Open Match helm chart only install the core services by default, please [override default helm configs]({{< relref "../Installation/helm.md#configuration" >}}) if you need to install telemetry supports.
+If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/intro/) documentation to get started. The Open Match helm chart only installs the core services by default, please [override default helm configs]({{< relref "../Installation/helm.md#configuration" >}}) if you need to install telemetry support.
 {{< /alert >}}
 
 To install the chart with the release name `my-release` using our stable helm repository:
