@@ -177,11 +177,11 @@ Add the above snippet to the MatchFunction and populate the logic for score calc
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
 ```bash
-docker build -t $REGISTRY/default-eval-tutorial-frontend frontend/.
+docker build -t $REGISTRY/default-eval-tutorial-frontend frontend/
 docker push $REGISTRY/default-eval-tutorial-frontend
-docker build -t $REGISTRY/default-eval-tutorial-director director/.
+docker build -t $REGISTRY/default-eval-tutorial-director director/
 docker push $REGISTRY/default-eval-tutorial-director
-docker build -t $REGISTRY/default-eval-tutorial-matchfunction matchfunction/.
+docker build -t $REGISTRY/default-eval-tutorial-matchfunction matchfunction/
 docker push $REGISTRY/default-eval-tutorial-matchfunction
 ```
 

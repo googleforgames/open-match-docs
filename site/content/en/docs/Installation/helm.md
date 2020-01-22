@@ -11,26 +11,46 @@ description: >
 - [Helm](https://docs.helm.sh/helm/) package manager 3.0.0+
 - [Kuberentes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
 
-## Installing the Chart
+## Install the Open Match helm chart
 
 {{< alert title="Note" color="info">}}
-If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/intro/) documentation to get started.
+If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/intro/) documentation to get started. The Open Match helm chart only installs the core services by default, please [override default helm configs]({{< relref "../Installation/helm.md#configuration" >}}) if you need to install telemetry support.
 {{< /alert >}}
 
 To install the chart with the release name `my-release` using our stable helm repository:
 
 ```bash
-$ helm repo add open-match https://open-match.dev/chart/stable
-$ helm install my-release --namespace open-match open-match/open-match
+helm repo add open-match https://open-match.dev/chart/stable
+helm install my-release --namespace open-match open-match/open-match
 ```
 
 Helm install the latest stable version of Open Match `v{{< param release_version >}}` by default. To view the available helm chart versions and install a specific Open Match version:
 
 ```bash
 # View available Open Match helm chart versions
-$ helm search repo --versions open-match/open-match
+helm search repo --versions open-match/open-match
 # Install a specific Open Match helm chart version
-$ helm install my-release --namespace open-match open-match/open-match --version=CHART_VERSION
+helm install my-release --namespace open-match open-match/open-match --version=CHART_VERSION
+```
+
+{{% alert title="Note" color="info" %}}
+Open Match needs to be customized to your Matchmaker.
+This custom configuration is provided to the Open Match components via a ConfigMap
+(<code>om-configmap-override</code>).
+
+Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is available.
+{{% /alert %}}
+
+## Install the default Evaluator
+
+Run the command below to install the default Evaluator and configure Open Match to use it.
+
+```bash
+# Install the default evaluator
+# Install ConfigMap `om-configmap-override`, this ConfigMap configures Open Match to talk to the default evaluator 
+helm install my-release --namespace open-match open-match/open-match \
+  --set open-match-customize.enabled=true --set open-match-customize.evaluator.enabled=true \
+  --set open-match-override.enabled=true 
 ```
 
 ## Uninstalling the Chart
@@ -38,7 +58,7 @@ $ helm install my-release --namespace open-match open-match/open-match --version
 To uninstall/delete the `my-release` deployment:
 
 ```bash
-$ helm uninstall my-release
+helm uninstall -n open-match my-release
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
@@ -48,12 +68,11 @@ The command removes all the Kubernetes components associated with the chart and 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```bash
-$ helm install --name my-release --namespace open-match open-match/open-match \
-  --set open-match-override.enabled=true
+helm install --name my-release --namespace open-match open-match/open-match \
   --set open-match-telemetry.enabled=true  --set open-match-telemetry.jaeger.enabled=true
 ```
 
-The above command sets the namespace where Open Match is deployed to `open-match`. Additionally turn on the telemetry exporters, deploy the default `om-override-configmap` and Jaeger along with Open Match core services.
+The above command sets the namespace where Open Match is deployed to `open-match`. Additionally turn on the telemetry exporters and deploy Jaeger along with Open Match core services.
 
 The following tables lists the configurable parameters of the Open Match chart and their default values.
 

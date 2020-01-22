@@ -151,11 +151,11 @@ Although no changes are needed to the core matchmaking logic, you may add some l
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
 ```bash
-docker build -t $REGISTRY/mm102-tutorial-frontend frontend/.
+docker build -t $REGISTRY/mm102-tutorial-frontend frontend/
 docker push $REGISTRY/mm102-tutorial-frontend
-docker build -t $REGISTRY/mm102-tutorial-director director/.
+docker build -t $REGISTRY/mm102-tutorial-director director/
 docker push $REGISTRY/mm102-tutorial-director
-docker build -t $REGISTRY/mm102-tutorial-matchfunction matchfunction/.
+docker build -t $REGISTRY/mm102-tutorial-matchfunction matchfunction/
 docker push $REGISTRY/mm102-tutorial-matchfunction
 ```
 

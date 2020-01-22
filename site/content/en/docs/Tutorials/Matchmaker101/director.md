@@ -65,7 +65,7 @@ Now that you have customized the Director, please run the below commands from `$
 
 ```
 # Build the Director image.
-docker build -t $REGISTRY/mm101-tutorial-director director/.
+docker build -t $REGISTRY/mm101-tutorial-director director/
 
 # Push the Director image to the configured Registry.
 docker push $REGISTRY/mm101-tutorial-director
