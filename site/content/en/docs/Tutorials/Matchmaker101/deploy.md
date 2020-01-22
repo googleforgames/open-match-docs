@@ -10,8 +10,17 @@ This step assumes that you have completed the Tutorial prerequisites and all pri
 
 The next step is to deploy the Match Function, the Game Frontend and the Director to the same cluster as Open Match deployment but to a different namespace. The `$TUTORIALROOT/matchmaker.yaml` deploys these components to a `mm101-tutorial` namespace. Run the below command in the `$TUTORIALROOT` path to apply this YAML:
 
+- For GKE users, run:
 ```
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
+```
+
+- For Minikube users, run:
+```
+# Instructs Minikube to use local images
+# https://kubernetes.io/docs/setup/learning-environment/minikube/#use-local-images-by-re-using-the-docker-daemon
+eval $(minikube docker-env)
+sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | sed "s|Always|Never|g" | kubectl apply -f -
 ```
 
 ## Matchmaking ever after
