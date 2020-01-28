@@ -69,7 +69,8 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```bash
 helm install --name my-release --namespace open-match open-match/open-match \
-  --set open-match-telemetry.enabled=true  --set open-match-telemetry.jaeger.enabled=true
+  --set open-match-telemetry.enabled=true  \
+  --set open-match-telemetry.jaeger.enabled=true
 ```
 
 The above command sets the namespace where Open Match is deployed to `open-match`. Additionally turn on the telemetry exporters and deploy Jaeger along with Open Match core services.
@@ -78,12 +79,12 @@ The following tables lists the configurable parameters of the Open Match chart a
 
 | Parameter                                           | Description                                                                                     | Default                |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------- |
-| `mmlogic.portType`                                | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the Mmlogic service                        | `ClusterIP`                 |
-| `mmlogic.replicas`                           | Defines the number of pod replicas for Mmlogic's Kubernetes deployment                                         | `3`                 |
-| `frontend.portType`                         | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the Frontend service                        | `ClusterIP`                               |                  |
-| `frontend.replicas`                    | Defines the number of pod replicas for Frontend's Kubernetes deployment                                         | `3`                 |
-| `backend.portType`                        | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the Backend service                        | `ClusterIP`                                         |                 |
-| `backend.replicas`                          | Defines the number of pod replicas for Backend's Kubernetes deployment                                                          | `3`        |
+| `query.portType`                                | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the QueryService                        | `ClusterIP`                 |
+| `query.replicas`                           | Defines the number of pod replicas for QueryService's Kubernetes deployment                                         | `3`                 |
+| `frontend.portType`                         | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the FrontendService                        | `ClusterIP`                               |                  |
+| `frontend.replicas`                    | Defines the number of pod replicas for FrontendService's Kubernetes deployment                                         | `3`                 |
+| `backend.portType`                        | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the BackendService                        | `ClusterIP`                                         |                 |
+| `backend.replicas`                          | Defines the number of pod replicas for BackendService's Kubernetes deployment                                                          | `3`        |
 | `image.pullPolicy`                               | Global `imagePullPolicy` for all Open Match service deployments | `Always` |
 | `image.tag`                       | Global Docker image tag for all Open Match service deployments |   `{{< param release_version >}}`       |
 | `open-match-core.enabled`         | Turn on/off the installation of Open Match core services                        | `true`                 |
