@@ -19,8 +19,8 @@ The following defines the in-cluster hostnames and endpoints of Open Match's ext
 swaggerui:
   hostName: om-swaggerui
   httpPort: 51500
-mmlogic:
-  hostName: om-mmlogic
+query:
+  hostName: om-query
   grpcPort: 50503
   httpPort: 51503
 frontend:

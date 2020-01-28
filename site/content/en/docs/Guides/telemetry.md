@@ -13,7 +13,6 @@ insight into the performance and health of your Open Match cluster. Currently, O
 * Prometheus
 * Grafana
 * Jaeger
-* Zipkin
 * Stackdriver
 
 ## Install telemetry backend 
@@ -29,8 +28,6 @@ kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release
 kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/05-jaeger-chart.yaml
 # Install the above telemetry backends with Open Match core services
 kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml
-# Install Zipkin:
-#   Zipkin's official get started guide (https://zipkin.io/pages/quickstart)
 # Install Stackdriver:
 #   No need to install, provided by GKE by default.
 ```
@@ -54,8 +51,6 @@ matchmaker_config_override.yaml:
     prometheus:
       enable: 'true'
     stackdriver:
-      enable: 'true'
-    zipkin:
       enable: 'true'
 ```
 

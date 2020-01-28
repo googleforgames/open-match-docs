@@ -42,7 +42,7 @@ The MatchProfile that the Match Function receives has a set of Pools specified. 
 ```
 rpc QueryTickets(QueryTicketsRequest) returns (stream QueryTicketsResponse) {
   option (google.api.http) = {
-    post: "/v1/mmlogic/tickets:query"
+    post: "/v1/queryservice/tickets:query"
     body: "*"
   };
 }

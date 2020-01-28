@@ -66,7 +66,7 @@ Please copy the above helper or add your own matchmaking logic to `$TUTORIALROOT
 
 The following values need to be changed if your setup is different from the default in the `$TUTORIALROOT/frontend/main.go`. The default value assumes you have Open Match deployed under `open-match` namespace and the Game Frontend under `mm101-tutorial` namespace in the same cluster:
 
-> `mmlogicAddress` - Open Match Mmlogic endpoint
+> `queryServiceAddress` - Open Match QueryService endpoint
 >
 > `serverPort` - Port Number that you host your Match Function service on, needs to be consistent with `functionPort` in the director. The current value uses the port specified in deployment YAML (covered later in the Deploy and Run step)
 
