@@ -82,7 +82,7 @@ openssl req -new -sha256 -key om-frontend.key -subj "/C=US/ST=Open/L=Match/O=Ope
 # of the server is specified by the Common Name (CN) parameter.
 #
 # The list of servers you'll want to generate keys for are:
-# om-backend:51505,om-demo:51507,om-demoevaluator:51508,om-demofunction:51502,om-e2eevaluator:51518,om-e2ematchfunction:51512,om-frontend:51504,om-mmlogic:51503,om-swaggerui:51500,om-synchronizer:51506
+# om-backend:51505,om-demo:51507,om-demoevaluator:51508,om-demofunction:51502,om-e2eevaluator:51518,om-e2ematchfunction:51512,om-frontend:51504,om-query:51503,om-swaggerui:51500,om-synchronizer:51506
 
 # Create a private key for the om-frontend server. (No password)
 openssl genrsa -out om-frontend.key 4096

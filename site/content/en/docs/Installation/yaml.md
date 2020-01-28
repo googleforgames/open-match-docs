@@ -42,7 +42,7 @@ Output:
 NAME                                READY   STATUS              RESTARTS   AGE
 om-backend-76d8d76c96-fmhmn         0/1     ContainerCreating   0          3m53s
 om-frontend-57fc9f6b66-86hxj        0/1     ContainerCreating   0          3m53s
-om-mmlogic-799d8549d4-5qpgx         0/1     ContainerCreating   0          3m53s
+om-query-799d8549d4-5qpgx           0/1     ContainerCreating   0          3m53s
 om-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
 om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
 ```
