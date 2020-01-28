@@ -31,7 +31,7 @@ template that can be used to generate matches) and returns matches for the reque
 It also provides the functionality for creating Assignments for Matches when invoked by the Director, and returning
 Assignments to the Open Match Frontend when requested.
 
-#### Open Match QueryService (Data Service)
+#### Open Match QueryService
 
 The QueryService enables querying the Tickets that meet certain constraints from the current Ticket pool.
 
