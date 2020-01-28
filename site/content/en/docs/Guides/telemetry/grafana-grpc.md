@@ -8,12 +8,12 @@ description:
 
 Here is a [raintank snapshot](https://snapshot.raintank.io/dashboard/snapshot/0IpGHqbDsP3CXdZi4E9lo454RthSMDVi) to what you will see after navigating to the gRPC dashboard.
 
-| Metric Name                                           | Description                                                                                     |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------- | 
-| `Client Request Rate`                                | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the QueryService                        | 
-| `Server Request Rate`                           | Defines the number of pod replicas for QueryService's Kubernetes deployment                                         | 
-| `gRPC Error Rate`                         | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the FrontendService                        | 
-| `Network IO per second`                    | Defines the number of pod replicas for FrontendService's Kubernetes deployment                                         |  
-| `Bytes Sent per Call: openmatch.{Component}/{MethodName}`                        | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the BackendService                        |  
-| `Bytes Received per Call: openmatch.{Component}/{MethodName}`                          | Defines the number of pod replicas for BackendService's Kubernetes deployment                                                          |  
-| `Client RTT: openmatch.{Component}/{MethodName}`                               | Global `imagePullPolicy` for all Open Match service deployments |  
+| Metric Name                                                    | Description                                                                                   |
+| ---------------------------------------------------            | ----------------------------------------------------------------------------------------------| 
+| `Client Request Rate`                                          | Average gRPC client side request per second by Open Match API methods                         | 
+| `Server Request Rate`                                          | Average gRPC server side request per second by Open Match API methods                         | 
+| `gRPC Error Rate`                                              | Ratio of gRPC calls that returned an non-OK status code by Open Match methods                 | 
+| `Network IO per second`                                        | Total network I/O rate per second                                                             |  
+| `Bytes Sent per Call: openmatch.{Component}/{MethodName}`      | Average bytes sent per call by quantile                                                       |  
+| `Bytes Received per Call: openmatch.{Component}/{MethodName}`  | Average bytes received per call by quantile                                                   |  
+| `Client RTT: openmatch.{Component}/{MethodName}`               | Average roundtrip latency by quantile                                                         |  
