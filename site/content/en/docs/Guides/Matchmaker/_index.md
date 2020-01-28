@@ -31,9 +31,9 @@ template that can be used to generate matches) and returns matches for the reque
 It also provides the functionality for creating Assignments for Matches when invoked by the Director, and returning
 Assignments to the Open Match Frontend when requested.
 
-#### MMLogic (Data Service)
+#### Open Match QueryService (Data Service)
 
-The MMLogic service enables querying the Tickets that meet certain constraints from the current Ticket pool.
+The QueryService enables querying the Tickets that meet certain constraints from the current Ticket pool.
 
 ### Customized Components
 
@@ -41,7 +41,7 @@ To build a custom Matchmaker using Open Match, the user needs to provide the fol
 
 #### Match Function
 
-The core matchmaking logic is implemented as a Match Function service. Open Match Backend triggers the Match Function service when it receives a request to generate matches. The Match Function execution receives MatchProfiles, fetches Tickets that match the profile from MMLogic and returns matches.
+The core matchmaking logic is implemented as a Match Function service. Open Match Backend triggers the Match Function service when it receives a request to generate matches. The Match Function execution receives MatchProfiles, fetches Tickets that match the profile from QueryService and returns matches.
 
 #### Evaluator (Optional)
 
@@ -83,7 +83,7 @@ Now the Ticket representing this player is a part of a Ticket Pool actively bein
 
 1. The Director periodically calls FetchMatches on Open Match Backend to generate Matches for a MatchProfile.
 2. Open Match Backend triggers MatchFunction execution for this MatchProfile.
-3. The MatchFunction fetches all the Tickets from the active matchmaking Pool that match the filters in the the MatchProfile from Open Match Data Access API (MMLogic)
+3. The MatchFunction fetches all the Tickets from the active matchmaking Pool that match the filters in the the MatchProfile from Open Match QueryService API.
 4. The MatchFunction generates a Match using a subset of the queried Tickets.
 5. The Open Match Backend returns this Match to the Director.
 
