@@ -43,9 +43,9 @@ insight into the performance and health of your Open Match cluster. Currently, O
     --set global.telemetry.jaeger.enabled # Install jaeger with Open Match core
     ```
 
-## Instrument Open Match with Telemetry Supports
+## Enable telemetry exporters
 {{% alert title="Note" color="info" %}}
-The configurations to enable/disable the telemetry supports are not read at runtime. Please re-deploy Open Match if you want to change the telemetry settings. Also note that helm users can skip this section as overriding helm values change the default telemetry configs at the same time.
+The configurations to enable/disable the telemetry exporters are not read at runtime. Please re-deploy Open Match if you want to change the telemetry settings. Also note that helm users can skip this section as overriding helm values change the default telemetry configs at the same time.
 {{% /alert %}}
 
 You can configure where and what telemetry you want to emit from your Open Match
@@ -133,3 +133,6 @@ kubectl port-forward -n open-match service/open-match-jaeger-query 16686:16686
 Next visit http://localhost:16686 in your browser. You'll see a page like this:
 
 ![Jaeger frontend UI](../../../images/guides/telemetry-jaeger-ui.png)
+
+
+## What's Next?
