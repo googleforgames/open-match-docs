@@ -13,31 +13,40 @@ insight into the performance and health of your Open Match cluster. Currently, O
 * Prometheus
 * Grafana
 * Jaeger
-* Zipkin
 * Stackdriver
 
-## Install telemetry backend 
+## Install telemetry backend
 
- At this point we provides curated k8s YAML files to install supported telemetry backend.
+ At this point we provides two ways to install supported telemetry backend, either via K8S yaml files or via helm.s
 
-```yaml
-# Install Prometheus
-kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/03-prometheus-chart.yaml
-# Install Grafana
-kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/04-grafana-chart.yaml
-# Install Jaeger
-kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/05-jaeger-chart.yaml
-# Install the above telemetry backends with Open Match core services
-kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml
-# Install Zipkin:
-#   Zipkin's official get started guide (https://zipkin.io/pages/quickstart)
-# Install Stackdriver:
-#   No need to install, provided by GKE by default.
-```
+- Install via K8S yaml
+  
+    ```yaml
+    # Install Prometheus
+    kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/03-prometheus-chart.yaml
+    # Install Grafana
+    kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/04-grafana-chart.yaml
+    # Install Jaeger
+    kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/05-jaeger-chart.yaml
+    # Install the above telemetry backends with Open Match core services
+    kubectl apply -n open-match -f https://open-match.dev/install/v{{< param release_version >}}/yaml/install.yaml
+    # Install Stackdriver:
+    #   No need to install, provided by GKE by default.
+    ```
+
+- Install via helm
+
+    ```yaml
+    $ helm install my-release --namespace open-match open-match/open-match \
+    --set open-match-override.enabled=true \ # Install the default override configmap
+    --set open-match-telemetry.enabled=true \ # Enable telemetry logic in Open Match core
+    --set global.telemetry.jaeger.enabled # Install jaeger with Open Match core
+    ```
+
 
 ## Instrument Open Match with Telemetry Supports
 {{% alert title="Note" color="info" %}}
-The configurations to enable/disable the telemetry supports are not read at runtime. Please re-deploy Open Match if you want to change the telemetry settings.
+The configurations to enable/disable the telemetry supports are not read at runtime. Please re-deploy Open Match if you want to change the telemetry settings. Also note that helm users can skip this section as overriding helm values change the default telemetry configs at the same time.
 {{% /alert %}}
 
 You can configure where and what telemetry you want to emit from your Open Match
@@ -54,8 +63,6 @@ matchmaker_config_override.yaml:
     prometheus:
       enable: 'true'
     stackdriver:
-      enable: 'true'
-    zipkin:
       enable: 'true'
 ```
 
