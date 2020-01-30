@@ -22,14 +22,15 @@ This demo assumes that you already have run these steps:
 
 Here are some of the Open Match concepts that you will encounter as you run the demo. Concrete examples for these are included in linked code samples in demo components.
 
-* **Ticket**: A basic matchmaking request in Open Match. Typically, it represents a player (or group of players) requesting a match.
-* **Assignment**:  Contains the information passed back from Open Match to a Ticket creator. Typically it contains connection information to a Game Server.
-* **Match**: A collection of Tickets and some Match metadata.
+* **Ticket**: A basic matchmaking entity in Open Match that represents a player (or group of players) requesting a match.
+* **Assignment**:  A mapping from a game server assignment to a Ticket.
+* **Match**: A collection of Tickets and some metadata of a match.
 
-Here are the components external to core Open Match that are implemented as a part of the demo:
+Here are the components that users need to implement to use Open Match as a matchmaker. The demo implements both as an example to show what Open Match can do:
 
-* **Match Function(MMF)**: The core matchmaking logic implemented as a service. It is invoked by Open Match to generate matches. It takes lists of tickets (which meet certain constraints) as input and returns any number of matches. For this basic demo, the Match Function simply pairs any two players into a Match.
+* **Match Function(MMF)**: The core matchmaking logic implemented as a service. It is invoked by Open Match to generate matches. It takes lists of tickets (which meet certain constraints) as input and returns any number of Matches. For this basic demo, the Match Function simply pairs any two players into a Match.
 * **Director**: A component that requests Open Match for matches and then sets Assignments on the Tickets in the matches found.
+* **Client**: A service that translates in-queued players into Tickets in Open Match understandable language - instructs Open Match a player is currently looking for a match. 
 
 Here is a sequence diagram of Open Match matching two players.
 
@@ -52,7 +53,7 @@ Run this command to make the Demo’s service available locally:
 kubectl port-forward --namespace open-match-demo service/om-demo 51507:51507
 ```
 
-The live working demo is now available at: **[localhost:51507](http://localhost:51507)**.
+The live working demo is now available at **[localhost:51507](http://localhost:51507)**.
 
 ## Demo Components
 

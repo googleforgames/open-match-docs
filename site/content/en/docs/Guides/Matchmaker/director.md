@@ -18,10 +18,10 @@ Here are the key interactions the Director has with Open Match:
 
 The Director can fetch matches for one or more MatchProfiles using the following API on Open Match Backend:
 
-```
+```proto
 rpc FetchMatches(FetchMatchesRequest) returns (stream FetchMatchesResponse) {
   option (google.api.http) = {
-    post: "/v1/backend/matches:fetch"
+    post: "/v1/backendservice/matches:fetch"
     body: "*"
   };
 }
@@ -33,7 +33,7 @@ The request to fetch matches provides a FunctionConfig and one or more MatchProf
 
 For every FetchMatches call, the Director can specify the details of which Match Function to trigger. It can do so by providing the configuration for the Match function, giving the host, port and the type of function endpoint to call.
 
-```
+```proto
 message FunctionConfig {
   string host = 1;
   int32 port = 2;
@@ -55,7 +55,7 @@ MatchProfile is a representation of a Match specification. It bears the followin
 
 Here is a sample MatchProfile that specifies two different Pools of Tickets with tank and dps roles for a CTF game mode. The director could query concurrently for another MatchProfile that specifies the same roles but for a battle-royale game mode.
 
-```
+```golang
 MatchProfile{
   Name:  "test_profile_name",
   Pools: {
@@ -83,10 +83,10 @@ MatchProfile{
 
 Once a Match is generated, the Director can fetch a Game Server for this Match from the DGS (Dedicated Game Server) allocation system and then set that as an Assignment on all the Tickets of this Match. Here is the API on Open Match Backend to do this:
 
-```
+```proto
 rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
   option (google.api.http) = {
-    post: "/v1/backend/tickets:assign"
+    post: "/v1/backendservice/tickets:assign"
     body: "*"
 };
 ```
@@ -97,12 +97,11 @@ The API takes a list of TicketIDs to make the Assignment and an Assignment objec
 
 Here is the proto for the Assignment:
 
-```
+```proto
 message Assignment {
   string connection = 1;
-  google.rpc.Status error = 3;
   map<string, google.protobuf.Any> extensions = 4;
 }
 ```
 
-It comprises of the connection string, any error that the user wants to pass through to on the Assignment and a set of extension blobs that Open Match passes through.
+It comprises of the connection string, and a set of extension blobs that Open Match passes through.
