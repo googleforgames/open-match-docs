@@ -10,7 +10,7 @@ In this quickstart, we'll create a Kubernetes cluster and install Open Match.
 
 ## Setup Kubernetes Cluster
 
-This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section and see [how to install Open Match into your cluster]({{< relref "./yaml.md#install-core-open-match" >}}).
+This guide is for users that do not have a Kubernetes cluster. If you already have one that you can install Open Match into, skip this section and see how to install Open Match into your cluster either using [kubectl with YAML]({{< relref "./yaml.md#install-core-open-match" >}}) or [Helm]({{< relref "./helm.md" >}}).
 
 ### Setup a GKE Cluster
 

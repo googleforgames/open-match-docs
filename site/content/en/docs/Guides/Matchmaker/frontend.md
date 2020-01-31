@@ -18,10 +18,10 @@ Here are the key interactions the Game Frontend has with Open Match:
 
 The Game Frontend adds a new matchmaking request to Open Match by creating a Ticket using the following API on Open Match Frontend:
 
-```
+```proto
 rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse) {
   option (google.api.http) = {
-    post: "/v1/frontend/tickets"
+    post: "/v1/frontendservice/tickets"
     body: "*"
   };
 }
@@ -31,7 +31,7 @@ rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse) {
 
 A Ticket represents a single matchmaking request in Open Match. It can represent a single Player or a group of Players. Here is a proto for the Ticket:
 
-```
+```proto
 message Ticket {
   string id = 1;
   Assignment assignment = 3;
@@ -44,7 +44,7 @@ message Ticket {
 
 When creating a Ticket, the Open Match frontend populates SearchFields which specify the properties for the Ticket that can be used for filtering the Tickets. SearchFields can be of different types (double, string, tag) and an appropriate one should be chosen based on the nature of the property and filtering requirements. Here is a sample SearchField specifying the MMR, role and game mode.
 
-```
+```golang
 SearchFields: &pb.SearchFields{
   DoubleArgs: map[string]float64{"attribute.mmr": 50},
   StringArgs: map[string]string{"attribute.role": "warrior"},
@@ -56,10 +56,10 @@ SearchFields: &pb.SearchFields{
 
 The Game Frontend can get the current Ticket from Open Match and check if the Ticket has Assignment information populated. Here is the API to get a Ticket:
 
-```
+```proto
 rpc GetTicket(GetTicketRequest) returns (Ticket) {
   option (google.api.http) = {
-    get: "/v1/frontend/tickets/{ticket_id}"
+    get: "/v1/frontendservice/tickets/{ticket_id}"
   };
 }
 ```
@@ -72,10 +72,10 @@ Open Match does not guarantee persistent storage and hence should not be used as
 
 Once the player Assignment has been stored & communicated to the Game Client, the Game Frontend may delete the Ticket from Open Match. Here is the API exposed on Open Match Frontend to delete a Ticket:
 
-```
+```proto
 rpc DeleteTicket(DeleteTicketRequest) returns (DeleteTicketResponse) {
   option (google.api.http) = {
-    delete: "/v1/frontend/tickets/{ticket_id}"
+    delete: "/v1/frontendservice/tickets/{ticket_id}"
   };
 }
 ```
