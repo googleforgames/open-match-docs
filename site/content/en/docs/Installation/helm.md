@@ -34,7 +34,7 @@ helm install my-release --namespace open-match open-match/open-match --version=C
 ```
 
 {{% alert title="Note" color="info" %}}
-Open Match needs to be customized to your Matchmaker.
+Open Match needs to be customized to run as a Matchmaker.
 This custom configuration is provided to the Open Match components via a ConfigMap
 (<code>om-configmap-override</code>).
 
@@ -49,7 +49,8 @@ Run the command below to install the default Evaluator and configure Open Match 
 # Install the default evaluator
 # Install ConfigMap `om-configmap-override`, this ConfigMap configures Open Match to talk to the default evaluator 
 helm install my-release --namespace open-match open-match/open-match \
-  --set open-match-customize.enabled=true --set open-match-customize.evaluator.enabled=true \
+  --set open-match-customize.enabled=true \
+  --set open-match-customize.evaluator.enabled=true \
   --set open-match-override.enabled=true 
 ```
 
@@ -90,7 +91,6 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-core.enabled`         | Turn on/off the installation of Open Match core services                        | `true`                 |
 | `open-match-override.enabled`         | Turn on/off the installation of `om-override-configmap`                        | `false`                 |
 | `open-match-telemetry.enabled`                  | Turn on/off the installation of Open Match telemetry services                                   | `false`                 |
-| `open-match-test.enabled`                 | Turn on/off the installation of Open Match in-cluster test setups                                              | `false`                |
 | `open-match-scale.enabled`               | Turn on/off the installation of Open Match scale testing setups                              | `false`                     |
 | `global.kubernetes.serviceAccount`                  | Service account name for the Open Match core services                                                         | `open-match-unprivileged-service`    |
 | `global.kubernetes.service.portType`                         |  Overrides the ServiceTypes for all Open Match core services                                                                | ``           |
