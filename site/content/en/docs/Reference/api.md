@@ -849,7 +849,7 @@ Assignment to be associated with this Ticket.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets is a list of Ticket that satisfies all the filtering criterias. |
+| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets that satisfy all the filtering criteria. |
 
 
 
