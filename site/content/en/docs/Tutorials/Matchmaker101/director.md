@@ -23,7 +23,7 @@ The tutorial provides a very basic Director scaffold `$TUTORIALROOT/director` th
 
 The Director uses a helper function `generateProfiles()` in `$TUTORIALROOT/director/profile.go` to generate MatchProfiles. For this tutorial, we will generate a MatchProfile for each game-mode. The MatchProfile will have a single Pool that has a single filtering criterion searching for the desired game-mode. Director will call FetchMatches for each of the generated Profiles. Below is a sample snippet to achieve this:
 
-```
+```golang
 func generateProfiles() []*pb.MatchProfile {
   var profiles []*pb.MatchProfile
   modes := []string{"mode.demo", "mode.ctf", "mode.battleroyale"}
