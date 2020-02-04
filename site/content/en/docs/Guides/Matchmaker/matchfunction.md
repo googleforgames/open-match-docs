@@ -16,7 +16,7 @@ A Match Function is a GRPC or HTTP service that implements the Match Function de
 
 ### Definition
 
-```
+```proto
 rpc Run(RunRequest) returns (stream RunResponse) {
   option (google.api.http) = {
     post: "/v1/matchfunction:run"
@@ -39,7 +39,7 @@ This method is triggered at runtime whenever a FetchMatches call is received by 
 
 The MatchProfile that the Match Function receives has a set of Pools specified. Typically, the Match Function will call into Open Match to fetch all the Tickets belonging to each of the pools in the Match function. This can be done using the following API exposed by the Open Match QueryService:
 
-```
+```proto
 rpc QueryTickets(QueryTicketsRequest) returns (stream QueryTicketsResponse) {
   option (google.api.http) = {
     post: "/v1/queryservice/tickets:query"
@@ -50,9 +50,8 @@ rpc QueryTickets(QueryTicketsRequest) returns (stream QueryTicketsResponse) {
 
 Given that this functionality will be most commonly required for Match Functions, Open Match provides a golang library ("open-match.dev/open-match/pkg/matchfunction") to abstract this logic:
 
-```
-func QueryPools(ctx context.Context, mml pb.QueryServiceClient, pools []*pb.Pool) (map[string][]*pb.Ticket, error) {
-}
+```golang
+func QueryPools(ctx context.Context, mml pb.QueryServiceClient, pools []*pb.Pool) (map[string][]*pb.Ticket, error)
 ```
 
 #### Generate Match Proposals

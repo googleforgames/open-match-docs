@@ -46,11 +46,8 @@ kubectl apply -f ./install.yaml
 Open Match's helm chart lives under the `install/helm/open-match` folder of the root directory. To install Open Match with Load Balancer enabled:
 
 ```bash
-# Change directory to the helm chart folder
-kubectl create clusterrolebinding default-view-open-match --clusterrole=view --serviceaccount=open-match:default
 # Expose Service onto a public IP using helm cli
 helm upgrade [YOUR_HELM_RELEASE_NAME] --install --wait --debug -n open-match \
-    --set global.image.tag=0.6.0 \
     --set global.gcpProjectId=[YOUR_GCPPROJECT_ID] \
     --set backend.portType=LoadBalancer
 ```
@@ -76,8 +73,7 @@ beClient := pb.NewBackendClient(conn)
 ```
 
 {{% alert title="Note" color="info" %}}
-If you want to obtain the external IP programmaticallyarearea, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration)
-example from the Kubernetes client and use the code below for your reference.
+If you want to obtain the external IP programmatically, look at the [out of cluster configuration](https://github.com/kubernetes/client-go/tree/master/examples/out-of-cluster-client-configuration) example from the Kubernetes client and use the code below for your reference.
 {{% /alert %}}
 
 ```go

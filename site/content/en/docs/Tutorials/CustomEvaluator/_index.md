@@ -92,9 +92,9 @@ This tutorial provides an Evaluator scaffold (`$TUTORIALROOT/evaluator`) as a st
 Below is the `evauate()` helper method in `$TUTORIALROOT/evaluator/evaluate/evaluator.go` where the core evaluation logic should be implemented. At runtime, Open Match calls the `Evaluate()` method and streams the proposals for evaluation. This triggers the `evaluate()` method with a list of proposals. The `evaluate()` method should de-collide the proposals and return a list of results that Open Match will then return back to the Director.
 
 ```golang
-func evaluate(proposals []*pb.Match) ([]*pb.Match, error) {
+func evaluate(proposals []*pb.Match) ([]string, error) {
   // Core evaluation logic
-  return []*pb.Match{}, nil
+  return []string{}, nil
 }
 ```
 

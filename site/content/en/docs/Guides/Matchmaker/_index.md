@@ -20,15 +20,13 @@ This guide is a pre-reading for the tutorial for [building a basic Matchmaker]({
 
 Open Match comprises of a set of services hosted in a Kubernetes cluster. These services expose the core functionality of Open Match over gRPC and HTTP
 
-#### Open Match Frontend
+#### Open Match FrontendService
 
-The Open Match Frontend provides management of Tickets (a basic matchmaking request in Open Match). It is used to create, delete and get details of the current state of a Ticket.
+The Open Match FrontendService is used to create, delete and get details of the current state of a Ticket.
 
-#### Open Match Backend
+#### Open Match BackendService
 
-The Open Match Backend provides the core functionality of generating matches. It accepts MatchProfiles (a match
-template that can be used to generate matches) and returns matches for the requested profile.
-It also provides the functionality for creating Assignments for Matches when invoked by the Director, and returning
+The Open Match BackendService is used to generate Matches and create Assignments for the Matches when invoked by the Director, and returning
 Assignments to the Open Match Frontend when requested.
 
 #### Open Match QueryService
@@ -75,7 +73,7 @@ Here is an overview of how a Game Client gets assigned to a Game Server in this 
 #### Creating a Matchmaking request
 
 1. A Game Client (for the Player) intending to find a match connects to the Game Frontend requesting for an Assignment.
-2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player. Opem Match creates a Ticket and indexes its SearchFields.
+2. The Game Frontend validates the player, fetches its properties from the platform services and calls Open Match Frontend to create a Ticket for this player. Open Match creates a Ticket and indexes its SearchFields.
 
 Now the Ticket representing this player is a part of a Ticket Pool actively being considered for matchmaking by Open Match.
 

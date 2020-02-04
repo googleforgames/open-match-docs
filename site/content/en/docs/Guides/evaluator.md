@@ -58,7 +58,7 @@ Open Match provides a default score based Evaluator that can be used in most com
 
 Inorder to invoke the Evaluator at runtime, Open Match needs to know the location of the Evaluator endpoint. This is provided to Open Match as an override ConfigMap. Here are the field in that config map that specifically configure an Evaluator in Open Match:
 
-```
+```yaml
   api:
     evaluator:
       hostname: <Fully qualified host name>

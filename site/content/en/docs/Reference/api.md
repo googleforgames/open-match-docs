@@ -1,10 +1,10 @@
 ---
-title: "Open Match API References"
-linkTitle: "Open Match API References"
-weight: 2
-description:
-  This document provides API references for Open Match services.
----
+title: "Open Match API References" 
+linkTitle: "Open Match API References" 
+weight: 2 
+description: 
+  This document provides API references for Open Match services. 
+--- 
 
 # Protocol Documentation
 <a name="top"></a>
@@ -17,28 +17,30 @@ description:
     - [FetchMatchesRequest](#openmatch.FetchMatchesRequest)
     - [FetchMatchesResponse](#openmatch.FetchMatchesResponse)
     - [FunctionConfig](#openmatch.FunctionConfig)
-
+    - [ReleaseTicketsRequest](#openmatch.ReleaseTicketsRequest)
+    - [ReleaseTicketsResponse](#openmatch.ReleaseTicketsResponse)
+  
     - [FunctionConfig.Type](#openmatch.FunctionConfig.Type)
-
-
-    - [Backend](#openmatch.Backend)
-
+  
+  
+    - [BackendService](#openmatch.BackendService)
+  
 
 - [api/evaluator.proto](#api/evaluator.proto)
     - [EvaluateRequest](#openmatch.EvaluateRequest)
     - [EvaluateResponse](#openmatch.EvaluateResponse)
-
-
-
+  
+  
+  
     - [Evaluator](#openmatch.Evaluator)
-
+  
 
 - [api/extensions.proto](#api/extensions.proto)
     - [DefaultEvaluationCriteria](#openmatch.DefaultEvaluationCriteria)
-
-
-
-
+  
+  
+  
+  
 
 - [api/frontend.proto](#api/frontend.proto)
     - [CreateTicketRequest](#openmatch.CreateTicketRequest)
@@ -48,47 +50,50 @@ description:
     - [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest)
     - [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse)
     - [GetTicketRequest](#openmatch.GetTicketRequest)
-
-
-
-    - [Frontend](#openmatch.Frontend)
-
+  
+  
+  
+    - [FrontendService](#openmatch.FrontendService)
+  
 
 - [api/matchfunction.proto](#api/matchfunction.proto)
     - [RunRequest](#openmatch.RunRequest)
     - [RunResponse](#openmatch.RunResponse)
-
-
-
+  
+  
+  
     - [MatchFunction](#openmatch.MatchFunction)
-
+  
 
 - [api/messages.proto](#api/messages.proto)
     - [Assignment](#openmatch.Assignment)
+    - [Assignment.ExtensionsEntry](#openmatch.Assignment.ExtensionsEntry)
     - [DoubleRangeFilter](#openmatch.DoubleRangeFilter)
     - [Match](#openmatch.Match)
+    - [Match.ExtensionsEntry](#openmatch.Match.ExtensionsEntry)
     - [MatchProfile](#openmatch.MatchProfile)
+    - [MatchProfile.ExtensionsEntry](#openmatch.MatchProfile.ExtensionsEntry)
     - [Pool](#openmatch.Pool)
-    - [Roster](#openmatch.Roster)
     - [SearchFields](#openmatch.SearchFields)
     - [SearchFields.DoubleArgsEntry](#openmatch.SearchFields.DoubleArgsEntry)
     - [SearchFields.StringArgsEntry](#openmatch.SearchFields.StringArgsEntry)
     - [StringEqualsFilter](#openmatch.StringEqualsFilter)
     - [TagPresentFilter](#openmatch.TagPresentFilter)
     - [Ticket](#openmatch.Ticket)
+    - [Ticket.ExtensionsEntry](#openmatch.Ticket.ExtensionsEntry)
+  
+  
+  
+  
 
-
-
-
-
-- [api/mmlogic.proto](#api/mmlogic.proto)
+- [api/query.proto](#api/query.proto)
     - [QueryTicketsRequest](#openmatch.QueryTicketsRequest)
     - [QueryTicketsResponse](#openmatch.QueryTicketsResponse)
-
-
-
-    - [MmLogic](#openmatch.MmLogic)
-
+  
+  
+  
+    - [QueryService](#openmatch.QueryService)
+  
 
 - [Scalar Value Types](#scalar-value-types)
 
@@ -135,8 +140,8 @@ description:
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config | [FunctionConfig](#openmatch.FunctionConfig) |  | FunctionConfig specifies a MMF address and client type for Backend to establish connections with the MMF |
-| profiles | [MatchProfile](#openmatch.MatchProfile) | repeated | MatchProfiles that will be sent to thhe MMF specified in the FunctionConfig. |
+| config | [FunctionConfig](#openmatch.FunctionConfig) |  | A configuration for the MatchFunction server of this FetchMatches call. |
+| profile | [MatchProfile](#openmatch.MatchProfile) |  | A MatchProfile that will be sent to the MatchFunction server of this FetchMatches call. |
 
 
 
@@ -175,6 +180,31 @@ FunctionConfig specifies a MMF address and client type for Backend to establish 
 
 
 
+<a name="openmatch.ReleaseTicketsRequest"></a>
+
+### ReleaseTicketsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ticket_ids | [string](#string) | repeated | TicketIds is a list of string representing Open Match generated Ids to be re-enabled for MMF querying because they are no longer awaiting assignment from a previous match result |
+
+
+
+
+
+
+<a name="openmatch.ReleaseTicketsResponse"></a>
+
+### ReleaseTicketsResponse
+
+
+
+
+
+
+ 
 
 
 <a name="openmatch.FunctionConfig.Type"></a>
@@ -188,22 +218,25 @@ FunctionConfig specifies a MMF address and client type for Backend to establish 
 | REST | 1 |  |
 
 
+ 
+
+ 
 
 
+<a name="openmatch.BackendService"></a>
 
-
-
-<a name="openmatch.Backend"></a>
-
-### Backend
-The Backent service implements APIs to generate matches and handle ticket Assignments.
+### BackendService
+The BackendService implements APIs to generate matches and handle ticket assignments.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| FetchMatches | [FetchMatchesRequest](#openmatch.FetchMatchesRequest) | [FetchMatchesResponse](#openmatch.FetchMatchesResponse) stream | FetchMatches triggers a MatchFunction with the specified MatchProfiles, while each MatchProfile returns a set of match proposals. FetchMatches method streams the results back to the caller. FetchMatches immediately returns an error if it encounters any execution failures. - If the synchronizer is enabled, FetchMatch will then call the synchronizer to deduplicate proposals with overlapped tickets. |
+| FetchMatches | [FetchMatchesRequest](#openmatch.FetchMatchesRequest) | [FetchMatchesResponse](#openmatch.FetchMatchesResponse) stream | FetchMatches triggers a MatchFunction with the specified MatchProfile and returns a set of match proposals that match the description of that MatchProfile. FetchMatches immediately returns an error if it encounters any execution failures. |
 | AssignTickets | [AssignTicketsRequest](#openmatch.AssignTicketsRequest) | [AssignTicketsResponse](#openmatch.AssignTicketsResponse) | AssignTickets overwrites the Assignment field of the input TicketIds. |
+| ReleaseTickets | [ReleaseTicketsRequest](#openmatch.ReleaseTicketsRequest) | [ReleaseTicketsResponse](#openmatch.ReleaseTicketsResponse) | ReleaseTickets removes the submitted tickets from the list that prevents tickets that are awaiting assignment from appearing in MMF queries, effectively putting them back into the matchmaking pool
 
+BETA FEATURE WARNING: This call and the associated Request and Response messages are not finalized and still subject to possible change or removal. |
 
+ 
 
 
 
@@ -237,17 +270,17 @@ The Backent service implements APIs to generate matches and handle ticket Assign
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| match | [Match](#openmatch.Match) |  | A Match shortlisted by the evaluator representing one of the final results. |
+| match_id | [string](#string) |  | A Match ID representing a shortlisted match returned by the evaluator as the final result. |
 
 
 
 
 
+ 
 
+ 
 
-
-
-
+ 
 
 
 <a name="openmatch.Evaluator"></a>
@@ -259,7 +292,7 @@ The Evaluator service implements APIs used to evaluate and shortlist matches pro
 | ----------- | ------------ | ------------- | ------------|
 | Evaluate | [EvaluateRequest](#openmatch.EvaluateRequest) stream | [EvaluateResponse](#openmatch.EvaluateResponse) stream | Evaluate evaluates a list of proposed matches based on quality, collision status, and etc, then shortlist the matches and returns the final results. |
 
-
+ 
 
 
 
@@ -285,13 +318,13 @@ the default evaluator.
 
 
 
+ 
 
+ 
 
+ 
 
-
-
-
-
+ 
 
 
 
@@ -401,26 +434,26 @@ the default evaluator.
 
 
 
+ 
+
+ 
+
+ 
 
 
+<a name="openmatch.FrontendService"></a>
 
-
-
-
-
-<a name="openmatch.Frontend"></a>
-
-### Frontend
-The Frontend service implements APIs to manage and query status of a Tickets.
+### FrontendService
+The FrontendService implements APIs to manage and query status of a Tickets.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateTicket | [CreateTicketRequest](#openmatch.CreateTicketRequest) | [CreateTicketResponse](#openmatch.CreateTicketResponse) | CreateTicket assigns an unique TicketId to the input Ticket and record it in state storage. A ticket is considered as ready for matchmaking once it is created. - If a TicketId exists in a Ticket request, an auto-generated TicketId will override this field. - If SearchFields exist in a Ticket, CreateTicket will also index these fields such that one can query the ticket with mmlogic.QueryTickets function. |
+| CreateTicket | [CreateTicketRequest](#openmatch.CreateTicketRequest) | [CreateTicketResponse](#openmatch.CreateTicketResponse) | CreateTicket assigns an unique TicketId to the input Ticket and record it in state storage. A ticket is considered as ready for matchmaking once it is created. - If a TicketId exists in a Ticket request, an auto-generated TicketId will override this field. - If SearchFields exist in a Ticket, CreateTicket will also index these fields such that one can query the ticket with query.QueryTickets function. |
 | DeleteTicket | [DeleteTicketRequest](#openmatch.DeleteTicketRequest) | [DeleteTicketResponse](#openmatch.DeleteTicketResponse) | DeleteTicket immediately stops Open Match from using the Ticket for matchmaking and removes the Ticket from state storage. The client must delete the Ticket when finished matchmaking with it. - If SearchFields exist in a Ticket, DeleteTicket will deindex the fields lazily. Users may still be able to assign/get a ticket after calling DeleteTicket on it. |
 | GetTicket | [GetTicketRequest](#openmatch.GetTicketRequest) | [Ticket](#openmatch.Ticket) | GetTicket get the Ticket associated with the specified TicketId. |
 | GetAssignments | [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest) | [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse) stream | GetAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
 
-
+ 
 
 
 
@@ -454,17 +487,17 @@ The Frontend service implements APIs to manage and query status of a Tickets.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| proposal | [Match](#openmatch.Match) |  | A Proposal represents a Match candidate that satisfies the constraints defined in the input Profile. A valid Proposal response will contain at least one ticket. |
+| proposal | [Match](#openmatch.Match) |  | A Proposal represents a Match candidate that satifies the constraints defined in the input Profile. A valid Proposal response will contain at least one ticket. |
 
 
 
 
 
+ 
 
+ 
 
-
-
-
+ 
 
 
 <a name="openmatch.MatchFunction"></a>
@@ -474,9 +507,9 @@ The MatchFunction service implements APIs to run user-defined matchmaking logics
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Run | [RunRequest](#openmatch.RunRequest) | [RunResponse](#openmatch.RunResponse) stream | DO NOT CALL THIS FUNCTION MANUALLY. USE backend.FetchMatches INSTEAD. Run pulls Tickets that satisify Profile constraints from Mmlogic, runs matchmaking logics against them, then constructs and streams back match candidates to the Backend service. |
+| Run | [RunRequest](#openmatch.RunRequest) | [RunResponse](#openmatch.RunResponse) stream | DO NOT CALL THIS FUNCTION MANUALLY. USE backend.FetchMatches INSTEAD. Run pulls Tickets that satisify Profile constraints from QueryService, runs matchmaking logics against them, then constructs and streams back match candidates to the Backend service. |
 
-
+ 
 
 
 
@@ -497,8 +530,23 @@ match does not require or inspect any fields on assignment.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | connection | [string](#string) |  | Connection information for this Assignment. |
-| error | [google.rpc.Status](#google.rpc.Status) |  | Error when finding an Assignment for this Ticket. |
-| extension | [google.protobuf.Any](#google.protobuf.Any) |  | Customized information to be sent to the clients. Optional, depending on what callers are expecting. |
+| extensions | [Assignment.ExtensionsEntry](#openmatch.Assignment.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the match making function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+
+
+
+
+
+
+<a name="openmatch.Assignment.ExtensionsEntry"></a>
+
+### Assignment.ExtensionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google.protobuf.Any) |  |  |
 
 
 
@@ -526,8 +574,8 @@ does not match:
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | double_arg | [string](#string) |  | Name of the ticket&#39;s search_fields.double_args this Filter operates on. |
-| max | [double](#double) |  | Maximum value. Defaults to positive infinity (any value above minv). |
-| min | [double](#double) |  | Minimum value. Defaults to 0. |
+| max | [double](#double) |  | Maximum value. |
+| min | [double](#double) |  | Minimum value. |
 
 
 
@@ -550,9 +598,23 @@ one ticket to be considered as valid.
 | match_profile | [string](#string) |  | Name of the match profile that generated this Match. |
 | match_function | [string](#string) |  | Name of the match function that generated this Match. |
 | tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets belonging to this match. |
-| rosters | [Roster](#openmatch.Roster) | repeated | Set of Rosters that comprise this Match |
-| evaluation_input | [google.protobuf.Any](#google.protobuf.Any) |  | Customized information for the evaluator. Optional, depending on the requirements of the configured evaluator. |
-| extension | [google.protobuf.Any](#google.protobuf.Any) |  | Customized information for how the caller of FetchMatches should handle this match. Optional, depending on the requirements of the FetchMatches caller. |
+| extensions | [Match.ExtensionsEntry](#openmatch.Match.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the match making function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+
+
+
+
+
+
+<a name="openmatch.Match.ExtensionsEntry"></a>
+
+### Match.ExtensionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google.protobuf.Any) |  |  |
 
 
 
@@ -572,9 +634,24 @@ to generate match proposals.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Name of this match profile. |
-| pools | [Pool](#openmatch.Pool) | repeated | Set of pools to be queried when generating a match for this MatchProfile. The pool names can be used in empty Rosters to specify composition of a match. |
-| rosters | [Roster](#openmatch.Roster) | repeated | Set of Rosters for this match request. Could be empty Rosters used to indicate the composition of the generated Match or they could be partially pre-populated Ticket list to be used in scenarios such as backfill / join in progress. |
-| extension | [google.protobuf.Any](#google.protobuf.Any) |  | Customized information on how the match function should run. Optional, depending on the requirements of the match function. |
+| pools | [Pool](#openmatch.Pool) | repeated | Set of pools to be queried when generating a match for this MatchProfile. |
+| extensions | [MatchProfile.ExtensionsEntry](#openmatch.MatchProfile.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the match making function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+
+
+
+
+
+
+<a name="openmatch.MatchProfile.ExtensionsEntry"></a>
+
+### MatchProfile.ExtensionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google.protobuf.Any) |  |  |
 
 
 
@@ -593,25 +670,6 @@ to generate match proposals.
 | double_range_filters | [DoubleRangeFilter](#openmatch.DoubleRangeFilter) | repeated | Set of Filters indicating the filtering criteria. Selected players must match every Filter. |
 | string_equals_filters | [StringEqualsFilter](#openmatch.StringEqualsFilter) | repeated |  |
 | tag_present_filters | [TagPresentFilter](#openmatch.TagPresentFilter) | repeated |  |
-
-
-
-
-
-
-<a name="openmatch.Roster"></a>
-
-### Roster
-A Roster is a named collection of Ticket IDs. It exists so that a Tickets
-associated with a Match can be labelled to belong to a team, sub-team etc. It
-can also be used to represent the current state of a Match in scenarios such
-as backfill, join-in-progress etc.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | A developer-chosen human-readable name for this Roster. |
-| ticket_ids | [string](#string) | repeated | Tickets belonging to this Roster. |
 
 
 
@@ -729,26 +787,42 @@ Assignment to be associated with this Ticket.
 | id | [string](#string) |  | Id represents an auto-generated Id issued by Open Match. |
 | assignment | [Assignment](#openmatch.Assignment) |  | An Assignment represents a game server assignment associated with a Ticket. Open Match does not require or inspect any fields on Assignment. |
 | search_fields | [SearchFields](#openmatch.SearchFields) |  | Search fields are the fields which Open Match is aware of, and can be used when specifying filters. |
-| extension | [google.protobuf.Any](#google.protobuf.Any) |  | Customized information to be used by the Match Making Function. Optional, depending on the requirements of the MMF. |
+| extensions | [Ticket.ExtensionsEntry](#openmatch.Ticket.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the match making function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
 
 
 
 
 
 
+<a name="openmatch.Ticket.ExtensionsEntry"></a>
+
+### Ticket.ExtensionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google.protobuf.Any) |  |  |
 
 
 
 
 
+ 
+
+ 
+
+ 
+
+ 
 
 
 
-
-<a name="api/mmlogic.proto"></a>
+<a name="api/query.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## api/mmlogic.proto
+## api/query.proto
 
 
 
@@ -775,29 +849,29 @@ Assignment to be associated with this Ticket.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets is a list of Ticket representing one or more Tickets which meet all Filter criteria. |
+| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets that satisfy all the filtering criteria. |
 
 
 
 
 
+ 
+
+ 
+
+ 
 
 
+<a name="openmatch.QueryService"></a>
 
-
-
-
-
-<a name="openmatch.MmLogic"></a>
-
-### MmLogic
-The MmLogic service implements helper APIs for Match Function to query Tickets from state storage.
+### QueryService
+The QueryService service implements helper APIs for Match Function to query Tickets from state storage.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | QueryTickets | [QueryTicketsRequest](#openmatch.QueryTicketsRequest) | [QueryTicketsResponse](#openmatch.QueryTicketsResponse) stream | QueryTickets gets a list of Tickets that match all Filters of the input Pool. - If the Pool contains no Filters, QueryTickets will return all Tickets in the state storage. QueryTickets pages the Tickets by `storage.pool.size` and stream back response. - storage.pool.size is default to 1000 if not set, and has a mininum of 10 and maximum of 10000 |
 
-
+ 
 
 
 

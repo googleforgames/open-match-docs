@@ -27,7 +27,7 @@ Under production environment, polling each Ticket for Assignment is not recommen
 
 The Game Frontend uses a helper function `makeTicket()` in `$TUTORIALROOT/frontend/ticket.go` to generate a fake Ticket. Any property that is intended to be used for Matchmaking (for instance, game mode in this case) is set as a SearchField on the Ticket. For this tutorial, we create a Ticket that has a game mode specified as a Tag SearchField. The below code snippet picks a random game mode and sets it as a Tag on a fake Ticket.
 
-```
+```golang
 func makeTicket() *pb.Ticket {
   modes := []string{"mode.demo", "mode.ctf", "mode.battleroyale"}
   ticket := &pb.Ticket{

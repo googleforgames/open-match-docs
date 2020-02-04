@@ -23,7 +23,7 @@ The tutorial provides a very basic MatchFunction scaffold `$TUTORIALROOT/matchfu
 
 The MatchFunction scaffolding creates a gRPC service that implements the interface prescribed by Open Match for MatchFunctions. It integrates with Open Match library to Query the Tickets for the given MatchProfile and has logic to stream proposals back to Open Match. It uses a helper function `makeMatches()` that accepts a map of Pool names to Tickets in that Pool and returns Match proposals. For this tutorial, the MatchProfile passed into the MatchFunction has a single Pool that filters Tickets for a game-mode. Thus the `makeMatches()` receives a Pool with Tickets belonging to a game-mode and groups these Tickets into matches till it runs out of Tickets. Below is a sample snippet to achieve this:
 
-```
+```golang
 func makeMatches(p *pb.MatchProfile, poolTickets map[string][]*pb.Ticket) ([]*pb.Match, error) {
   var matches []*pb.Match
   count := 0
