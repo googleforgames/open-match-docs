@@ -86,10 +86,10 @@ This tutorial provides an Evaluator scaffold (`$TUTORIALROOT/evaluator`) as a st
 
 - Creates a gRPC service that listens on the configured port
 - Implements the `Evaluate()` interface that Open Match prescribes
-- Accepts a stream of proposals in its implementation fo this interface and then calls into a simplified helper method.
+- Accepts a stream of proposals in its implementation for this interface and then calls into a simplified helper method.
 - Streams back results from the helper method to Open Match.
 
-Below is the `evauate()` helper method in `$TUTORIALROOT/evaluator/evaluate/evaluator.go` where the core evaluation logic should be implemented. At runtime, Open Match calls the `Evaluate()` method and streams the proposals for evaluation. This triggers the `evaluate()` method with a list of proposals. The `evaluate()` method should de-collide the proposals and return a list of results that Open Match will then return back to the Director.
+Below is the `evaluate()` helper method in `$TUTORIALROOT/evaluator/evaluate/evaluator.go` where the core evaluation logic should be implemented. At runtime, Open Match calls the `Evaluate()` method and streams the proposals for evaluation. This triggers the `evaluate()` method with a list of proposals. The `evaluate()` method should de-collide the proposals and return a list of results that Open Match will then return back to the Director.
 
 ```golang
 func evaluate(proposals []*pb.Match) ([]string, error) {
