@@ -8,7 +8,7 @@ description: >
 
 ## Prerequisites
 
-- [Kuberentes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
+- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
 
 ## Install Core Open Match
 
