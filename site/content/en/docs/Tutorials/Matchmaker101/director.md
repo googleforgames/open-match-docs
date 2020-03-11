@@ -71,6 +71,6 @@ docker build -t $REGISTRY/mm101-tutorial-director director/
 docker push $REGISTRY/mm101-tutorial-director
 ```
 
-## Whats's Next
+## What's Next
 
 Let's proceed to build the [Match Function]({{< relref "./matchfunction.md" >}}).

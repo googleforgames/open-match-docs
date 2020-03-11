@@ -223,6 +223,6 @@ kubectl delete namespace default-eval-tutorial
 
 This will delete all the components deployed in this tutorial. Open Match core in open-match namespace can then be reused for other exercises but you will need to re-customize it.
 
-## What Next
+## What's Next
 
 There are scenarios where evaluating overlapping Matches may need context from both Matches and thus the logic may not be represented by a single score computed in isolation for a Match. In such cases, you can [build your custom Evaluator]({{< relref "../CustomEvaluator/_index.md" >}}) and connect that to Open Match.

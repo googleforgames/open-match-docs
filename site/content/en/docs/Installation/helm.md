@@ -116,6 +116,6 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-telemetry.prometheus`      | Inherits the values from [Prometheus helm chart](https://github.com/helm/charts/tree/master/stable/prometheus)                                  |                   |
 | `redis` | Inherits the values from [Redis helm chart](https://github.com/helm/charts/tree/master/stable/redis)                                    |                |
 
-## What Next
+## What's Next
 
 Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.

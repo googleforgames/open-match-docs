@@ -187,6 +187,6 @@ kubectl delete namespace mm102-tutorial
 
 This will delete all the components deployed in this tutorial. Open Match core in open-match namespace can then be reused for other exercises but you will need to re-customize it.
 
-## What Next
+## What's Next
 
 Given that a Ticket can only pick one game-mode, the Matchmaker implemented so far generate Matches from completely partitioned Tickets, where a Ticket is only considered for a game-mode. Next, we can learn how to [use the default evaluator]({{< relref "../DefaultEvaluator/_index.md" >}}) to handle scenarios where a Ticket may specify multiple game mode preferences and hence may be picked by more than one MatchFunction.
