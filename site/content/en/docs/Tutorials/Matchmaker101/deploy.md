@@ -70,6 +70,6 @@ kubectl delete namespace mm101-tutorial
 
 This will delete all the components deployed in this tutorial. Open Match core in open-match namespace can then be reused for other exercises but you will need to re-customize it.
 
-## What Next
+## What's Next
 
 Now that you have created your own basic Matchmaker, lets run the next tutorial to [add new matchmaking criteria]({{< relref "../Matchmaker102/_index.md" >}}) to this Matchmaker.
