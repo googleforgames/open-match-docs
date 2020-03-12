@@ -26,9 +26,11 @@ defer fc.Close()
 
 f := pb.NewQueryServiceClient(conn)
 
-// an empty pool returns all ticket ids in Open Match
-stream, err := qc.QueryTicketIds(context.Background(), &pb.QueryTicketIdsRequest{Pool: nil})
 
+// an empty pool returns all ticket ids in Open Match
+stream, err := qc.QueryTicketIds(context.Background(), &pb.QueryTicketIdsRequest{})
+
+ids := []string{}
 for {
     resp, err := stream.Recv()
     if err == io.EOF {
@@ -38,11 +40,13 @@ for {
         // process the error
     }
 
-    for _, id := range resp.GetIds() {
-        _, err = f.DeleteTicket(context.Background(), &pb.DeleteTicketRequest{TicketId: id})
-        if err != nil {
-            // process the error
-        }
+    ids = append(ids, resp.GetIds()...)
+}
+
+for _, id := range ids {
+    _, err = f.DeleteTicket(context.Background(), &pb.DeleteTicketRequest{TicketId: id})
+    if err != nil {
+        // process the error
     }
 }
 ```
