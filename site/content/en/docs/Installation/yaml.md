@@ -8,7 +8,7 @@ description: >
 
 ## Prerequisites
 
-- [Kuberentes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
+- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
 
 ## Install Core Open Match
 
@@ -78,6 +78,6 @@ kubectl delete psp,clusterrole,clusterrolebinding --selector=release=open-match
 kubectl delete namespace open-match
 ```
 
-## What Next
+## What's Next
 
 Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.
