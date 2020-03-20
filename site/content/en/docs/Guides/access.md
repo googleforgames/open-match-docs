@@ -1,6 +1,6 @@
 ---
-title: "Open Match Service Configurations"
-linkTitle: "Open Match Service Configurations"
+title: "Access Open Match Endpoints"
+linkTitle: "Access Open Match Endpoints"
 weight: 7
 description: >
   This guide covers how to access Open Match Services when they are set up with Cluster IP or with External IP.
