@@ -161,11 +161,11 @@ HTTP code and response.
 ### Disable Swagger UI
 
 For security purposes you will want to disable the Swagger UI application by setting
-`--set openmatch.swaggerui.install=false` in the helm command or add the following
+`--set open-match-core.swaggerui.enabled=false` in the helm command or add the following
 YAML to your values.yaml.
 
 ```yaml
-openmatch:
+open-match-core:
   swaggerui:
-    install: false
+    enabled: false
 ```
