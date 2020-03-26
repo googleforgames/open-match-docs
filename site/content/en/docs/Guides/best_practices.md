@@ -41,7 +41,9 @@ server := grpc.NewServer(
 
 ## Enable the client-side load balancer for your gRPC client
 You need to add the a load balancer config to your gRPC client to enable Open Match's horizontal scaling feature. Here are the two steps to turn on this setting and make it compatible with Kubernetes' environment.
+
 1. Changing the Kubernetes' services of your customized components into `HeadlessService`s, if any. e.g.:
+
     ```yaml
     # https://kubernetes.io/docs/concepts/services-networking/service/#headless-services
     spec:
@@ -52,7 +54,9 @@ You need to add the a load balancer config to your gRPC client to enable Open Ma
       clusterIP: None
       type: ClusterIP
     ```
+
 2. Using gRPC's DNS resolver when creating your clients and enable the client side load balancer:
+
     ```go
     import (
 	    "google.golang.org/grpc/resolver"
