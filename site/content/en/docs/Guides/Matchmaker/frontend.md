@@ -19,7 +19,7 @@ Here are the key interactions the Game Frontend has with Open Match:
 The Game Frontend adds a new matchmaking request to Open Match by creating a Ticket using the following API on Open Match Frontend:
 
 ```proto
-rpc CreateTicket(CreateTicketRequest) returns (CreateTicketResponse) {
+rpc CreateTicket(CreateTicketRequest) returns (Ticket) {
   option (google.api.http) = {
     post: "/v1/frontendservice/tickets"
     body: "*"
@@ -33,10 +33,25 @@ A Ticket represents a single matchmaking request in Open Match. It can represent
 
 ```proto
 message Ticket {
+  // Id represents an auto-generated Id issued by Open Match.
   string id = 1;
+
+  // An Assignment represents a game server assignment associated with a Ticket.
+  // Open Match does not require or inspect any fields on Assignment.
   Assignment assignment = 3;
+
+  // Search fields are the fields which Open Match is aware of, and can be used
+  // when specifying filters.
   SearchFields search_fields = 4;
+
+  // Customized information not inspected by Open Match, to be used by the match
+  // making function, evaluator, and components making calls to Open Match.
+  // Optional, depending on the requirements of the connected systems.
   map<string, google.protobuf.Any> extensions = 5;
+
+  // Create time represents the time at which this Ticket was created. It is
+  // populated by Open Match at the time of Ticket creation.
+  google.protobuf.Timestamp create_time = 6;
 }
 ```
 
@@ -73,7 +88,7 @@ Open Match does not guarantee persistent storage and hence should not be used as
 Once the player Assignment has been stored & communicated to the Game Client, the Game Frontend may delete the Ticket from Open Match. Here is the API exposed on Open Match Frontend to delete a Ticket:
 
 ```proto
-rpc DeleteTicket(DeleteTicketRequest) returns (DeleteTicketResponse) {
+rpc DeleteTicket(DeleteTicketRequest) returns (google.protobuf.Empty) {
   option (google.api.http) = {
     delete: "/v1/frontendservice/tickets/{ticket_id}"
   };

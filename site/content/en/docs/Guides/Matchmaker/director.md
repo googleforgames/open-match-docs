@@ -99,7 +99,12 @@ Here is the proto for the Assignment:
 
 ```proto
 message Assignment {
+  // Connection information for this Assignment.
   string connection = 1;
+
+  // Customized information not inspected by Open Match, to be used by the match
+  // making function, evaluator, and components making calls to Open Match.
+  // Optional, depending on the requirements of the connected systems.
   map<string, google.protobuf.Any> extensions = 4;
 }
 ```
