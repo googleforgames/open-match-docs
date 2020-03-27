@@ -47,12 +47,10 @@ description:
 
 - [api/frontend.proto](#api/frontend.proto)
     - [CreateTicketRequest](#openmatch.CreateTicketRequest)
-    - [CreateTicketResponse](#openmatch.CreateTicketResponse)
     - [DeleteTicketRequest](#openmatch.DeleteTicketRequest)
-    - [DeleteTicketResponse](#openmatch.DeleteTicketResponse)
-    - [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest)
-    - [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse)
     - [GetTicketRequest](#openmatch.GetTicketRequest)
+    - [WatchAssignmentsRequest](#openmatch.WatchAssignmentsRequest)
+    - [WatchAssignmentsResponse](#openmatch.WatchAssignmentsResponse)
   
   
   
@@ -403,21 +401,6 @@ the default evaluator.
 
 
 
-<a name="openmatch.CreateTicketResponse"></a>
-
-### CreateTicketResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ticket | [Ticket](#openmatch.Ticket) |  | A Ticket object with TicketId generated. |
-
-
-
-
-
-
 <a name="openmatch.DeleteTicketRequest"></a>
 
 ### DeleteTicketRequest
@@ -427,46 +410,6 @@ the default evaluator.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ticket_id | [string](#string) |  | A TicketId of a generated Ticket to be deleted. |
-
-
-
-
-
-
-<a name="openmatch.DeleteTicketResponse"></a>
-
-### DeleteTicketResponse
-
-
-
-
-
-
-
-<a name="openmatch.GetAssignmentsRequest"></a>
-
-### GetAssignmentsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ticket_id | [string](#string) |  | A TicketId of a generated Ticket to get updates on. |
-
-
-
-
-
-
-<a name="openmatch.GetAssignmentsResponse"></a>
-
-### GetAssignmentsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| assignment | [Assignment](#openmatch.Assignment) |  | An updated Assignment of the requested Ticket. |
 
 
 
@@ -487,6 +430,36 @@ the default evaluator.
 
 
 
+
+<a name="openmatch.WatchAssignmentsRequest"></a>
+
+### WatchAssignmentsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ticket_id | [string](#string) |  | A TicketId of a generated Ticket to get updates on. |
+
+
+
+
+
+
+<a name="openmatch.WatchAssignmentsResponse"></a>
+
+### WatchAssignmentsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| assignment | [Assignment](#openmatch.Assignment) |  | An updated Assignment of the requested Ticket. |
+
+
+
+
+
  
 
  
@@ -501,10 +474,10 @@ The FrontendService implements APIs to manage and query status of a Tickets.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateTicket | [CreateTicketRequest](#openmatch.CreateTicketRequest) | [CreateTicketResponse](#openmatch.CreateTicketResponse) | CreateTicket assigns an unique TicketId to the input Ticket and record it in state storage. A ticket is considered as ready for matchmaking once it is created. - If a TicketId exists in a Ticket request, an auto-generated TicketId will override this field. - If SearchFields exist in a Ticket, CreateTicket will also index these fields such that one can query the ticket with query.QueryTickets function. |
-| DeleteTicket | [DeleteTicketRequest](#openmatch.DeleteTicketRequest) | [DeleteTicketResponse](#openmatch.DeleteTicketResponse) | DeleteTicket immediately stops Open Match from using the Ticket for matchmaking and removes the Ticket from state storage. The client must delete the Ticket when finished matchmaking with it. - If SearchFields exist in a Ticket, DeleteTicket will deindex the fields lazily. Users may still be able to assign/get a ticket after calling DeleteTicket on it. |
+| CreateTicket | [CreateTicketRequest](#openmatch.CreateTicketRequest) | [Ticket](#openmatch.Ticket) | CreateTicket assigns an unique TicketId to the input Ticket and record it in state storage. A ticket is considered as ready for matchmaking once it is created. - If a TicketId exists in a Ticket request, an auto-generated TicketId will override this field. - If SearchFields exist in a Ticket, CreateTicket will also index these fields such that one can query the ticket with query.QueryTickets function. |
+| DeleteTicket | [DeleteTicketRequest](#openmatch.DeleteTicketRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteTicket immediately stops Open Match from using the Ticket for matchmaking and removes the Ticket from state storage. The client must delete the Ticket when finished matchmaking with it. - If SearchFields exist in a Ticket, DeleteTicket will deindex the fields lazily. Users may still be able to assign/get a ticket after calling DeleteTicket on it. |
 | GetTicket | [GetTicketRequest](#openmatch.GetTicketRequest) | [Ticket](#openmatch.Ticket) | GetTicket get the Ticket associated with the specified TicketId. |
-| GetAssignments | [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest) | [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse) stream | GetAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
+| WatchAssignments | [WatchAssignmentsRequest](#openmatch.WatchAssignmentsRequest) | [WatchAssignmentsResponse](#openmatch.WatchAssignmentsResponse) stream | WatchAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
 
  
 
