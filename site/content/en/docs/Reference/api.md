@@ -14,12 +14,15 @@ description:
 - [api/backend.proto](#api/backend.proto)
     - [AssignTicketsRequest](#openmatch.AssignTicketsRequest)
     - [AssignTicketsResponse](#openmatch.AssignTicketsResponse)
+    - [AssignmentFailure](#openmatch.AssignmentFailure)
+    - [AssignmentGroup](#openmatch.AssignmentGroup)
     - [FetchMatchesRequest](#openmatch.FetchMatchesRequest)
     - [FetchMatchesResponse](#openmatch.FetchMatchesResponse)
     - [FunctionConfig](#openmatch.FunctionConfig)
     - [ReleaseTicketsRequest](#openmatch.ReleaseTicketsRequest)
     - [ReleaseTicketsResponse](#openmatch.ReleaseTicketsResponse)
   
+    - [AssignmentFailure.Cause](#openmatch.AssignmentFailure.Cause)
     - [FunctionConfig.Type](#openmatch.FunctionConfig.Type)
   
   
@@ -44,12 +47,10 @@ description:
 
 - [api/frontend.proto](#api/frontend.proto)
     - [CreateTicketRequest](#openmatch.CreateTicketRequest)
-    - [CreateTicketResponse](#openmatch.CreateTicketResponse)
     - [DeleteTicketRequest](#openmatch.DeleteTicketRequest)
-    - [DeleteTicketResponse](#openmatch.DeleteTicketResponse)
-    - [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest)
-    - [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse)
     - [GetTicketRequest](#openmatch.GetTicketRequest)
+    - [WatchAssignmentsRequest](#openmatch.WatchAssignmentsRequest)
+    - [WatchAssignmentsResponse](#openmatch.WatchAssignmentsResponse)
   
   
   
@@ -87,6 +88,8 @@ description:
   
 
 - [api/query.proto](#api/query.proto)
+    - [QueryTicketIdsRequest](#openmatch.QueryTicketIdsRequest)
+    - [QueryTicketIdsResponse](#openmatch.QueryTicketIdsResponse)
     - [QueryTicketsRequest](#openmatch.QueryTicketsRequest)
     - [QueryTicketsResponse](#openmatch.QueryTicketsResponse)
   
@@ -114,8 +117,7 @@ description:
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ticket_ids | [string](#string) | repeated | TicketIds is a list of strings representing Open Match generated Ids which apply to an Assignment. |
-| assignment | [Assignment](#openmatch.Assignment) |  | An Assignment specifies game connection related information to be associated with the TicketIds. |
+| assignments | [AssignmentGroup](#openmatch.AssignmentGroup) | repeated | Assignments is a list of assignment groups that contain assignment and the Tickets to which they should be applied. |
 
 
 
@@ -126,6 +128,43 @@ description:
 
 ### AssignTicketsResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| failures | [AssignmentFailure](#openmatch.AssignmentFailure) | repeated | Failures is a list of all the Tickets that failed assignment along with the cause of failure. |
+
+
+
+
+
+
+<a name="openmatch.AssignmentFailure"></a>
+
+### AssignmentFailure
+AssignmentFailure contains the id of the Ticket that failed the Assignment and the failure status.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ticket_id | [string](#string) |  |  |
+| cause | [AssignmentFailure.Cause](#openmatch.AssignmentFailure.Cause) |  |  |
+
+
+
+
+
+
+<a name="openmatch.AssignmentGroup"></a>
+
+### AssignmentGroup
+AssignmentGroup contains an Assignment and the Tickets to which it should be applied.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ticket_ids | [string](#string) | repeated | TicketIds is a list of strings representing Open Match generated Ids which apply to an Assignment. |
+| assignment | [Assignment](#openmatch.Assignment) |  | An Assignment specifies game connection related information to be associated with the TicketIds. |
 
 
 
@@ -205,6 +244,18 @@ FunctionConfig specifies a MMF address and client type for Backend to establish 
 
 
  
+
+
+<a name="openmatch.AssignmentFailure.Cause"></a>
+
+### AssignmentFailure.Cause
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN | 0 |  |
+| TICKET_NOT_FOUND | 1 |  |
+
 
 
 <a name="openmatch.FunctionConfig.Type"></a>
@@ -350,21 +401,6 @@ the default evaluator.
 
 
 
-<a name="openmatch.CreateTicketResponse"></a>
-
-### CreateTicketResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ticket | [Ticket](#openmatch.Ticket) |  | A Ticket object with TicketId generated. |
-
-
-
-
-
-
 <a name="openmatch.DeleteTicketRequest"></a>
 
 ### DeleteTicketRequest
@@ -374,46 +410,6 @@ the default evaluator.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ticket_id | [string](#string) |  | A TicketId of a generated Ticket to be deleted. |
-
-
-
-
-
-
-<a name="openmatch.DeleteTicketResponse"></a>
-
-### DeleteTicketResponse
-
-
-
-
-
-
-
-<a name="openmatch.GetAssignmentsRequest"></a>
-
-### GetAssignmentsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| ticket_id | [string](#string) |  | A TicketId of a generated Ticket to get updates on. |
-
-
-
-
-
-
-<a name="openmatch.GetAssignmentsResponse"></a>
-
-### GetAssignmentsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| assignment | [Assignment](#openmatch.Assignment) |  | An updated Assignment of the requested Ticket. |
 
 
 
@@ -434,6 +430,36 @@ the default evaluator.
 
 
 
+
+<a name="openmatch.WatchAssignmentsRequest"></a>
+
+### WatchAssignmentsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ticket_id | [string](#string) |  | A TicketId of a generated Ticket to get updates on. |
+
+
+
+
+
+
+<a name="openmatch.WatchAssignmentsResponse"></a>
+
+### WatchAssignmentsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| assignment | [Assignment](#openmatch.Assignment) |  | An updated Assignment of the requested Ticket. |
+
+
+
+
+
  
 
  
@@ -448,10 +474,10 @@ The FrontendService implements APIs to manage and query status of a Tickets.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateTicket | [CreateTicketRequest](#openmatch.CreateTicketRequest) | [CreateTicketResponse](#openmatch.CreateTicketResponse) | CreateTicket assigns an unique TicketId to the input Ticket and record it in state storage. A ticket is considered as ready for matchmaking once it is created. - If a TicketId exists in a Ticket request, an auto-generated TicketId will override this field. - If SearchFields exist in a Ticket, CreateTicket will also index these fields such that one can query the ticket with query.QueryTickets function. |
-| DeleteTicket | [DeleteTicketRequest](#openmatch.DeleteTicketRequest) | [DeleteTicketResponse](#openmatch.DeleteTicketResponse) | DeleteTicket immediately stops Open Match from using the Ticket for matchmaking and removes the Ticket from state storage. The client must delete the Ticket when finished matchmaking with it. - If SearchFields exist in a Ticket, DeleteTicket will deindex the fields lazily. Users may still be able to assign/get a ticket after calling DeleteTicket on it. |
+| CreateTicket | [CreateTicketRequest](#openmatch.CreateTicketRequest) | [Ticket](#openmatch.Ticket) | CreateTicket assigns an unique TicketId to the input Ticket and record it in state storage. A ticket is considered as ready for matchmaking once it is created. - If a TicketId exists in a Ticket request, an auto-generated TicketId will override this field. - If SearchFields exist in a Ticket, CreateTicket will also index these fields such that one can query the ticket with query.QueryTickets function. |
+| DeleteTicket | [DeleteTicketRequest](#openmatch.DeleteTicketRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteTicket immediately stops Open Match from using the Ticket for matchmaking and removes the Ticket from state storage. The client must delete the Ticket when finished matchmaking with it. - If SearchFields exist in a Ticket, DeleteTicket will deindex the fields lazily. Users may still be able to assign/get a ticket after calling DeleteTicket on it. |
 | GetTicket | [GetTicketRequest](#openmatch.GetTicketRequest) | [Ticket](#openmatch.Ticket) | GetTicket get the Ticket associated with the specified TicketId. |
-| GetAssignments | [GetAssignmentsRequest](#openmatch.GetAssignmentsRequest) | [GetAssignmentsResponse](#openmatch.GetAssignmentsResponse) stream | GetAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
+| WatchAssignments | [WatchAssignmentsRequest](#openmatch.WatchAssignmentsRequest) | [WatchAssignmentsResponse](#openmatch.WatchAssignmentsResponse) stream | WatchAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
 
  
 
@@ -661,15 +687,18 @@ to generate match proposals.
 <a name="openmatch.Pool"></a>
 
 ### Pool
-
+Pool specfies a set of criteria that are used to select a subset of Tickets
+that meet all the criteria.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | A developer-chosen human-readable name for this Pool. |
-| double_range_filters | [DoubleRangeFilter](#openmatch.DoubleRangeFilter) | repeated | Set of Filters indicating the filtering criteria. Selected players must match every Filter. |
+| double_range_filters | [DoubleRangeFilter](#openmatch.DoubleRangeFilter) | repeated | Set of Filters indicating the filtering criteria. Selected tickets must match every Filter. |
 | string_equals_filters | [StringEqualsFilter](#openmatch.StringEqualsFilter) | repeated |  |
 | tag_present_filters | [TagPresentFilter](#openmatch.TagPresentFilter) | repeated |  |
+| created_before | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | If specified, only Tickets created before the specified time are selected. |
+| created_after | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | If specified, only Tickets created after the specified time are selected. |
 
 
 
@@ -788,6 +817,7 @@ Assignment to be associated with this Ticket.
 | assignment | [Assignment](#openmatch.Assignment) |  | An Assignment represents a game server assignment associated with a Ticket. Open Match does not require or inspect any fields on Assignment. |
 | search_fields | [SearchFields](#openmatch.SearchFields) |  | Search fields are the fields which Open Match is aware of, and can be used when specifying filters. |
 | extensions | [Ticket.ExtensionsEntry](#openmatch.Ticket.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the match making function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+| create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Create time represents the time at which this Ticket was created. It is populated by Open Match at the time of Ticket creation. |
 
 
 
@@ -826,6 +856,36 @@ Assignment to be associated with this Ticket.
 
 
 
+<a name="openmatch.QueryTicketIdsRequest"></a>
+
+### QueryTicketIdsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| pool | [Pool](#openmatch.Pool) |  | The Pool representing the set of Filters to be queried. |
+
+
+
+
+
+
+<a name="openmatch.QueryTicketIdsResponse"></a>
+
+### QueryTicketIdsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ids | [string](#string) | repeated | TicketIDs that meet all the filtering criteria requested by the pool. |
+
+
+
+
+
+
 <a name="openmatch.QueryTicketsRequest"></a>
 
 ### QueryTicketsRequest
@@ -834,7 +894,7 @@ Assignment to be associated with this Ticket.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pool | [Pool](#openmatch.Pool) |  | A Pool is consists of a set of Filters. |
+| pool | [Pool](#openmatch.Pool) |  | The Pool representing the set of Filters to be queried. |
 
 
 
@@ -849,7 +909,7 @@ Assignment to be associated with this Ticket.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets that satisfy all the filtering criteria. |
+| tickets | [Ticket](#openmatch.Ticket) | repeated | Tickets that meet all the filtering criteria requested by the pool. |
 
 
 
@@ -869,7 +929,8 @@ The QueryService service implements helper APIs for Match Function to query Tick
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| QueryTickets | [QueryTicketsRequest](#openmatch.QueryTicketsRequest) | [QueryTicketsResponse](#openmatch.QueryTicketsResponse) stream | QueryTickets gets a list of Tickets that match all Filters of the input Pool. - If the Pool contains no Filters, QueryTickets will return all Tickets in the state storage. QueryTickets pages the Tickets by `storage.pool.size` and stream back response. - storage.pool.size is default to 1000 if not set, and has a mininum of 10 and maximum of 10000 |
+| QueryTickets | [QueryTicketsRequest](#openmatch.QueryTicketsRequest) | [QueryTicketsResponse](#openmatch.QueryTicketsResponse) stream | QueryTickets gets a list of Tickets that match all Filters of the input Pool. - If the Pool contains no Filters, QueryTickets will return all Tickets in the state storage. QueryTickets pages the Tickets by `storage.pool.size` and stream back responses. - storage.pool.size is default to 1000 if not set, and has a mininum of 10 and maximum of 10000. |
+| QueryTicketIds | [QueryTicketIdsRequest](#openmatch.QueryTicketIdsRequest) | [QueryTicketIdsResponse](#openmatch.QueryTicketIdsResponse) stream | QueryTicketIds gets the list of TicketIDs that meet all the filtering criteria requested by the pool. - If the Pool contains no Filters, QueryTicketIds will return all TicketIDs in the state storage. QueryTicketIds pages the TicketIDs by `storage.pool.size` and stream back responses. - storage.pool.size is default to 1000 if not set, and has a mininum of 10 and maximum of 10000. |
 
  
 
@@ -877,21 +938,21 @@ The QueryService service implements helper APIs for Match Function to query Tick
 
 ## Scalar Value Types
 
-| .proto Type | Notes | C++ Type | Java Type | Python Type |
-| ----------- | ----- | -------- | --------- | ----------- |
-| <a name="double" /> double |  | double | double | float |
-| <a name="float" /> float |  | float | float | float |
-| <a name="int32" /> int32 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. | int32 | int | int |
-| <a name="int64" /> int64 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead. | int64 | long | int/long |
-| <a name="uint32" /> uint32 | Uses variable-length encoding. | uint32 | int | int/long |
-| <a name="uint64" /> uint64 | Uses variable-length encoding. | uint64 | long | int/long |
-| <a name="sint32" /> sint32 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s. | int32 | int | int |
-| <a name="sint64" /> sint64 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s. | int64 | long | int/long |
-| <a name="fixed32" /> fixed32 | Always four bytes. More efficient than uint32 if values are often greater than 2^28. | uint32 | int | int |
-| <a name="fixed64" /> fixed64 | Always eight bytes. More efficient than uint64 if values are often greater than 2^56. | uint64 | long | int/long |
-| <a name="sfixed32" /> sfixed32 | Always four bytes. | int32 | int | int |
-| <a name="sfixed64" /> sfixed64 | Always eight bytes. | int64 | long | int/long |
-| <a name="bool" /> bool |  | bool | boolean | boolean |
-| <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode |
-| <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str |
+| .proto Type | Notes | C++ | Java | Python | Go | C# | PHP | Ruby |
+| ----------- | ----- | --- | ---- | ------ | -- | -- | --- | ---- |
+| <a name="double" /> double |  | double | double | float | float64 | double | float | Float |
+| <a name="float" /> float |  | float | float | float | float32 | float | float | Float |
+| <a name="int32" /> int32 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
+| <a name="int64" /> int64 | Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead. | int64 | long | int/long | int64 | long | integer/string | Bignum |
+| <a name="uint32" /> uint32 | Uses variable-length encoding. | uint32 | int | int/long | uint32 | uint | integer | Bignum or Fixnum (as required) |
+| <a name="uint64" /> uint64 | Uses variable-length encoding. | uint64 | long | int/long | uint64 | ulong | integer/string | Bignum or Fixnum (as required) |
+| <a name="sint32" /> sint32 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
+| <a name="sint64" /> sint64 | Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s. | int64 | long | int/long | int64 | long | integer/string | Bignum |
+| <a name="fixed32" /> fixed32 | Always four bytes. More efficient than uint32 if values are often greater than 2^28. | uint32 | int | int | uint32 | uint | integer | Bignum or Fixnum (as required) |
+| <a name="fixed64" /> fixed64 | Always eight bytes. More efficient than uint64 if values are often greater than 2^56. | uint64 | long | int/long | uint64 | ulong | integer/string | Bignum |
+| <a name="sfixed32" /> sfixed32 | Always four bytes. | int32 | int | int | int32 | int | integer | Bignum or Fixnum (as required) |
+| <a name="sfixed64" /> sfixed64 | Always eight bytes. | int64 | long | int/long | int64 | long | integer/string | Bignum |
+| <a name="bool" /> bool |  | bool | boolean | boolean | bool | bool | boolean | TrueClass/FalseClass |
+| <a name="string" /> string | A string must always contain UTF-8 encoded or 7-bit ASCII text. | string | String | str/unicode | string | string | string | String (UTF-8) |
+| <a name="bytes" /> bytes | May contain any arbitrary sequence of bytes. | string | ByteString | str | []byte | ByteString | string | String (ASCII-8BIT) |
 

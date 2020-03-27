@@ -91,16 +91,29 @@ rpc AssignTickets(AssignTicketsRequest) returns (AssignTicketsResponse) {
 };
 ```
 
-The API takes a list of TicketIDs to make the Assignment and an Assignment object.
+The API takes a list of `AssignmentGroups` to make the Assignment and returns the AssignmentFailures if any.
 
 #### Assignment
 
-Here is the proto for the Assignment:
+Here are the protos for the Assignment:
 
 ```proto
-message Assignment {
-  string connection = 1;
-  map<string, google.protobuf.Any> extensions = 4;
+message AssignmentGroup{
+  // TicketIds is a list of strings representing Open Match generated Ids which apply to an Assignment.
+  repeated string ticket_ids = 1;
+
+  // An Assignment specifies game connection related information to be associated with the TicketIds.
+  Assignment assignment = 2;
+}
+
+message AssignmentFailure {
+  enum Cause {
+    UNKNOWN = 0;
+    TICKET_NOT_FOUND = 1;
+  }
+
+  string ticket_id = 1;
+  Cause cause = 2;
 }
 ```
 

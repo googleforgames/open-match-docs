@@ -65,12 +65,12 @@ func main() {
       },
     },
   }
-  resp, err := feClient.CreateTicket(sent)
+  ticket, err := feClient.CreateTicket(sent)
   if err != nil {
     log.Errorf("feClient.CreateTicket failed with %v", err)
   }
 
-  fmt.Println("Open Match assigned id %s to the ticket", resp.GetTicket().GetId())
+  fmt.Println("Open Match assigned id %s to the ticket", ticket.GetId())
 }
 ```
 
@@ -117,12 +117,12 @@ func main() {
     log.Errorf("ioutil.ReadAll(resp.Body) failed with %v; want success", err)
   }
   // Unmarshal the response to a Go struct
-  var received *pb.CreateTicketResponse
+  var received *pb.Ticket
   if err := jsonpb.UnmarshalString(string(buf), received); err != nil {
     log.Errorf("jsonpb.UnmarshalString(%s, &msg) failed with %v; want success", buf, err)
   }
 
-  fmt.Println("Open Match assigned id %s to the ticket", received.GetTicket().GetId())
+  fmt.Println("Open Match assigned id %s to the ticket", received.GetId())
 }
 ```
 
