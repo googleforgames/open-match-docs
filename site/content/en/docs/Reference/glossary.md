@@ -44,7 +44,7 @@ Lastly, it provides configuration management including secrets
 Open Match uses Kubernetes to schedule and runs its services. It also uses secrets to
 hold TLS certificates and Redis passwords.
 
-**Helm**
+**Helm**[See in Action](https://open-match.dev/site/docs/installation/helm/)
 
 [Helm](https://helm.sh/) is the Kubernetes package manager. It allows you to create
 Kubernetes deployments as templates and parameters. Helm deployments are called charts.
