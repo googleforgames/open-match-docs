@@ -20,6 +20,7 @@ If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/i
 To install the chart with the release name `my-release` using our stable helm repository:
 
 ```bash
+kubectl create namespace open-match
 helm repo add open-match https://open-match.dev/chart/stable
 helm install my-release --namespace open-match open-match/open-match
 ```
