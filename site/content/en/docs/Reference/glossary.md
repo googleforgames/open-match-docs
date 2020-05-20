@@ -6,7 +6,7 @@ description: >
   Open Match uses a lot of Cloud-native tools. Here's what they mean.
 ---
 
-**Docker Image**
+**Docker Image** [See in Action]({{< relref "../Tutorials/Matchmaker101/frontend.md#build-and-push" >}})
 
 Docker Images are sort of like a zip file that would contain your game binary and assets.
 It also contains a minimal operating system (~2-10MiB), environment variables, and other contexts.
@@ -44,7 +44,7 @@ Lastly, it provides configuration management including secrets
 Open Match uses Kubernetes to schedule and runs its services. It also uses secrets to
 hold TLS certificates and Redis passwords.
 
-**Helm**
+**Helm** [See in Action]({{< relref "../Installation/helm.md" >}})
 
 [Helm](https://helm.sh/) is the Kubernetes package manager. It allows you to create
 Kubernetes deployments as templates and parameters. Helm deployments are called charts.
