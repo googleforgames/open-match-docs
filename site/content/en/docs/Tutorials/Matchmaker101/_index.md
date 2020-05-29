@@ -78,6 +78,6 @@ The tutorial walks through building the Game Frontend, Director, Match Function 
 
 ## For the curious mind
 
-Open Match enables the user to plug in a custom component called the Evaluator. The Evaluator is responsible for deduplicating any concurrently generated proposals, discarding or promoting the proposals as result Matches. Open Match provides a default Evaluator that this tutorial uses. This tutorial is designed not to generate concurrent conflicting proposals so Evaluation is a no-op. The deployment step deploys the default Evaluator in the tutorial namespace and configures this in Open Match. See the [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) for details on proposal evaluation.
+Open Match enables the user to plug in a custom component called the Evaluator. The Evaluator is responsible for deduplicating any concurrently generated proposals, discarding or promoting the proposals as result Matches. Open Match provides a default Evaluator that this tutorial uses. This tutorial is designed not to generate concurrent conflicting proposals so Evaluation is a no-op. The deployment step deploys the default Evaluator in the tutorial namespace and configures this in Open Match. See the [Evaluator Guide]({{< relref "../../Guides/Evaluator/_index.md" >}}) for details on proposal evaluation.
 
 ## Next Steps

@@ -1,6 +1,6 @@
 ---
-title: "Build a custom Evaluator"
-linkTitle: "Build a custom Evaluator"
+title: "Build a Custom Evaluator"
+linkTitle: "Build a Custom Evaluator"
 weight: 4
 description: >
   A tutorial on how to build a custom Evaluator and configure Open Match to use it.
@@ -10,7 +10,7 @@ description: >
 
 The tutorial aims to explain how to :
 
-- Build your custom Evaluator
+- Build your Custom Evaluator
 - Deploy, Run your custom Evaluator and configure Open Match core to use it
 
 ## Prerequisites
@@ -63,7 +63,7 @@ kubectl create namespace custom-eval-tutorial
 
 ## References
 
-It is highly recommended that you read the [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) to familiarize yourself with the lifecycle of a Match proposal through the synchronization and evaluation phases. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document. The tutorial also customizes the Open Match installation with the configuration of the custom Evaluator. The [Customization Guide]({{< relref "../../Guides/custom.md" >}}) is a good reference for those changes.
+It is highly recommended that you read the [Evaluator Guide]({{< relref "../../Guides/Evaluator/_index.md" >}}) to familiarize yourself with the lifecycle of a Match proposal through the synchronization and evaluation phases. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document. The tutorial also customizes the Open Match installation with the configuration of the custom Evaluator. The [Customization Guide]({{< relref "../../Guides/Custom/_index.md" >}}) is a good reference for those changes.
 
 A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/custom_evaluator/solution) for this tutorial is in the folder `tutorials/custom_evaluator/solution`.
 
@@ -124,7 +124,7 @@ Run the below command in the `$TUTORIALROOT` path to deploy the custom Evaluator
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" evaluator/evaluator.yaml | kubectl apply -f -
 ```
 
-We need to update the Open Match ConfigMap with details of the custom Evaluator. The [Customization Guide]({{< relref "../../Guides/custom.md" >}}) provides some details on customizing your Open Match installation. The updated ConfigMap for the custom Evaluator is present in the `customization.yaml`. Run the below command in the `$TUTORIALROOT` path to customize Open Match installation:
+We need to update the Open Match ConfigMap with details of the custom Evaluator. The [Customization Guide]({{< relref "../../Guides/Custom/_index.md" >}}) provides some details on customizing your Open Match installation. The updated ConfigMap for the custom Evaluator is present in the `customization.yaml`. Run the below command in the `$TUTORIALROOT` path to customize Open Match installation:
 
 ```bash
 kubectl apply -f customization.yaml --namespace open-match

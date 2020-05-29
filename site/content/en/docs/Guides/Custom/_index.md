@@ -1,6 +1,6 @@
 ---
-title: "Customize core Open Match"
-linkTitle: "Customize core Open Match"
+title: "Customize Core Open Match"
+linkTitle: "Customize Core Open Match"
 weight: 5
 description: >
   This guide covers how to customize your Open Match deployment.
@@ -38,7 +38,7 @@ To configure Open Match with your custom config, create a new YAML file with thi
 kubectl apply -f <filename_here>
 ```
 
-The [Evaluator Guide]({{< relref "../Guides/evaluator.md" >}}) gives an overview of Synchronization, Evaluation and all the related configuration.
+The [Evaluator Guide]({{< relref "../Evaluator/_index.md" >}}) gives an overview of Synchronization, Evaluation and all the related configuration.
 
 ## Configurations
 The following tables lists the configurable parameters of the Open Match override configmap and their default values.

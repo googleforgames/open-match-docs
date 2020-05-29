@@ -51,8 +51,8 @@ To allow generation of proposals using overlapping Tickets but still provide uni
 Open Match provides a default score based Evaluator that can be used in most common scenarios but it also provides the user the ability to build your own Evaluator and to customize Open Match to use the user's Evaluator. At a high level, there are three evaluation scenarios for you to consider when using Open Match:
 
 1. Your MatchProfiles completely partition the Ticket Pool and so you will never have collisions. The default Evaluator handles this scenario and you do not have to make any changes.
-2. Your MatchProfiles may use overlapping Ticket Pools - but each MatchFunction can simply generate a quality score for that Match based on certain game specific criteria (latency, mmr etc.). The default Evaluator can be used for this scenario. See [Default Evaluator Tutorial]({{< relref "../Tutorials/DefaultEvaluator/_index.md" >}})
-3. You have complex evaluation logic that cannot be simplified to a score for a Match but rather involves actually comparing some details of the overlapping Matches. Open Match provides you with the ability to plug in your custom Evaluator to handle this case. See the [Custom Evaluator Tutorial]({{< relref "../Tutorials/CustomEvaluator/_index.md" >}}) for details.
+2. Your MatchProfiles may use overlapping Ticket Pools - but each MatchFunction can simply generate a quality score for that Match based on certain game specific criteria (latency, mmr etc.). The default Evaluator can be used for this scenario. See [Default Evaluator Tutorial]({{< relref "../../Tutorials/DefaultEvaluator/_index.md" >}})
+3. You have complex evaluation logic that cannot be simplified to a score for a Match but rather involves actually comparing some details of the overlapping Matches. Open Match provides you with the ability to plug in your custom Evaluator to handle this case. See the [Custom Evaluator Tutorial]({{< relref "../../Tutorials/CustomEvaluator/_index.md" >}}) for details.
 
 ### How to configure an Evaluator
 

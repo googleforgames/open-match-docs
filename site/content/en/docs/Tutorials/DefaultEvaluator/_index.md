@@ -1,14 +1,14 @@
 ---
-title: "Use the default Evaluator"
-linkTitle: "Use the default Evaluator"
+title: "Use the Default Evaluator"
+linkTitle: "Use the Default Evaluator"
 weight: 3
 description: >
-  A tutorial on how to use the default Evaluator to resolve Match proposal conflicts.
+  A tutorial on how to use the Default Evaluator to resolve Match proposal conflicts.
 ---
 
 ## Objectives
 
-- Understands how and why we need the default Evaluator to resolve proposal conflicts.
+- Understands how and why we need the Default Evaluator to resolve proposal conflicts.
 - Instructs your MatchFunction to use the default Evaluator.
 
 ## Prerequisites
@@ -51,7 +51,7 @@ kubectl create namespace default-eval-tutorial
 
 ## References
 
-It is highly recommended that you read the [Evaluator Guide]({{< relref "../../Guides/evaluator.md" >}}) to familiarize yourself with the lifecycle of a Match proposal through the synchronization and evaluation phases. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
+It is highly recommended that you read the [Evaluator Guide]({{< relref "../../Guides/Evaluator/_index.md" >}}) to familiarize yourself with the lifecycle of a Match proposal through the synchronization and evaluation phases. Also, keep the [API Reference]({{< relref "../../reference/api.md" >}}) handy to look up Open Match specific terminology used in this document.
 
 A complete [solution](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/default_evaluator/solution) for this tutorial is in the folder `tutorials/default_evaluator/solution`.
 
