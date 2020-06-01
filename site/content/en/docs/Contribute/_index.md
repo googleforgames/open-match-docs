@@ -13,7 +13,7 @@ If there's something you see that can be [improved](https://github.com/googlefor
 
 There are many ways to get in touch with the Open Match community.
 
-* [Slack](https://open-match.slack.com/) ([Join](https://open-match.slack.com/join/shared_invite/zt-5k57lph3-Oe0WdatzL32xv6tPG3PfzQ#/)) - Talk to the Open Match engineers and users on Slack.
+* [Slack](https://open-match.slack.com/) ([Join](https://join.slack.com/t/open-match/shared_invite/enQtNDM1NjcxNTY4MTgzLWQzMzE1MGY5YmYyYWY3ZjE2MjNjZTdmYmQ1ZTQzMmNiNGViYmQyN2M4ZmVkMDY2YzZlOTUwMTYwMzI1Y2I2MjU)) - Talk to the Open Match engineers and users on Slack.
 * [open-match-discuss@ mailing list](https://groups.google.com/forum/#!forum/open-match-discuss) - Get the latest information on changes happening to Open Match.
 
 ## Code of Conduct
