@@ -9,7 +9,7 @@ description: >
 ## Prerequisites
 
 - [Helm](https://docs.helm.sh/helm/) package manager 3.0.0+
-- [Kuberentes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
+- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
 
 ## Install the Open Match helm chart
 
