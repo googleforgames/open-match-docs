@@ -6,11 +6,6 @@ description: >
   Open Match is an open-source matchmaking framework that simplifies building your game matchmaker.
 ---
 
-## Disclaimer
-
-This software is currently [alpha](https://github.com/googleforgames/open-match/releases), and
-subject to change. Not to be used in production systems.
-
 ## What is Open Match
 
 Open Match is an open-source game matchmaking framework that simplifies building a scalable and extensible Matchmaker.
