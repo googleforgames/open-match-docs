@@ -7,7 +7,7 @@ enableRobotsTXT = true
 theme = ["docsy"]
 
 # Will give values to .Lastmod etc.
-enableGitInfo = true
+# enableGitInfo = true
 
 # Language settings
 contentDir = "content/en"
@@ -112,3 +112,9 @@ no = 'Sorry to hear that. Please <a href="https://github.com/googleforgames/open
 	url = "https://github.com/googleforgames/open-match"
 	icon = "fab fa-github"
         desc = "Source Code"
+
+[frontmatter]
+date = ["date", "publishDate", "lastmod"]
+lastmod = [":fileModTime"]
+publishDate = ["publishDate", "date"]
+expiryDate = ["expiryDate"]
