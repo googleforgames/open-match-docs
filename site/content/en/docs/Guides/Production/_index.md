@@ -92,3 +92,16 @@ helm install my-release -n open-match open-match/open-match -f values-production
 
 ## Use Envoy or other load balancing solution if you plan to connect to Open Match via an out-of-cluster client
 The above load balancing solution is sufficient if you have both the client and the server deployment within the same cluster. However, some game architectures may requires connecting to Open Match services from an out-of-cluster client. We recommend [Envoy](https://www.envoyproxy.io/) as a solution. Alternatives like Kubernetes Ingress or platform specific L7 Load Balancer can also work. 
+
+## Increase memory limits for query request for performance boost
+When querying Tickets in Open Match, there is a possibility of requests being larger or smaller than configured. Open Match comes default with the following configuration:
+```yaml
+resources:
+    limits:
+        cpu: 100m
+        memory: 100Mi
+    requests:
+        cpu: 100m
+        memory: 100Mi
+```
+We recommend increasing the limit for memory to accomodate larger than expected query requests. For more information on Kubernetes Best Practices, please consult the following [Blog Post](https://cloud.google.com/blog/products/gcp/kubernetes-best-practices-resource-requests-and-limits) as a reference.  
