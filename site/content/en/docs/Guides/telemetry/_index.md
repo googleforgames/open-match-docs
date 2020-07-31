@@ -49,7 +49,7 @@ The configurations to enable/disable the telemetry exporters are not read at run
 {{% /alert %}}
 
 You can configure where and what telemetry you want to emit from your Open Match
-deployment. To instrument Open Match with telemetry supports, modify your `06-open-match-override-configmap.yaml` to override the related settings. Please refer to [how to customize your Open Match deployment]({{< relref "../custom.md/#telemetry" >}}) for more details.
+deployment. To instrument Open Match with telemetry supports, modify your `06-open-match-override-configmap.yaml` to override the related settings. Please refer to [how to customize your Open Match deployment]({{< relref "../Custom/_index.md/#telemetry" >}}) for more details.
 
 Below is an example of the data section in `om-configmap-override` configmap to enable all of the supported telemetry exporters:
 ```yaml

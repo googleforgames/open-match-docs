@@ -57,9 +57,9 @@ Thus, starting the core service pods will remain in <code>ContainerCreating</cod
 
 - If you are proceeding with the [Getting Started]({{< relref "../Getting Started/_index.md" >}}), or following the [Tutorials]({{< relref "../Tutorials/_index.md" >}}), proceed with this guide to [install the default Evaluator]({{< ref "#install-the-default-evaluator" >}}) and configure Open Match to use it.
 
-- If you finished reading the tutorials and are building your own custom matchmaker and need to deploy a custom evaluator, then skip the next step and instead use the [Customization Guide]({{< relref "../Guides/custom.md" >}}) for steps to customize your Open Match installation.
+- If you finished reading the tutorials and are building your own custom matchmaker and need to deploy a custom evaluator, then skip the next step and instead use the [Customization Guide]({{< relref "../Guides/Custom/_index.md" >}}) for steps to customize your Open Match installation.
 
-## Install the default Evaluator
+## Install the Default Evaluator
 
 Run the below command to install the default Evaluator in the open-match namespace and to configure Open Match to use it.
 
