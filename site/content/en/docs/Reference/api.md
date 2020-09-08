@@ -536,7 +536,7 @@ The MatchFunction service implements APIs to run user-defined matchmaking logics
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Run | [RunRequest](#openmatch.RunRequest) | [RunResponse](#openmatch.RunResponse) stream | DO NOT CALL THIS FUNCTION MANUALLY. USE backend.FetchMatches INSTEAD. Run pulls Tickets that satisify Profile constraints from QueryService, runs matchmaking logics against them, then constructs and streams back match candidates to the Backend service. |
+| Run | [RunRequest](#openmatch.RunRequest) | [RunResponse](#openmatch.RunResponse) stream | DO NOT CALL THIS FUNCTION MANUALLY. USE backend.FetchMatches INSTEAD. Run pulls Tickets that satisfy Profile constraints from QueryService, runs matchmaking logics against them, then constructs and streams back match candidates to the Backend service. |
 
  
 
@@ -933,8 +933,8 @@ The QueryService service implements helper APIs for Match Function to query Tick
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| QueryTickets | [QueryTicketsRequest](#openmatch.QueryTicketsRequest) | [QueryTicketsResponse](#openmatch.QueryTicketsResponse) stream | QueryTickets gets a list of Tickets that match all Filters of the input Pool. - If the Pool contains no Filters, QueryTickets will return all Tickets in the state storage. QueryTickets pages the Tickets by `queryPageSize` and stream back responses. - queryPageSize is default to 1000 if not set, and has a mininum of 10 and maximum of 10000. |
-| QueryTicketIds | [QueryTicketIdsRequest](#openmatch.QueryTicketIdsRequest) | [QueryTicketIdsResponse](#openmatch.QueryTicketIdsResponse) stream | QueryTicketIds gets the list of TicketIDs that meet all the filtering criteria requested by the pool. - If the Pool contains no Filters, QueryTicketIds will return all TicketIDs in the state storage. QueryTicketIds pages the TicketIDs by `queryPageSize` and stream back responses. - queryPageSize is default to 1000 if not set, and has a mininum of 10 and maximum of 10000. |
+| QueryTickets | [QueryTicketsRequest](#openmatch.QueryTicketsRequest) | [QueryTicketsResponse](#openmatch.QueryTicketsResponse) stream | QueryTickets gets a list of Tickets that match all Filters of the input Pool. - If the Pool contains no Filters, QueryTickets will return all Tickets in the state storage. QueryTickets pages the Tickets by `queryPageSize` and stream back responses. - queryPageSize is default to 1000 if not set, and has a minimum of 10 and maximum of 10000. |
+| QueryTicketIds | [QueryTicketIdsRequest](#openmatch.QueryTicketIdsRequest) | [QueryTicketIdsResponse](#openmatch.QueryTicketIdsResponse) stream | QueryTicketIds gets the list of TicketIDs that meet all the filtering criteria requested by the pool. - If the Pool contains no Filters, QueryTicketIds will return all TicketIDs in the state storage. QueryTicketIds pages the TicketIDs by `queryPageSize` and stream back responses. - queryPageSize is default to 1000 if not set, and has a minimum of 10 and maximum of 10000. |
 
  
 

@@ -19,7 +19,7 @@ The `01-open-match-core.yaml` contains:
 * Core Open Match service deployments.
 * A Redis deployment as Open Match's state storage system.
 * ServiceAccounts, Roles, and RoleBindings to define Open Match deployments' IAMs.
-* HorizontalAutoScalars to auto-scale Open Match based on pods' average CPU utilization.
+* HorizontalPodAutoscaler to auto-scale Open Match based on pods' average CPU utilization.
 
 Here is the command to install the Open Match core in your cluster:
 
