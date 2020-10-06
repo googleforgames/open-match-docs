@@ -80,7 +80,7 @@ rpc GetTicket(GetTicketRequest) returns (Ticket) {
 ```
 
 {{% alert title="Note" color="info" %}}
-Open Match does not guarantee persistent storage and hence should not be used as the authoritative source for Game Client Assignment information. Once the Assignment for a Ticket is fetched, the Game Frontent should (if necessary) persist this information in its own persistent storage for future lookup.
+Open Match does not guarantee persistent storage and hence should not be used as the authoritative source for Game Client Assignment information. Once the Assignment for a Ticket is fetched, the Game Frontend should (if necessary) persist this information in its own persistent storage for future lookup.
 {{% /alert %}}
 
 ### Deleting a Ticket

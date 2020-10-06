@@ -94,7 +94,7 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-scale.enabled`               | Turn on/off the installation of Open Match scale testing setups                              | `false`                     |
 | `global.kubernetes.serviceAccount`                  | Service account name for the Open Match core services                                                         | `open-match-unprivileged-service`    |
 | `global.kubernetes.service.portType`                         |  Overrides the ServiceTypes for all Open Match core services                                                                | ``           |
-| `global.gcpProjectId`                             | Overrides the default gcp project id for use with stackdriver                                                            | `replace_with_your_project_id` |
+| `global.gcpProjectId`                             | Overrides the default gcp project id for use with Stackdriver                                                            | `replace_with_your_project_id` |
 | `global.tls.enabled`                                  | Turn on/off TLS encryption for all Open Match traffics                                                                | `false` |
 | `global.tls.server.mountPath`                      | The VolumeMount path for TLS server                                                                   | `/app/secrets/tls/server`    |
 | `global.tls.rootca.mountPath`                | The VolumeMount path for TLS CA                                                            | `/app/secrets/tls/rootca`         |

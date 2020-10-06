@@ -48,7 +48,7 @@ rpc QueryTickets(QueryTicketsRequest) returns (stream QueryTicketsResponse) {
 }
 ```
 
-Given that this functionality will be most commonly required for Match Functions, Open Match provides a golang library ("open-match.dev/open-match/pkg/matchfunction") to abstract this logic:
+Given that this functionality will be most commonly required for Match Functions, Open Match provides a Golang library ("open-match.dev/open-match/pkg/matchfunction") to abstract this logic:
 
 ```golang
 func QueryPools(ctx context.Context, mml pb.QueryServiceClient, pools []*pb.Pool) (map[string][]*pb.Ticket, error)

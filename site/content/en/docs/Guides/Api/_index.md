@@ -7,7 +7,7 @@ description: >
 ---
 
 Open Match has a resource-based REST API that is served from HTTP and gRPC. It also
-complies with the OpenAPI (fka Swagger) API specification which means it's easy to
+complies with the OpenAPI (aka Swagger) API specification which means it's easy to
 download the schema and [generate clients](https://swagger.io/tools/swagger-codegen/)
 in many different languages.
 

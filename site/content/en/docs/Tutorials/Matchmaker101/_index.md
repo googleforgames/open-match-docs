@@ -16,7 +16,7 @@ description: >
 
 ### Set up a Kubernetes Cluster
 
-Some basic understanding of Kubernetes, kubectl is required to efficiently completely this tutorial. Follow the instructions to [set up a Kubernetes cluster]({{< relref "../../Installation/_index.md#setup-kubernetes-cluster" >}}), install and configure kubectl to connect to this cluster.
+Some basic understanding of Kubernetes, kubectl is required to efficiently complete this tutorial. Follow the instructions to [set up a Kubernetes cluster]({{< relref "../../Installation/_index.md#setup-kubernetes-cluster" >}}), install and configure kubectl to connect to this cluster.
 
 ### Install Open Match
 
