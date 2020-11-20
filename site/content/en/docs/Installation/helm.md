@@ -21,7 +21,7 @@ To install the chart with the release name `my-release` using our stable helm re
 
 ```bash
 helm repo add open-match https://open-match.dev/chart/stable
-helm install my-release --namespace open-match open-match/open-match
+helm install my-release --create-namespace --namespace open-match open-match/open-match
 ```
 
 Helm install the latest stable version of Open Match `v{{< param release_version >}}` by default. To view the available helm chart versions and install a specific Open Match version:
@@ -30,7 +30,7 @@ Helm install the latest stable version of Open Match `v{{< param release_version
 # View available Open Match helm chart versions
 helm search repo --versions open-match/open-match
 # Install a specific Open Match helm chart version
-helm install my-release --namespace open-match open-match/open-match --version=CHART_VERSION
+helm install my-release --create-namespace --namespace open-match open-match/open-match --version=CHART_VERSION
 ```
 
 {{% alert title="Note" color="info" %}}
