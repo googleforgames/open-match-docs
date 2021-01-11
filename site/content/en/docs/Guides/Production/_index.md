@@ -1,7 +1,7 @@
 ---
 title: "Production Best Practices"
 linkTitle: "Production Best Practices"
-weight: 7
+weight: 8
 description: >
   This guide covers the best practices to configure and deploy Open Match for production setups.
 ---
