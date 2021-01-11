@@ -404,7 +404,7 @@ to possible change or removal.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backfill_id | [string](#string) |  | A Backfill ID to acknoledge. |
+| backfill_id | [string](#string) |  | An existing ID of Backfill to acknowledge. |
 | assignment | [Assignment](#openmatch.Assignment) |  | An updated Assignment of the requested Backfill. |
 
 
@@ -452,7 +452,7 @@ to possible change or removal.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backfill_id | [string](#string) |  | An existing Backfill ID. |
+| backfill_id | [string](#string) |  | An existing ID of Backfill to delete. |
 
 
 
@@ -483,7 +483,7 @@ to possible change or removal.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| backfill_id | [string](#string) |  | An existing Backfill ID. |
+| backfill_id | [string](#string) |  | An existing ID of Backfill to retrieve. |
 
 
 
