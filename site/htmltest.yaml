@@ -19,5 +19,6 @@ OutputDir: /tmp/open-match-site/
 OutputLogFile: htmltest.log
 IgnoreURLs:
   - http://localhost
+  - https://twitter.com/Open_Match
 IgnoreDirs:
   - site/docs/reference/api
