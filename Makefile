@@ -233,12 +233,12 @@ site/static/swaggerui/:
 md-test: docker
 	docker run -t --rm -v $(CURDIR):/mnt:ro dkhamsing/awesome_bot --white-list "localhost,github.com/googleforgames/open-match/tree/release-,github.com/googleforgames/open-match/blob/release-,github.com/googleforgames/open-match/releases/download/v" --allow-dupe --allow-redirect --skip-save-results `find . -type f -name '*.md' -not -path './build/*' -not -path './node_modules/*' -not -path './site*' -not -path './.git*'`
 
-# site-test: TEMP_SITE_DIR := /tmp/open-match-site
-# site-test: $(RENDERED_SITE_DIR_REL)/ $(HTMLTEST_REL)
-#	rm -rf $(TEMP_SITE_DIR)
-#	mkdir -p $(TEMP_SITE_DIR)/site/
-#	cp -rf $(RENDERED_SITE_DIR)/public/* $(TEMP_SITE_DIR)/site/
-#	$(HTMLTEST) -l 1 --conf $(SITE_DIR)/htmltest.yaml $(TEMP_SITE_DIR)
+site-test: TEMP_SITE_DIR := /tmp/open-match-site
+site-test: $(RENDERED_SITE_DIR_REL)/ $(HTMLTEST_REL)
+	rm -rf $(TEMP_SITE_DIR)
+	mkdir -p $(TEMP_SITE_DIR)/site/
+	cp -rf $(RENDERED_SITE_DIR)/public/* $(TEMP_SITE_DIR)/site/
+	$(HTMLTEST) -l 1 --conf $(SITE_DIR)/htmltest.yaml $(TEMP_SITE_DIR)
 
 browse-site: $(RENDERED_SITE_DIR_REL)/
 	cd $(RENDERED_SITE_DIR) && dev_appserver.py .app.yaml
