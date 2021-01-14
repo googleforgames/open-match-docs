@@ -24,7 +24,7 @@
 # If you want information on how to edit this file checkout,
 # http://makefiletutorial.com/
 
-BASE_VERSION = 1.0.0
+BASE_VERSION = 1.1.0
 SHORT_SHA = $(shell git rev-parse --short=7 HEAD | tr -d [:punct:])
 VERSION_SUFFIX = $(SHORT_SHA)
 BRANCH_NAME = $(shell git rev-parse --abbrev-ref HEAD | tr -d [:punct:])
@@ -204,6 +204,7 @@ node_modules/: build/toolchain/nodejs/
 	-rm -r $(REPOSITORY_ROOT)/package.json $(REPOSITORY_ROOT)/package-lock.json
 	-rm -rf $(REPOSITORY_ROOT)/node_modules/
 	echo "{}" > $(REPOSITORY_ROOT)/package.json
+	$(NODEJS_BIN)/npm install postcss-scss
 	$(NODEJS_BIN)/npm install postcss-cli autoprefixer
 	$(TOOLCHAIN_DIR)/nodejs/bin/npm install postcss-cli autoprefixer
 
