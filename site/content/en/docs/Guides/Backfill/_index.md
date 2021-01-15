@@ -19,7 +19,7 @@ Some scenarios that could happen when playing multiplayer games include:
 
 1. Player creates Ticket (__T1__).
 2. Director calls Backend which calls MatchMaking Function (MMF) to build matches with the MatchProfile passed along. 
-3. MMF finds __T1__, creates a new Backfill (__B1__*), assings __T1__ to __B1__ and sets __T1__ status as __Pending__. In the response to Director it is sent a Match with ticket __T1__ and backfill __B1__.
+3. MMF finds __T1__, creates a new Backfill (__B1__*), assigns __T1__ to __B1__ and sets __T1__ status as __Pending__. In the response to Director it is sent a Match with ticket __T1__ and backfill __B1__.
 4. Director starts allocating GameServer.
 5. Another player creates a Ticket (__T2__).
 6. Director calls Backend which calls MMF to build matches.
@@ -33,3 +33,4 @@ Some scenarios that could happen when playing multiplayer games include:
 Since Backfill is a large feature, using it requires changes to many components inside Open Match.
 If Backfill is not being used, no changes are required since the Backfill API doesn't change 
 the behavior of the current Open Match API state.
+
