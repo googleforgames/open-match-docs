@@ -17,14 +17,14 @@ Some scenarios that could happen when playing multiplayer games include:
 
 ## Main algorithm
 
-1. Player creates Ticket (__T1__).
+1. Player creates Ticket (`T1`).
 2. Director calls Backend which calls MatchMaking Function (MMF) to build matches with the MatchProfile passed along. 
-3. MMF finds __T1__, creates a new Backfill (__B1__*), assigns __T1__ to __B1__ and sets __T1__ status as __Pending__. In the response to Director it is sent a Match with ticket __T1__ and backfill __B1__.
+3. MMF finds `T1`, creates a new Backfill (`B1`*) and sets `T1` status as `Pending`. Match is sent to Director containing ticket `T1` and Backfill `B1`.
 4. Director starts allocating GameServer.
-5. Another player creates a Ticket (__T2__).
+5. Another player creates a Ticket (`T2`).
 6. Director calls Backend which calls MMF to build matches.
-7. MMF finds __T1__, __T2__ and __B1__. __T1__ is excluded since it has a __Pending__ state and __B1__ is used because it has open slots available. Also, __T2__ is assigned to __B1__ and __T2__ state is set to __Pending__.
-8. When GameServer allocating ends, it starts pinging Open Match to acknowledge the backfill received in the match (__B1__) and deliver the address of the GameServer to __T1__ and __T2__.
+7. MMF finds `T2` and `B1`. `T1` is excluded since it has a `Pending` state and `B1` is used because it has open slots available. Also, `T2` state is set to `Pending`.
+8. When GameServer allocating ends, it starts pinging Open Match to acknowledge the backfill received in the match (`B1`) and deliver the address of the GameServer to `T1` and `T2`.
 
 *: The Backfill should be created with field `AllocateGameServer` set to `true`, so GameServer orchestrator (e.g.: [Agones](https://agones.dev/site/)) knows it has to create a new GameServer.
 
