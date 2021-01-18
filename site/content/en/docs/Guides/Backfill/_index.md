@@ -41,3 +41,9 @@ the behavior of the current Open Match API state.
 To Acknowledge a Backfill is a request, that acts in form of a ping in an interval, made to Open Match Frontend to notify the associated tickets with their assignment.
 
 GameServers would run AcknowledgeBackfill every N seconds, where N is, at most, 80% of the duration set for `pendingReleaseTimeout` (N < 0.8 * pendingReleaseTimeout).
+
+### Cleaning up Backfills
+
+This process, as its name suggests, deletes the Backfill objects from the state store that have a last acknowledge time bigger than the configured timeout duration.
+
+Obs: you need to keep present if time for acknowledging a backfill expires, you’ll need to recreate the Backfill object again.
