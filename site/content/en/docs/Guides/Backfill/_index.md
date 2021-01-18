@@ -18,13 +18,15 @@ Some scenarios that could happen when playing multiplayer games include:
 ## Main algorithm
 
 1. Player creates Ticket (`T1`).
-2. Director calls Backend which calls MatchMaking Function (MMF) to build matches with the MatchProfile passed along. 
-3. MMF finds `T1`, creates a new Backfill (`B1`*) and sets `T1` status as `Pending`. Match is sent to Director containing ticket `T1` and Backfill `B1`.
-4. Director starts allocating GameServer.
-5. Another player creates a Ticket (`T2`).
-6. Director calls Backend which calls MMF to build matches.
-7. MMF finds `T2` and `B1`. `T1` is excluded since it has a `Pending` state and `B1` is used because it has open slots available. Also, `T2` state is set to `Pending`.
-8. When GameServer allocating ends, it starts pinging Open Match to acknowledge the backfill received in the match (`B1`) and deliver the address of the GameServer to `T1` and `T2`.
+2. Director calls `Backend.FetchMatches` with a MatchProfile.
+3. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. It returns `T1`.
+4. MMF use `T1`, constructs a new Backfill (`B1`*) and returns a `Match` containing ticket `T1` and Backfill `B1`.
+5. Director starts allocating GameServer.
+6. Another player creates a Ticket (`T2`).
+7. Director calls `Backend.FetchMatches`.
+8. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. They return `B1` and `T2` accordingly.
+9. MMF determines `B1` could be used because it has open slots available. `T2` and `B1` forms a new Match.
+10. When GameServer allocating ends, it starts polling Open Match to acknowledge the backfill by ID received in the Match (`B1.ID`) and in order to assign the address of the GameServer for `T1` and `T2`.
 
 *: The Backfill should be created with field `AllocateGameServer` set to `true`, so GameServer orchestrator (e.g.: [Agones](https://agones.dev/site/)) knows it has to create a new GameServer.
 
