@@ -34,9 +34,8 @@ Since Backfill is a large feature, using it requires changes to many components 
 If Backfill is not being used, no changes are required since the Backfill API doesn't change 
 the behavior of the current Open Match API state.
 
-## Configuration
+### Acknowledging Backfills
 
-```yaml
-# Defines the default time for a backfill lock should live.
-backfillLockTimeout: 1m
-```
+GameServers would run Acknowledge every N seconds, where N < 0.8 * pendingReleaseTimeout
+
+## Configuration
