@@ -38,6 +38,6 @@ the behavior of the current Open Match API state.
 
 ### Acknowledging Backfills
 
-GameServers would run Acknowledge every N seconds, where N < 0.8 * pendingReleaseTimeout
+To Acknowledge a Backfill is a request, that acts in form of a ping in an interval, made to Open Match Frontend to notify the associated tickets with their assignment.
 
-## Configuration
+GameServers would run AcknowledgeBackfill every N seconds, where N is, at most, 80% of the duration set for `pendingReleaseTimeout` (N < 0.8 * pendingReleaseTimeout).
