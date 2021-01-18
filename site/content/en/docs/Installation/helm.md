@@ -89,6 +89,8 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `image.pullPolicy` | Global `imagePullPolicy` for all Open Match service deployments | `Always` |
 | `image.tag` | Global Docker image tag for all Open Match service deployments | `{{< param release_version >}}` |
 | `open-match-core.enabled` | Turn on/off the installation of Open Match core services | `true` |
+| `open-match-core.pendingReleaseTimeout` | Defines the time before a ticket goes back to the pool after it was fetched. | `1m` |
+| `open-match-core.queryPageSize` | Maximum number of tickets to return on a single QueryTicketsResponse. | `10000` |
 | `open-match-override.enabled` | Turn on/off the installation of `om-override-configmap` | `false` |
 | `open-match-telemetry.enabled` | Turn on/off the installation of Open Match telemetry services | `false` |
 | `open-match-scale.enabled` | Turn on/off the installation of Open Match scale testing setups | `false` |
