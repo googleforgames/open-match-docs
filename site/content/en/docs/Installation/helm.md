@@ -80,42 +80,46 @@ The following tables lists the configurable parameters of the Open Match chart a
 
 | Parameter                                           | Description                                                                                     | Default                |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------- |
-| `query.portType`                                | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the QueryService                        | `ClusterIP`                 |
-| `query.replicas`                           | Defines the number of pod replicas for QueryService's Kubernetes deployment                                         | `3`                 |
-| `frontend.portType`                         | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the FrontendService                        | `ClusterIP`                               |                  |
-| `frontend.replicas`                    | Defines the number of pod replicas for FrontendService's Kubernetes deployment                                         | `3`                 |
-| `backend.portType`                        | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the BackendService                        | `ClusterIP`                                         |                 |
-| `backend.replicas`                          | Defines the number of pod replicas for BackendService's Kubernetes deployment                                                          | `3`        |
-| `image.pullPolicy`                               | Global `imagePullPolicy` for all Open Match service deployments | `Always` |
-| `image.tag`                       | Global Docker image tag for all Open Match service deployments |   `{{< param release_version >}}`       |
-| `open-match-core.enabled`         | Turn on/off the installation of Open Match core services                        | `true`                 |
-| `open-match-override.enabled`         | Turn on/off the installation of `om-override-configmap`                        | `false`                 |
-| `open-match-telemetry.enabled`                  | Turn on/off the installation of Open Match telemetry services                                   | `false`                 |
-| `open-match-scale.enabled`               | Turn on/off the installation of Open Match scale testing setups                              | `false`                     |
-| `global.kubernetes.serviceAccount`                  | Service account name for the Open Match core services                                                         | `open-match-unprivileged-service`    |
-| `global.kubernetes.service.portType`                         |  Overrides the ServiceTypes for all Open Match core services                                                                | ``           |
-| `global.gcpProjectId`                             | Overrides the default gcp project id for use with stackdriver                                                            | `replace_with_your_project_id` |
-| `global.tls.enabled`                                  | Turn on/off TLS encryption for all Open Match traffics                                                                | `false` |
-| `global.tls.server.mountPath`                      | The VolumeMount path for TLS server                                                                   | `/app/secrets/tls/server`    |
-| `global.tls.rootca.mountPath`                | The VolumeMount path for TLS CA                                                            | `/app/secrets/tls/rootca`         |
-| `global.logging.rpc.enabled`                | Turn on/off RPC payload logging for all Open Match core services                                                            | `false`                     |
-| `global.telemetry.zpages.enabled`                             | Turn on/off Open Match zPages instrument.                                                                          | `true`           |
-| `global.telemetry.jaeger.enabled`                       | Turn on/off Open Match Jaeger exporter. Also install Jaeger if `open-match-telemetry.enabled` is set to true                                        | `false`                  |
-| `global.telemetry.jaeger.samplerFraction` | Configure a sampler that samples a given fraction of traces                                    | `1`                    |
-| `global.telemetry.jaeger.agentEndpoint`       | AgentEndpoint instructs exporter to send spans to jaeger-agent at this address                                               | `open-match-jaeger-agent:6831`                    |
-| `global.telemetry.jaeger.collectorEndpoint`    | CollectorEndpoint is the full url to the Jaeger HTTP Thrift collector                                                   | `open-match-jaeger-collector:14268/api/traces`                    |
-| `global.telemetry.prometheus.enabled`                         | Turn on/off Open Match Prometheus exporter. Also install Prometheus if `open-match-telemetry.enabled` is set to true                                       | `false`             |
-| `global.telemetry.prometheus.endpoint` | Bind the Prometheus exporters to the specified endpoint handler, also configures the `prometheus.io/path` k8s scraping annotations                                    | `/metrics`                    |
-| `global.telemetry.prometheus.serviceDiscovery`       | If Prometheus is enabled and `serviceDiscover: true`, add the Prometheus scraping annotations to each Pod of the Open Match core services             | `true`                                  |
-| `global.telemetry.stackdriverMetrics.enabled`                       | Turn on/off Open Match Stackdriver Metrics exporter.                                                  | `false`                |
-| `global.telemetry.stackdriverMetrics.prefix`                       | MetricPrefix overrides the prefix of a Stackdriver metric display names to help you better identifies your metrics                                                  | `open_match`                |
-| `global.telemetry.grafana.enabled`                      | Turn on/off Open Match Grafana exporter. Also install Grafana if `open-match-telemetry.enabled` is set to true                                                          | `false`         |
-| `global.telemetry.reportingPeriod`                       | Overrides the reporting periods of Open Match telemetry exporters                                              | `1m`                 |
-| `open-match-telemetry.grafana`       | Inherits the values from [Grafana helm chart](https://github.com/helm/charts/tree/master/stable/grafana)                                               |                     |
-| `open-match-telemetry.jaeger`    | Inherits the values from [Jaeger helm chart](https://github.com/helm/charts/tree/master/incubator/jaeger)                                                   |                     |
-| `open-match-telemetry.prometheus`      | Inherits the values from [Prometheus helm chart](https://github.com/helm/charts/tree/master/stable/prometheus)                                  |                   |
-| `redis` | Inherits the values from [Redis helm chart](https://github.com/helm/charts/tree/master/stable/redis)                                    |                |
-
+| `query.portType` | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the QueryService | `ClusterIP` |
+| `query.replicas` | Defines the number of pod replicas for QueryService's Kubernetes deployment | `3` |
+| `frontend.portType` | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the FrontendService | `ClusterIP` |
+| `frontend.replicas` | Defines the number of pod replicas for FrontendService's Kubernetes deployment | `3` |
+| `backend.portType` | Defines Kubernetes [ServiceTypes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types) for the BackendService | `ClusterIP` |
+| `backend.replicas` | Defines the number of pod replicas for BackendService's Kubernetes deployment | `3` |
+| `image.pullPolicy` | Global `imagePullPolicy` for all Open Match service deployments | `Always` |
+| `image.tag` | Global Docker image tag for all Open Match service deployments | `{{< param release_version >}}` |
+| `open-match-core.enabled` | Turn on/off the installation of Open Match core services | `true` |
+| `open-match-core.registrationInterval` | Duration of registration window for evaluation/synchronization cycle. | `250ms` |
+| `open-match-core.proposalCollectionInterval` | Length of time after match function has started before it will be canceled. | `20s` |
+| `open-match-core.pendingReleaseTimeout` | Defines the time before a ticket returns to the pool after it was fetched. | `1m` |
+| `open-match-core.assignedDeleteTimeout` | Time after a ticket has been assigned before it is automatically deleted. | `10m` |
+| `open-match-core.queryPageSize` | Maximum number of tickets to return on a single QueryTicketsResponse. | `10000` |
+| `open-match-override.enabled` | Turn on/off the installation of `om-override-configmap` | `false` |
+| `open-match-telemetry.enabled` | Turn on/off the installation of Open Match telemetry services | `false` |
+| `open-match-scale.enabled` | Turn on/off the installation of Open Match scale testing setups | `false` |
+| `global.kubernetes.serviceAccount` | Service account name for the Open Match core services | `open-match-unprivileged-service` |
+| `global.kubernetes.service.portType` |  Overrides the ServiceTypes for all Open Match core services  | `` |
+| `global.gcpProjectId` | Overrides the default gcp project id for use with stackdriver | `replace_with_your_project_id` |
+| `global.tls.enabled` | Turn on/off TLS encryption for all Open Match traffics | `false` |
+| `global.tls.server.mountPath` | The VolumeMount path for TLS server | `/app/secrets/tls/server`  |
+| `global.tls.rootca.mountPath`  | The VolumeMount path for TLS CA | `/app/secrets/tls/rootca`  |
+| `global.logging.rpc.enabled`  | Turn on/off RPC payload logging for all Open Match core services | `false`  |
+| `global.telemetry.zpages.enabled` | Turn on/off Open Match zPages instrument. | `true`  |
+| `global.telemetry.jaeger.enabled`  | Turn on/off Open Match Jaeger exporter. Also install Jaeger if `open-match-telemetry.enabled` is set to true  | `false` |
+| `global.telemetry.jaeger.samplerFraction` | Configure a sampler that samples a given fraction of traces  | `1` |
+| `global.telemetry.jaeger.agentEndpoint` | AgentEndpoint instructs exporter to send spans to jaeger-agent at this address | `open-match-jaeger-agent:6831` |
+| `global.telemetry.jaeger.collectorEndpoint`  | CollectorEndpoint is the full url to the Jaeger HTTP Thrift collector | `open-match-jaeger-collector:14268/api/traces` |
+| `global.telemetry.prometheus.enabled` | Turn on/off Open Match Prometheus exporter. Also install Prometheus if `open-match-telemetry.enabled` is set to true | `false` |
+| `global.telemetry.prometheus.endpoint` | Bind the Prometheus exporters to the specified endpoint handler, also configures the `prometheus.io/path` k8s scraping annotations  | `/metrics` |
+| `global.telemetry.prometheus.serviceDiscovery` | If Prometheus is enabled and `serviceDiscover: true`, add the Prometheus scraping annotations to each Pod of the Open Match core services | `true` |
+| `global.telemetry.stackdriverMetrics.enabled`  | Turn on/off Open Match Stackdriver Metrics exporter.  | `false`  |
+| `global.telemetry.stackdriverMetrics.prefix`  | MetricPrefix overrides the prefix of a Stackdriver metric display names to help you better identifies your metrics  | `open_match`  |
+| `global.telemetry.grafana.enabled` | Turn on/off Open Match Grafana exporter. Also install Grafana if `open-match-telemetry.enabled` is set to true | `false`  |
+| `global.telemetry.reportingPeriod`  | Overrides the reporting periods of Open Match telemetry exporters | `1m` |
+| `open-match-telemetry.grafana` | Inherits the values from [Grafana helm chart](https://github.com/helm/charts/tree/master/stable/grafana)  |  |
+| `open-match-telemetry.jaeger`  | Inherits the values from [Jaeger helm chart](https://github.com/helm/charts/tree/master/incubator/jaeger)  |  |
+| `open-match-telemetry.prometheus`  | Inherits the values from [Prometheus helm chart](https://github.com/helm/charts/tree/master/stable/prometheus) |  |
+| `redis` | Inherits the values from [Redis helm chart](https://github.com/helm/charts/tree/master/stable/redis) |  |
 ## What's Next
 
 Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.
