@@ -47,4 +47,4 @@ GameServers would run AcknowledgeBackfill every N seconds, where N is, at most, 
 
 This process, as its name suggests, deletes the Backfill objects from the state store that have a last acknowledge time bigger than the configured timeout duration.
 
-Obs: you need to keep present if time for acknowledging a backfill expires, you’ll need to recreate the Backfill object again.
+Note: you need to keep acknowledging a backfill and if it expires you need to recreate the Backfill object again.
