@@ -90,5 +90,5 @@ Open Match project provides a recommended helm config file for production setups
 helm install my-release -n open-match open-match/open-match -f values-production.yaml
 ```
 
-## Use Enovy or other load balancing solution if you plan to connect to Open Match via an out-of-cluster client
-The above load balancing solution is sufficient if you have both the client and the server deployment within the same cluster. However, some game architectures may requires connecting to Open Match services from an out-of-cluster client. We recommend [Envoy](https://www.envoyproxy.io/) as a solution. Alternatives like Kubernetes Ingress or platform specific L7 Load Balancer can also work. 
+## Use Envoy or other load balancing solution if you plan to connect to Open Match via an out-of-cluster client
+The above load balancing solution is sufficient if you have both the client and the server deployment within the same cluster. However, some game architectures may require connecting to Open Match services from an out-of-cluster client. We recommend [Envoy](https://www.envoyproxy.io/) as a solution. Alternatives like Kubernetes Ingress or platform specific L7 Load Balancer can also work. 

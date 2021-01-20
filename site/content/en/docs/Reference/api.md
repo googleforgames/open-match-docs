@@ -689,7 +689,7 @@ messages are not finalized and still subject to possible change or removal.
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Id represents an auto-generated Id issued by Open Match. |
 | search_fields | [SearchFields](#openmatch.SearchFields) |  | Search fields are the fields which Open Match is aware of, and can be used when specifying filters. |
-| extensions | [Backfill.ExtensionsEntry](#openmatch.Backfill.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the MatchMakingFunction, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+| extensions | [Backfill.ExtensionsEntry](#openmatch.Backfill.ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the Match Function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
 | create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Create time is the time the Ticket was created. It is populated by Open Match at the time of Ticket creation. |
 | generation | [int64](#int64) |  | Generation gets incremented on GameServers update operations. Prevents the MMF from overriding a newer version from the game server. Do NOT read or write to this field, it is for internal tracking, and changing the value will cause bugs. |
 
