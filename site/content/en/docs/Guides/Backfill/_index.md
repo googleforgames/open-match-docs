@@ -21,12 +21,12 @@ Some scenarios that could happen when playing multiplayer games include:
 2. Director calls `Backend.FetchMatches` with a MatchProfile.
 3. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. It returns `T1`.
 4. MMF use `T1`, constructs a new Backfill (`B1`*) and returns a `Match` containing ticket `T1` and Backfill `B1`.
-5. Director starts allocating GameServer.
+5. Director starts allocating GameServer with Backfill `B1` information.
 6. Another player creates a Ticket (`T2`).
 7. Director calls `Backend.FetchMatches`.
 8. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. They return `B1` and `T2` accordingly.
 9. MMF determines `B1` could be used because it has open slots available. `T2` and `B1` forms a new Match.
-10. When GameServer allocating ends, it starts polling Open Match to acknowledge the backfill by ID received in the Match (`B1.ID`) and in order to assign the address of the GameServer for `T1` and `T2`.
+10. When GameServer allocating ends, it starts polling Open Match to acknowledge the backfill with `Backend.AcknowledgeBackfill` by ID received in the Match (`B1.ID`) and in order to assign the address of the GameServer for `T1` and `T2`.
 
 *: The Backfill should be created with field `AllocateGameServer` set to `true`, so GameServer orchestrator (e.g.: [Agones](https://agones.dev/site/)) knows it has to create a new GameServer.
 
