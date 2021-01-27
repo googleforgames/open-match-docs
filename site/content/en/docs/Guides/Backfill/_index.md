@@ -17,6 +17,8 @@ Some scenarios that could happen when playing multiplayer games include:
 
 ## Main algorithm
 
+A Match Function example using Backfill can be found [here](https://github.com/googleforgames/open-match/blob/master/examples/functions/golang/backfill/mmf/matchfunction.go).
+
 1. Player creates Ticket (`T1`).
 2. Director calls `Backend.FetchMatches` with a MatchProfile.
 3. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. It returns `T1`.
