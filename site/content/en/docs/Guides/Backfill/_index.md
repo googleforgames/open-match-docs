@@ -45,6 +45,6 @@ GameServers would run AcknowledgeBackfill every N seconds, where N is, at most, 
 
 ### Cleaning up Backfills
 
-This process deletes expired Backfill objects from the state store. Expired means those backfills which were not acknowledged for the aforementioned `backfillTTL` period.
+This process deletes expired Backfill objects from the state store. Backifll becomes expired if it is not acknowledged in `backfillTTL` period.
 
 Note: you need to keep acknowledging a backfill and if it expires you need to recreate the Backfill object again.
