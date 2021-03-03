@@ -94,6 +94,7 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-core.pendingReleaseTimeout` | Defines the time before a ticket returns to the pool after it was fetched. | `1m` |
 | `open-match-core.assignedDeleteTimeout` | Time after a ticket has been assigned before it is automatically deleted. | `10m` |
 | `open-match-core.queryPageSize` | Maximum number of tickets to return on a single QueryTicketsResponse. | `10000` |
+| `open-match-core.backfillLockTimeout` | Defines the time of keeping a lock on a single backfill. | `1m` |
 | `open-match-override.enabled` | Turn on/off the installation of `om-override-configmap` | `false` |
 | `open-match-telemetry.enabled` | Turn on/off the installation of Open Match telemetry services | `false` |
 | `open-match-scale.enabled` | Turn on/off the installation of Open Match scale testing setups | `false` |
@@ -120,6 +121,7 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-telemetry.jaeger`  | Inherits the values from [Jaeger helm chart](https://github.com/helm/charts/tree/master/incubator/jaeger)  |  |
 | `open-match-telemetry.prometheus`  | Inherits the values from [Prometheus helm chart](https://github.com/helm/charts/tree/master/stable/prometheus) |  |
 | `redis` | Inherits the values from [Redis helm chart](https://github.com/helm/charts/tree/master/stable/redis) |  |
+
 ## What's Next
 
 Follow the [Getting Started]({{< ref "/docs/Getting Started" >}}) guide to see Open Match in action.
