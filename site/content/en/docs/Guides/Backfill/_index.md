@@ -34,7 +34,7 @@ A Match Function example using Backfill can be found [here](https://github.com/g
 
 ## Considerations
 
-Since Backfill is a large feature, using it requires changes to many components inside Open Match.
+In order to use Backfill you need to customize your MMF and your Game Servers. BackfillId should be propagated to each Game Server during Game Server allocation. Which would be used later in `AcknowledgeBackfill` requests to define Backfill which is tied to this Game Server.
 If Backfill is not being used, no changes are required since the Backfill API doesn't change 
 the behavior of the current Open Match API state.
 
@@ -43,7 +43,7 @@ the behavior of the current Open Match API state.
 AcknowledgeBackfill is a request, that acts as a periodic ping, made to Open Match Frontend to set the assignment on the tickets associated with this backfill.
 GameServer receives current Backfill status as a response.
 
-GameServers would run AcknowledgeBackfill every N seconds, where N is, at most, `backfillTTL` represents 80% of pendingReleaseTimeout and this value MUST always be bigger than N (backfillTTL = 0.8 * pendingReleaseTimeout; N < backfillTTL, where N is AcknowledgeBackfill interval)
+GameServers would run `AcknowledgeBackfill` every N seconds, where N is, at most, `backfillTTL` represents 80% of pendingReleaseTimeout and this value MUST always be bigger than N (backfillTTL = 0.8 * pendingReleaseTimeout; N < backfillTTL, where N is AcknowledgeBackfill interval)
 
 ### Cleaning up Backfills
 
