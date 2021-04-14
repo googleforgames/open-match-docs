@@ -17,11 +17,11 @@ description: >
 If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/intro/) documentation to get started. The Open Match helm chart only installs the core services by default, please [override default helm configs]({{< relref "../Installation/helm.md#configuration" >}}) if you need to install telemetry support.
 {{< /alert >}}
 
-To install the chart with the release name `my-release` using our stable helm repository:
+To install the chart with the release name `open-match` using our stable helm repository:
 
 ```bash
 helm repo add open-match https://open-match.dev/chart/stable
-helm install my-release --namespace open-match open-match/open-match
+helm install open-match --create-namespace --namespace open-match open-match/open-match
 ```
 
 Helm install the latest stable version of Open Match `v{{< param release_version >}}` by default. To view the available helm chart versions and install a specific Open Match version:
@@ -30,7 +30,7 @@ Helm install the latest stable version of Open Match `v{{< param release_version
 # View available Open Match helm chart versions
 helm search repo --versions open-match/open-match
 # Install a specific Open Match helm chart version
-helm install my-release --namespace open-match open-match/open-match --version=CHART_VERSION
+helm install open-match --create-namespace --namespace open-match open-match/open-match --version=CHART_VERSION
 ```
 
 {{% alert title="Note" color="info" %}}
@@ -48,7 +48,7 @@ Run the command below to install the default Evaluator and configure Open Match 
 ```bash
 # Install the default evaluator
 # Install ConfigMap `om-configmap-override`, this ConfigMap configures Open Match to talk to the default evaluator 
-helm install my-release --namespace open-match open-match/open-match \
+helm install open-match --create-namespace --namespace open-match open-match/open-match \
   --set open-match-customize.enabled=true \
   --set open-match-customize.evaluator.enabled=true \
   --set open-match-override.enabled=true 
@@ -56,10 +56,10 @@ helm install my-release --namespace open-match open-match/open-match \
 
 ## Uninstalling the Chart
 
-To uninstall/delete the `my-release` deployment:
+To uninstall/delete the `open-match` deployment:
 
 ```bash
-helm uninstall -n open-match my-release
+helm uninstall -n open-match open-match
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
@@ -69,7 +69,7 @@ The command removes all the Kubernetes components associated with the chart and 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
 ```bash
-helm install --name my-release --namespace open-match open-match/open-match \
+helm install --name open-match --namespace open-match open-match/open-match \
   --set open-match-telemetry.enabled=true  \
   --set open-match-telemetry.jaeger.enabled=true
 ```
