@@ -17,6 +17,7 @@ IgnoreInternalEmptyHash: true
 CheckInternal: false
 OutputDir: /tmp/open-match-site/
 OutputLogFile: htmltest.log
+IgnoreEmptyHref: true
 IgnoreURLs:
   - http://localhost
   - https://twitter.com/Open_Match
