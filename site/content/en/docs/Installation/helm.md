@@ -120,7 +120,7 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-telemetry.grafana` | Inherits the values from [Grafana helm chart](https://github.com/helm/charts/tree/master/stable/grafana)  |  |
 | `open-match-telemetry.jaeger`  | Inherits the values from [Jaeger helm chart](https://github.com/helm/charts/tree/master/incubator/jaeger)  |  |
 | `open-match-telemetry.prometheus`  | Inherits the values from [Prometheus helm chart](https://github.com/helm/charts/tree/master/stable/prometheus) |  |
-| `redis` | Inherits the values from [Redis helm chart](https://github.com/helm/charts/tree/master/stable/redis) |  |
+| `redis` | Inherits the values from the [Bitnami Redis Helm chart](https://github.com/bitnami/charts/tree/master/bitnami/redis) |  |
 
 ## What's Next
 
