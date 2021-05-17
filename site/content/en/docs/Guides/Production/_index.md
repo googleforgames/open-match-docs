@@ -92,3 +92,19 @@ helm install my-release -n open-match open-match/open-match -f values-production
 
 ## Use Envoy or other load balancing solution if you plan to connect to Open Match via an out-of-cluster client
 The above load balancing solution is sufficient if you have both the client and the server deployment within the same cluster. However, some game architectures may require connecting to Open Match services from an out-of-cluster client. We recommend [Envoy](https://www.envoyproxy.io/) as a solution. Alternatives like Kubernetes Ingress or platform specific L7 Load Balancer can also work. 
+
+## Use alternative to included Redis (Bitnami) image
+Open Match comes included with a Redis image with a high-availability option. If your needs require a Redis offering with features unavailable with the included image, Open Match provides configs to bring your own Redis. First, you must disable the use of the included image by setting the `open-match-core.redis.enabled` param to `false`. To connect to your alternative Redis setup, provide the instance's hostname/IP address to the `open-match-core.redis.hostname`.
+
+{{% alert title="Note: If Using Memorystore" color="info" %}}
+To connect to [Memorystore](https://cloud.google.com/memorystore) from a GKE cluster it requires a VPC-native cluster. If you've created a cluster, you will have to re-create it as [VPC-native cluster using Alias-IPs](https://cloud.google.com/kubernetes-engine/docs/how-to/alias-ips). 
+{{% /alert %}}
+
+```bash
+helm install open-match --create-namespace --namespace open-match open-match/open-match \
+  --set open-match-customize.enabled=true \
+  --set open-match-customize.evaluator.enabled=true \
+  --set open-match-override.enabled=true \
+  --set open-match-core.redis.enabled=false \
+  --set open-match-core.redis.hostname= # Your redis server address
+```
