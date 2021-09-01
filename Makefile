@@ -24,7 +24,7 @@
 # If you want information on how to edit this file checkout,
 # http://makefiletutorial.com/
 
-BASE_VERSION = 1.2.0
+BASE_VERSION = 1.3.0
 SHORT_SHA = $(shell git rev-parse --short=7 HEAD | tr -d [:punct:])
 VERSION_SUFFIX = $(SHORT_SHA)
 BRANCH_NAME = $(shell git rev-parse --abbrev-ref HEAD | tr -d [:punct:])
@@ -79,7 +79,7 @@ GAE_SITE_VERSION = om$(YEAR_MONTH)
 # If the version is 0.0* then the service name is "development" as in development.open-match.dev.
 ifeq ($(MAJOR_MINOR_VERSION),0.0)
 	GAE_SERVICE_NAME = development
-	OPEN_MATCH_REMOTE_BRANCH = master
+	OPEN_MATCH_REMOTE_BRANCH = main
 else
 	GAE_SERVICE_NAME = $(shell echo $(MAJOR_MINOR_VERSION) | tr . -)
 	OPEN_MATCH_REMOTE_BRANCH = release-$(MAJOR_MINOR_VERSION)
