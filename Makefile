@@ -204,6 +204,7 @@ node_modules/: build/toolchain/nodejs/
 	-rm -r $(REPOSITORY_ROOT)/package.json $(REPOSITORY_ROOT)/package-lock.json
 	-rm -rf $(REPOSITORY_ROOT)/node_modules/
 	echo "{}" > $(REPOSITORY_ROOT)/package.json
+	$(NODEJS_BIN)/npm install postcss
 	$(NODEJS_BIN)/npm install postcss-scss
 	$(NODEJS_BIN)/npm install postcss-cli autoprefixer
 	$(TOOLCHAIN_DIR)/nodejs/bin/npm install postcss-cli autoprefixer
