@@ -208,6 +208,7 @@ node_modules/: build/toolchain/nodejs/
 	$(NODEJS_BIN)/npm install postcss-scss
 	$(NODEJS_BIN)/npm install postcss-cli autoprefixer
 	$(TOOLCHAIN_DIR)/nodejs/bin/npm install postcss-cli autoprefixer
+	$(TOOLCHAIN_DIR)/nodejs/bin/npm install ts-node
 
 $(RENDERED_SITE_DIR_REL)/: $(HUGO_REL) site/static/swaggerui/ node_modules/
 	rm -rf $(RENDERED_SITE_DIR)/
