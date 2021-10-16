@@ -14,7 +14,7 @@ module open-match.dev/open-match-docs/site
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-go 1.12
+go 1.14
 
 require (
 	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 // indirect
