@@ -50,7 +50,7 @@ import (
 
 func main() {
   // Create a gRPC frontend client
-  conn, err := grpc.Dial("om-frontend:50504"), grpc.WithInsecure())
+  conn, err := grpc.Dial("om-frontend:50504", grpc.WithInsecure())
   if err != nil {
     log.Fatalf("grpc.Dial failed with %v", err)
   }
