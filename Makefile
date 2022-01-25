@@ -33,7 +33,7 @@ BUILD_DATE = $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 YEAR_MONTH = $(shell date -u +'%Y%m')
 MAJOR_MINOR_VERSION = $(shell echo $(BASE_VERSION) | cut -d '.' -f1).$(shell echo $(BASE_VERSION) | cut -d '.' -f2)
 
-HUGO_VERSION = 0.55.6
+HUGO_VERSION = 0.82.1
 NODEJS_VERSION = 10.16.0
 HTMLTEST_VERSION = 0.10.3
 GOLANGCI_VERSION = 1.17.1
