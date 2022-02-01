@@ -17,7 +17,9 @@ module open-match.dev/open-match-docs/site
 go 1.12
 
 require (
-	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 // indirect
-	google.golang.org/appengine v1.5.0
-	gopkg.in/yaml.v2 v2.2.2
+	github.com/golang/protobuf v1.5.2 // indirect
+	golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd // indirect
+	google.golang.org/appengine v1.6.7
+	google.golang.org/protobuf v1.27.1 // indirect
+	gopkg.in/yaml.v2 v2.4.0
 )
