@@ -14,14 +14,9 @@ module open-match.dev/open-match-docs/site
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-go 1.17
+go 1.15
 
 require (
 	google.golang.org/appengine v1.6.7
-	gopkg.in/yaml.v2 v2.4.0
-)
-
-require (
-	github.com/golang/protobuf v1.3.1 // indirect
-	golang.org/x/net v0.0.0-20190603091049-60506f45cf65 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 )
