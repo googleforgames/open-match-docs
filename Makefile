@@ -34,7 +34,7 @@ YEAR_MONTH = $(shell date -u +'%Y%m')
 MAJOR_MINOR_VERSION = $(shell echo $(BASE_VERSION) | cut -d '.' -f1).$(shell echo $(BASE_VERSION) | cut -d '.' -f2)
 
 HUGO_VERSION = 0.82.1
-NODEJS_VERSION = 10.16.0
+NODEJS_VERSION = 16.13.2
 HTMLTEST_VERSION = 0.10.3
 GOLANGCI_VERSION = 1.17.1
 SWAGGERUI_VERSION = 3.22.3
