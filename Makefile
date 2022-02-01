@@ -305,7 +305,7 @@ update-deps:
 	cd $(SITE_DIR) && $(GO) mod tidy
 
 sync-deps:
-	cd $(SITE_DIR) && $(GO) get -d -v ./...
+	cd $(SITE_DIR) && GIT_SSL_NO_VERIFY=1 $(GO) mod download
 
 # Prevents users from running with sudo.
 # There's an exception for Google Cloud Build because it runs as root.

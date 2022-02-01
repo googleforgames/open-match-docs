@@ -33,6 +33,9 @@ RUN export CLOUD_SDK_REPO="cloud-sdk-stretch" && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
     apt-get update -y && apt-get install google-cloud-sdk google-cloud-sdk-app-engine-go -y -qq
 
+RUN sudo apt-get update -y
+RUN sudo apt-get upgrade -y
+
 # Install Golang
 # https://github.com/docker-library/golang/blob/fd272b2b72db82a0bd516ce3d09bba624651516c/1.12/stretch/Dockerfile
 
