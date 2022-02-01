@@ -26,7 +26,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v2"
 
 	"google.golang.org/appengine"
 )
