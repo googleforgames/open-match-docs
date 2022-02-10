@@ -30,13 +30,13 @@ If you already installed Open Match for the [Getting Started Demo]({{< relref ".
 
 Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images used in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
 
-```
+```cmd
 REGISTRY=[YOUR_REGISTRY_URL]
 ```
 
 If using GKE, the below command can be used to populate the image registry:
 
-```
+```cmd
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 
@@ -46,7 +46,7 @@ Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/op
 
 For convenience, set the following variable:
 
-```
+```cmd
 TUTORIALROOT=[SRCROOT]/tutorials/matchmaker101
 ```
 
@@ -54,7 +54,7 @@ TUTORIALROOT=[SRCROOT]/tutorials/matchmaker101
 
 Run this command to create a namespace mm101-tutorial in which all the components for this Tutorial will be deployed.
 
-```
+```bash
 kubectl create namespace mm101-tutorial
 ```
 
