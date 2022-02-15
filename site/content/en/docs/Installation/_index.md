@@ -25,7 +25,7 @@ Below are the steps to create a GKE cluster in the Google Cloud Platform.
 
 Here are the next steps using the gcloud tool.
 
-```bash
+```cmd
 # Login to your Google Account for GCP
 gcloud auth login
 gcloud config set project $YOUR_GCP_PROJECT_ID
