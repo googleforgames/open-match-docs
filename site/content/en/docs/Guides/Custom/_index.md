@@ -34,7 +34,7 @@ data:
 
 To configure Open Match with your custom config, create a new YAML file with this content, make your edits and run this command:
 
-```
+```bash
 kubectl apply -f <filename_here>
 ```
 

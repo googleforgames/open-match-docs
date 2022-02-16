@@ -21,13 +21,13 @@ It is highly recommended that you run the [Basic Matchmaker tutorial]({{< relref
 
 Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [Google Cloud Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images used in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
 
-```bash
+```cmd
 REGISTRY=[YOUR_REGISTRY_URL]
 ```
 
 If using GKE, you can populate the image registry using the command below:
 
-```bash
+```cmd
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 
@@ -37,7 +37,7 @@ Make a local copy of the [Tutorials Folder](https://github.com/googleforgames/op
 
 For convenience, set the following variable:
 
-```bash
+```cmd
 TUTORIALROOT=[SRCROOT]/tutorials/matchmaker102
 ```
 
@@ -150,7 +150,7 @@ Although no changes are needed to the core matchmaking logic, you may add some l
 
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
-```bash
+```cmd
 docker build -t $REGISTRY/mm102-tutorial-frontend frontend/
 docker push $REGISTRY/mm102-tutorial-frontend
 docker build -t $REGISTRY/mm102-tutorial-director director/
@@ -163,7 +163,7 @@ docker push $REGISTRY/mm102-tutorial-matchfunction
 
 Run the below command in the `$TUTORIALROOT` path to deploy the MatchFunction, Game Frontend and the Director to the `mm102-tutorial` namespace:
 
-```bash
+```cmd
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
 ```
 

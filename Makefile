@@ -33,8 +33,8 @@ BUILD_DATE = $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 YEAR_MONTH = $(shell date -u +'%Y%m')
 MAJOR_MINOR_VERSION = $(shell echo $(BASE_VERSION) | cut -d '.' -f1).$(shell echo $(BASE_VERSION) | cut -d '.' -f2)
 
-HUGO_VERSION = 0.55.6
-NODEJS_VERSION = 10.16.0
+HUGO_VERSION = 0.82.1
+NODEJS_VERSION = 16.13.2
 HTMLTEST_VERSION = 0.10.3
 GOLANGCI_VERSION = 1.17.1
 SWAGGERUI_VERSION = 3.22.3
@@ -306,7 +306,7 @@ update-deps:
 	cd $(SITE_DIR) && $(GO) mod tidy
 
 sync-deps:
-	cd $(SITE_DIR) && $(GO) mod download
+	cd $(SITE_DIR) && GIT_SSL_NO_VERIFY=1 $(GO) mod download
 
 # Prevents users from running with sudo.
 # There's an exception for Google Cloud Build because it runs as root.
