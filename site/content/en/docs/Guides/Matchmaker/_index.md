@@ -81,7 +81,7 @@ Now the Ticket representing this player is a part of a Ticket Pool actively bein
 
 1. The Director periodically calls FetchMatches on Open Match Backend to generate Matches for a MatchProfile.
 2. Open Match Backend triggers MatchFunction execution for this MatchProfile.
-3. The MatchFunction fetches all the Tickets from the active matchmaking Pool that match the filters in the the MatchProfile from Open Match QueryService API.
+3. The MatchFunction fetches all the Tickets from the active matchmaking Pool that match the filters in the MatchProfile from Open Match QueryService API.
 4. The MatchFunction generates a Match using a subset of the queried Tickets.
 5. The Open Match Backend returns this Match to the Director.
 
