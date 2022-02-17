@@ -24,7 +24,7 @@
 # If you want information on how to edit this file checkout,
 # http://makefiletutorial.com/
 
-BASE_VERSION = 1.3.0-rc.1
+BASE_VERSION = 1.3.0
 SHORT_SHA = $(shell git rev-parse --short=7 HEAD | tr -d [:punct:])
 VERSION_SUFFIX = $(SHORT_SHA)
 BRANCH_NAME = $(shell git rev-parse --abbrev-ref HEAD | tr -d [:punct:])
@@ -208,6 +208,7 @@ node_modules/: build/toolchain/nodejs/
 	$(NODEJS_BIN)/npm install postcss-scss
 	$(NODEJS_BIN)/npm install postcss-cli autoprefixer
 	$(TOOLCHAIN_DIR)/nodejs/bin/npm install postcss-cli autoprefixer
+	$(TOOLCHAIN_DIR)/nodejs/bin/npm install ts-node
 
 $(RENDERED_SITE_DIR_REL)/: $(HUGO_REL) site/static/swaggerui/ node_modules/
 	rm -rf $(RENDERED_SITE_DIR)/
