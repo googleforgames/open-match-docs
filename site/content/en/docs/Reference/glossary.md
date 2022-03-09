@@ -58,7 +58,7 @@ _Helm is not required for Open Match._
 
 **Terraform**
 
-[Terraform](https://www.terraform.io/intro/index.html#what-is-terraform-) provides
+[Terraform](https://www.terraform.io/intro#what-is-terraform) provides
 a way to express your
 [infrastructure-as-code](https://en.wikipedia.org/wiki/Infrastructure_as_code).
 In other words, you can write a template that says "give me 20 machines each with
