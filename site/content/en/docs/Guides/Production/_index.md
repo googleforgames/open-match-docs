@@ -78,7 +78,7 @@ You need to add the a load balancer config to your gRPC client to enable Open Ma
     ```
 
 ## Enable Redis Sentinel for high-availability and failover supports
-[Redis Sentinel](https://redis.io/topics/sentinel) provides high-availability for Redis. By default, the sentinel is disabled to lower the resource requirements required by Open Match. If you prefer to turn on the sentinel, please override the value of `redis.sentinel.enabled` to true when installing Open Match via helm.
+[Redis Sentinel](https://redis.io/) provides high-availability for Redis. By default, the sentinel is disabled to lower the resource requirements required by Open Match. If you prefer to turn on the sentinel, please override the value of `redis.sentinel.enabled` to true when installing Open Match via helm.
 
 ```bash
 helm install my-release -n open-match open-match/open-match --set redis.sentinel.enabled=true
