@@ -45,7 +45,7 @@ The following tables lists the configurable parameters of the Open Match overrid
 ### Telemetry
 | Supported Backend | Parameter | Description | Default |
 |-----              |-----      |-----        |-----    |
-| zPages            |           | Serves HTTP server runtime profiling data in the format expected by the [pprof](https://godoc.org/net/http/pprof) visualization tool under `/debug/pprof` path |         |
+| zPages            |           | Serves HTTP server runtime profiling data in the format expected by the [pprof](https://pkg.go.dev/net/http/pprof) visualization tool under `/debug/pprof` path |         |
 |                   | `telemetry.zpages.enabled` |  Enable zPages support on Open Match core services |  `true`   |
 | [Jaeger](https://www.jaegertracing.io/)            | | An open source, end-to-end distributed tracing. | |
 |             | `telemetry.jaeger.enabled` | Enable Jaeger exporter on Open Match core services | `false` |
