@@ -122,3 +122,8 @@ date = ["date", "publishDate", "lastmod"]
 lastmod = [":fileModTime"]
 publishDate = ["publishDate", "date"]
 expiryDate = ["expiryDate"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

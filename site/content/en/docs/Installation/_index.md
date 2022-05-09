@@ -38,7 +38,8 @@ gcloud services enable container.googleapis.com
 gcloud compute zones list
 
 # Create a GKE Cluster in this project
-gcloud container clusters create --machine-type n1-standard-2 open-match-cluster --zone us-west1-a --tags open-match
+gcloud container clusters create --machine-type n1-standard-4 \
+  --num-nodes=4 open-match-cluster --zone us-west1-a --tags open-match
 
 # Get kubectl credentials against GKE
 gcloud container clusters get-credentials open-match-cluster --zone us-west1-a
