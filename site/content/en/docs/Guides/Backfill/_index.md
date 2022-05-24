@@ -19,34 +19,31 @@ Some scenarios that could happen when playing multiplayer games include:
 
 A Match Function example using Backfill can be found [here](https://github.com/googleforgames/open-match/blob/master/examples/functions/golang/backfill/mmf/matchfunction.go).
 
-1. Player creates Ticket (`T1`).
+1. Player 1 creates a Ticket (`T1`).
 2. Director calls `Backend.FetchMatches` with a MatchProfile.
 3. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. It returns `T1`.
-4. MMF use `T1`, constructs a new Backfill (`B1`*) and returns a `Match` containing ticket `T1` and Backfill `B1`.
-5. Director starts allocating GameServer with Backfill `B1` information.
-6. Another player creates a Ticket (`T2`).
+4. MMF constructs a new Backfill (`B1`) and returns a `Match` containing ticket `T1` and Backfill `B1`. The Backfill should be created with field `AllocateGameServer` set to `true`, so the game server orchestrator (e.g.: [Agones](https://agones.dev/site/)) knows it has to create a new Game Server. The Director handles making calls to create the Game Server.
+5. Director starts allocating a Game Server with Backfill `B1` information.
+6. Player 2 creates a Ticket (`T2`).
 7. Director calls `Backend.FetchMatches`.
 8. MMF runs `QueryBackfills` and `QueryTickets` using the MatchProfile. They return `B1` and `T2` accordingly.
-9. MMF determines `B1` could be used because it has open slots available. `T2` and `B1` forms a new Match.
-10. When GameServer allocating ends, it starts polling Open Match to acknowledge the backfill with `Frontend.AcknowledgeBackfill` by ID received in the Match (`B1.ID`) and in order to assign the address of the GameServer for `T1` and `T2`.
-
-*: The Backfill should be created with field `AllocateGameServer` set to `true`, so GameServer orchestrator (e.g.: [Agones](https://agones.dev/site/)) knows it has to create a new GameServer.
+9. MMF determines `B1` could be used based on data set on `B1` by the last run of the MMF (e.g. a number of open slots). `T2` and `B1` form a new Match.
+10. When the Game Server has started, it begins polling Open Match to acknowledge the backfill with `Frontend.AcknowledgeBackfill` using the backfill's ID (`B1.ID`) and supplies connection information for the server, to be returned as the `Assignment` data of the tickets `T1` and `T2`. The Game Server also receives the ticket data of the tickets that were assigned so that any data supplied on the ticket (e.g. player IDs) may be used by the game server.
 
 ## Considerations
 
-In order to use Backfill you need to customize your MMF and your Game Servers. BackfillId should be propagated to each Game Server during Game Server allocation. Which would be used later in `AcknowledgeBackfill` requests to define Backfill which is tied to this Game Server.
-If Backfill is not being used, no changes are required since the Backfill API doesn't change 
-the behavior of the current Open Match API state.
+In order to use Backfill you need to customize your MMF and your Game Servers. Backfill IDs should be propagated to each Game Server during Game Server allocation to be used in `AcknowledgeBackfill` requests to define Backfill which is tied to the Game Server.
+
+If Backfill is not being used, no changes are required since the Backfill API doesn't change the behavior of the current Open Match API state.
 
 ### Acknowledging Backfills
 
-AcknowledgeBackfill is a request, that acts as a periodic ping, made to Open Match Frontend to set the assignment on the tickets associated with this backfill.
-GameServer receives current Backfill status as a response.
+`AcknowledgeBackfill` is a request made to the Open Match Frontend that serves to notify Open Match that server still interested in the backfill, and to confirm the assignment of the tickets associated with this backfill in the same manner as `Backend.AssignTickets`. The Game Server receives the current Backfill status as well as a list of new tickets that were just acknowledged by the request as a response. The list is not idempotent, but can be appended to prior lists received from `AcknowledgeBackfill`.
 
-GameServers would run `AcknowledgeBackfill` every N seconds, where N is, at most, `backfillTTL` represents 80% of pendingReleaseTimeout and this value MUST always be bigger than N (backfillTTL = 0.8 * pendingReleaseTimeout; N < backfillTTL, where N is AcknowledgeBackfill interval)
+GameServers must run `AcknowledgeBackfill` within `backfillTTL` seconds after the Backfill is created and within `backfillTTL` of the last `AcknowledgeBackfill` call after that, where `backfillTTL` is 80% of the pendingReleaseTimeout configuration value.
+
+**Note:** You must keep acknowledging a backfill until it is no longer needed, and if it expires the Backfill object must be recreated and the new ID communicated to the Game Server to begin the `AcknowledgeBackfill` process anew.
 
 ### Cleaning up Backfills
 
-This process deletes expired Backfill objects from the state store. Backifll becomes expired if it is not acknowledged in `backfillTTL` period.
-
-Note: you need to keep acknowledging a backfill and if it expires you need to recreate the Backfill object again.
+This process deletes expired Backfill objects from the state store. Backfills become expired if they are not acknowledged in the `backfillTTL` period.

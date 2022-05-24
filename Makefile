@@ -24,7 +24,7 @@
 # If you want information on how to edit this file checkout,
 # http://makefiletutorial.com/
 
-BASE_VERSION = 1.2.0
+BASE_VERSION = 1.3.0
 SHORT_SHA = $(shell git rev-parse --short=7 HEAD | tr -d [:punct:])
 VERSION_SUFFIX = $(SHORT_SHA)
 BRANCH_NAME = $(shell git rev-parse --abbrev-ref HEAD | tr -d [:punct:])
@@ -33,8 +33,8 @@ BUILD_DATE = $(shell date -u +'%Y-%m-%dT%H:%M:%SZ')
 YEAR_MONTH = $(shell date -u +'%Y%m')
 MAJOR_MINOR_VERSION = $(shell echo $(BASE_VERSION) | cut -d '.' -f1).$(shell echo $(BASE_VERSION) | cut -d '.' -f2)
 
-HUGO_VERSION = 0.55.6
-NODEJS_VERSION = 10.16.0
+HUGO_VERSION = 0.82.1
+NODEJS_VERSION = 16.13.2
 HTMLTEST_VERSION = 0.10.3
 GOLANGCI_VERSION = 1.17.1
 SWAGGERUI_VERSION = 3.22.3
@@ -79,7 +79,7 @@ GAE_SITE_VERSION = om$(YEAR_MONTH)
 # If the version is 0.0* then the service name is "development" as in development.open-match.dev.
 ifeq ($(MAJOR_MINOR_VERSION),0.0)
 	GAE_SERVICE_NAME = development
-	OPEN_MATCH_REMOTE_BRANCH = master
+	OPEN_MATCH_REMOTE_BRANCH = main
 else
 	GAE_SERVICE_NAME = $(shell echo $(MAJOR_MINOR_VERSION) | tr . -)
 	OPEN_MATCH_REMOTE_BRANCH = release-$(MAJOR_MINOR_VERSION)
@@ -204,9 +204,11 @@ node_modules/: build/toolchain/nodejs/
 	-rm -r $(REPOSITORY_ROOT)/package.json $(REPOSITORY_ROOT)/package-lock.json
 	-rm -rf $(REPOSITORY_ROOT)/node_modules/
 	echo "{}" > $(REPOSITORY_ROOT)/package.json
+	$(NODEJS_BIN)/npm install postcss
 	$(NODEJS_BIN)/npm install postcss-scss
 	$(NODEJS_BIN)/npm install postcss-cli autoprefixer
 	$(TOOLCHAIN_DIR)/nodejs/bin/npm install postcss-cli autoprefixer
+	$(TOOLCHAIN_DIR)/nodejs/bin/npm install ts-node
 
 $(RENDERED_SITE_DIR_REL)/: $(HUGO_REL) site/static/swaggerui/ node_modules/
 	rm -rf $(RENDERED_SITE_DIR)/
@@ -304,7 +306,7 @@ update-deps:
 	cd $(SITE_DIR) && $(GO) mod tidy
 
 sync-deps:
-	cd $(SITE_DIR) && $(GO) mod download
+	cd $(SITE_DIR) && GIT_SSL_NO_VERIFY=1 $(GO) mod download
 
 # Prevents users from running with sudo.
 # There's an exception for Google Cloud Build because it runs as root.

@@ -39,6 +39,7 @@ description:
   
 - [api/frontend.proto](#api/frontend.proto)
     - [AcknowledgeBackfillRequest](#openmatch.AcknowledgeBackfillRequest)
+    - [AcknowledgeBackfillResponse](#openmatch.AcknowledgeBackfillResponse)
     - [CreateBackfillRequest](#openmatch.CreateBackfillRequest)
     - [CreateTicketRequest](#openmatch.CreateTicketRequest)
     - [DeleteBackfillRequest](#openmatch.DeleteBackfillRequest)
@@ -412,6 +413,23 @@ to possible change or removal.
 
 
 
+<a name="openmatch.AcknowledgeBackfillResponse"></a>
+
+### AcknowledgeBackfillResponse
+BETA FEATURE WARNING: This Request message is not finalized and still subject
+to possible change or removal.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| backfill | [Backfill](#openmatch.Backfill) |  | The Backfill that was acknowledged. |
+| tickets | [Ticket](#openmatch.Ticket) | repeated | All of the Tickets that were successfully assigned |
+
+
+
+
+
+
 <a name="openmatch.CreateBackfillRequest"></a>
 
 ### CreateBackfillRequest
@@ -570,7 +588,7 @@ The FrontendService implements APIs to manage and query status of a Tickets.
 | DeleteTicket | [DeleteTicketRequest](#openmatch.DeleteTicketRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteTicket immediately stops Open Match from using the Ticket for matchmaking and removes the Ticket from state storage. The client should delete the Ticket when finished matchmaking with it. |
 | GetTicket | [GetTicketRequest](#openmatch.GetTicketRequest) | [Ticket](#openmatch.Ticket) | GetTicket get the Ticket associated with the specified TicketId. |
 | WatchAssignments | [WatchAssignmentsRequest](#openmatch.WatchAssignmentsRequest) | [WatchAssignmentsResponse](#openmatch.WatchAssignmentsResponse) stream | WatchAssignments stream back Assignment of the specified TicketId if it is updated. - If the Assignment is not updated, GetAssignment will retry using the configured backoff strategy. |
-| AcknowledgeBackfill | [AcknowledgeBackfillRequest](#openmatch.AcknowledgeBackfillRequest) | [Backfill](#openmatch.Backfill) | AcknowledgeBackfill is used to notify OpenMatch about GameServer connection info This triggers an assignment process. BETA FEATURE WARNING: This call and the associated Request and Response messages are not finalized and still subject to possible change or removal. |
+| AcknowledgeBackfill | [AcknowledgeBackfillRequest](#openmatch.AcknowledgeBackfillRequest) | [AcknowledgeBackfillResponse](#openmatch.AcknowledgeBackfillResponse) | AcknowledgeBackfill is used to notify OpenMatch about GameServer connection info This triggers an assignment process. BETA FEATURE WARNING: This call and the associated Request and Response messages are not finalized and still subject to possible change or removal. |
 | CreateBackfill | [CreateBackfillRequest](#openmatch.CreateBackfillRequest) | [Backfill](#openmatch.Backfill) | CreateBackfill creates a new Backfill object. BETA FEATURE WARNING: This call and the associated Request and Response messages are not finalized and still subject to possible change or removal. |
 | DeleteBackfill | [DeleteBackfillRequest](#openmatch.DeleteBackfillRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteBackfill receives a backfill ID and deletes its resource. Any tickets waiting for this backfill will be returned to the active pool, no longer pending. BETA FEATURE WARNING: This call and the associated Request and Response messages are not finalized and still subject to possible change or removal. |
 | GetBackfill | [GetBackfillRequest](#openmatch.GetBackfillRequest) | [Backfill](#openmatch.Backfill) | GetBackfill returns a backfill object by its ID. BETA FEATURE WARNING: This call and the associated Request and Response messages are not finalized and still subject to possible change or removal. |
