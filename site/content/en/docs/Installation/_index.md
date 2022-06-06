@@ -25,7 +25,7 @@ Below are the steps to create a GKE cluster in the Google Cloud Platform.
 
 Here are the next steps using the gcloud tool.
 
-```bash
+```cmd
 # Login to your Google Account for GCP
 gcloud auth login
 gcloud config set project $YOUR_GCP_PROJECT_ID
@@ -38,7 +38,8 @@ gcloud services enable container.googleapis.com
 gcloud compute zones list
 
 # Create a GKE Cluster in this project
-gcloud container clusters create --machine-type n1-standard-2 open-match-cluster --zone us-west1-a --tags open-match
+gcloud container clusters create --machine-type n1-standard-4 \
+  --num-nodes=4 open-match-cluster --zone us-west1-a --tags open-match
 
 # Get kubectl credentials against GKE
 gcloud container clusters get-credentials open-match-cluster --zone us-west1-a

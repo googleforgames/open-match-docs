@@ -36,7 +36,8 @@ After installing Open Match core services, here is the expected state for the po
 
 ```bash
 kubectl get -n open-match pod
-
+```
+```
 Output:
 
 NAME                                READY   STATUS              RESTARTS   AGE

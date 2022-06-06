@@ -69,12 +69,21 @@ SearchFields: &pb.SearchFields{
 
 ### Fetching the Assignment
 
-The Game Frontend can get the current Ticket from Open Match and check if the Ticket has Assignment information populated. Here is the API to get a Ticket:
+The Game Frontend can get the current Ticket from Open Match and check if the Ticket has Assignment information populated. Here are the APIs to get a Ticket and to get Assignment information respectively :
 
 ```proto
 rpc GetTicket(GetTicketRequest) returns (Ticket) {
   option (google.api.http) = {
     get: "/v1/frontendservice/tickets/{ticket_id}"
+  };
+}
+```
+
+```proto
+rpc WatchAssignments(WatchAssignmentsRequest)
+    returns (stream WatchAssignmentsResponse) {
+  option (google.api.http) = {
+    get: "/v1/frontendservice/tickets/{ticket_id}/assignments"
   };
 }
 ```
