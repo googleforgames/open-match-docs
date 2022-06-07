@@ -54,7 +54,7 @@ The following values need to be changed if your setup is different from the defa
 
 Now that you have customized the Game Frontend, please run the below commands from `$TUTORIALROOT` to build a new image and push it to your configured image registry.
 
-```
+```cmd
 # Build the Frontend image.
 docker build -t $REGISTRY/mm101-tutorial-frontend frontend/
 

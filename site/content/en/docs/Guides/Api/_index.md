@@ -93,7 +93,7 @@ import (
 func main() {
   var m jsonpb.Marshaler
   // The HTTP endpoint of frontend.CreateTicket API
-  apiURL := fmt.Sprintf("http://om-frontend:%d/v1/frontend/tickets", 51504)
+  apiURL := fmt.Sprintf("http://om-frontend:%d/v1/frontendservice/tickets", 51504)
   // Create an Open Match CreateTicketRequest with Open Match's public package
   sent := &pb.CreateTicketRequest{
     Ticket: &pb.Ticket{

@@ -10,13 +10,13 @@ This step assumes that you have completed the Tutorial prerequisites and all pri
 
 The next step is to deploy the Match Function, the Game Frontend and the Director to the same cluster as Open Match deployment but to a different namespace. The `$TUTORIALROOT/matchmaker.yaml` deploys these components to a `mm101-tutorial` namespace. Run the below command in the `$TUTORIALROOT` path to apply this YAML:
 
-- For GKE users, run:
-```
+For GKE users, run:
+```cmd
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
 ```
 
-- For Minikube users, run:
-```
+For Minikube users, run:
+```cmd
 # Instructs Minikube to use local images
 # https://kubernetes.io/docs/setup/learning-environment/minikube/#use-local-images-by-re-using-the-docker-daemon
 eval $(minikube docker-env)
@@ -29,9 +29,10 @@ All the components authored in this tutorial simply log their progress. Thus to 
 
 ### Game Frontend
 
-```
+```bash
 kubectl logs -n mm101-tutorial pod/mm101-tutorial-frontend
-
+```
+```
 # Sample Expected Output
 2019/11/07 17:44:45 Ticket created successfully, id: bn25g39sm0mrm8pkpssg
 2019/11/07 17:44:45 Ticket created successfully, id: bn25g39sm0mrm8pkpst0
@@ -41,9 +42,10 @@ kubectl logs -n mm101-tutorial pod/mm101-tutorial-frontend
 
 ### Director
 
-```
+```bash
 kubectl logs -n mm101-tutorial pod/mm101-tutorial-director
-
+```
+```
 # Output
 2019/11/07 17:45:15 Generated 16 matches for profile mode_based_profile
 2019/11/07 17:45:15 Assigned server 217.7.41.62:2222 to match profile-mode_based_profile-time-2019-11-07T17:45:10.53-0
@@ -52,9 +54,10 @@ kubectl logs -n mm101-tutorial pod/mm101-tutorial-director
 
 ### Match Function
 
-```
+```bash
 kubectl logs -n mm101-tutorial pod/mm101-tutorial-matchfunction
-
+```
+```
 # Output
 2019/11/07 17:45:45 Generating proposals for function mode_based_profile
 2019/11/07 17:45:45 Streaming 5 proposals to Open Match
@@ -64,7 +67,7 @@ kubectl logs -n mm101-tutorial pod/mm101-tutorial-matchfunction
 
 To remove the tutorial and its custom components, here is the command you need to run:
 
-```
+```bash
 kubectl delete namespace mm101-tutorial
 ```
 
