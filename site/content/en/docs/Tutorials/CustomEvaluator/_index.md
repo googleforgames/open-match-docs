@@ -29,13 +29,13 @@ However, given that the default Evaluator in the open-match namespace will not b
 
 Please setup an Image registry(such as [Docker Hub](https://hub.docker.com/) or [GC Container Registry](https://cloud.google.com/container-registry/)) to store the Docker Images used in this tutorial. Once you have set this up, here are the instructions to set up a shell variable that points to your registry:
 
-```bash
+```cmd
 REGISTRY=[YOUR_REGISTRY_URL]
 ```
 
 If using GKE, you can populate the image registry using the command below:
 
-```bash
+```cmd
 REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 ```
 
@@ -45,7 +45,7 @@ Make a local copy of the [tutorials Folder](https://github.com/googleforgames/op
 
 For convenience, set the following variable:
 
-```bash
+```cmd
 TUTORIALROOT=[SRCROOT]/tutorials/custom_evaluator
 ```
 
@@ -111,7 +111,7 @@ As a reference, you may check the implementation of the [tutorial solution Evalu
 
 Now that we have a custom Evaluator, please run the below commands in the `$TUTORIALROOT` to build and push the Evaluator to your configured image registry.
 
-```bash
+```cmd
 docker build -t $REGISTRY/custom-eval-tutorial-evaluator evaluator/
 docker push $REGISTRY/custom-eval-tutorial-evaluator
 ```
@@ -120,7 +120,7 @@ docker push $REGISTRY/custom-eval-tutorial-evaluator
 
 Run the below command in the `$TUTORIALROOT` path to deploy the custom Evaluator to the `custom-eval-tutorial` namespace:
 
-```bash
+```cmd
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" evaluator/evaluator.yaml | kubectl apply -f -
 ```
 
@@ -136,7 +136,7 @@ kubectl apply -f customization.yaml --namespace open-match
 
 Now that you have customized these components, please run the below commands from `$TUTORIALROOT` to build new images and push them to your configured image registry.
 
-```bash
+```cmd
 docker build -t $REGISTRY/custom-eval-tutorial-frontend frontend/
 docker push $REGISTRY/custom-eval-tutorial-frontend
 docker build -t $REGISTRY/custom-eval-tutorial-director director/
@@ -149,7 +149,7 @@ docker push $REGISTRY/custom-eval-tutorial-matchfunction
 
 Run the below command in the `$TUTORIALROOT` path to deploy the MatchFunction, Game Frontend. the Director to the `custom-eval-tutorial` namespace:
 
-```bash
+```cmd
 sed "s|REGISTRY_PLACEHOLDER|$REGISTRY|g" matchmaker.yaml | kubectl apply -f -
 ```
 

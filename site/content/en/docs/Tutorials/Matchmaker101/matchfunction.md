@@ -74,7 +74,7 @@ The following values need to be changed if your setup is different from the defa
 
 Now that you have customized the MatchFunction, please run the below commands from `$TUTORIALROOT` to build a new image and push it to your configured image registry.
 
-```
+```cmd
 # Build the MatchFunction image.
 docker build -t $REGISTRY/mm101-tutorial-matchfunction matchfunction/
 
