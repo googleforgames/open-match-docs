@@ -96,7 +96,7 @@ steps:
 
 - id: 'Build: Website'
   name: 'gcr.io/$PROJECT_ID/open-match-docs-build'
-  args: ['make', 'BRANCH_NAME=${BRANCH_NAME}', 'build/site/']
+  args: ['make', 'BRANCH_NAME=${BRANCH_NAME}', 'build/site/', "ENV=HUGO_ENV=production"]
   waitFor: ['Lint: Format and Vet']
 
 - id: 'Test: Website'
@@ -113,7 +113,7 @@ steps:
     path: '/go'
 
 substitutions:
-    _OM_VERSION: "1.3.0"
+    _OM_VERSION: "1.4.0"
     _GCB_POST_SUBMIT: "0"
     _GCB_LATEST_VERSION: "undefined"
 logsBucket: 'gs://open-match-site-build-logs/'
