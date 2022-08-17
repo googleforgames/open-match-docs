@@ -96,7 +96,7 @@ steps:
 
 - id: 'Build: Website'
   name: 'gcr.io/$PROJECT_ID/open-match-docs-build'
-  args: ['make', 'BRANCH_NAME=${BRANCH_NAME}', 'build/site/']
+  args: ['make', 'BRANCH_NAME=${BRANCH_NAME}', 'build/site/', "ENV=HUGO_ENV=production"]
   waitFor: ['Lint: Format and Vet']
 
 - id: 'Test: Website'
