@@ -33,7 +33,7 @@ REGISTRY=gcr.io/$(gcloud config list --format 'value(core.project)')
 
 ### Get the tutorial template
 
-Make a local copy of the [tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/default_evaluator). Use `tutorials/default_evaluator` as a working copy for all the instructions in this tutorial.
+Make a local copy of the [tutorials Folder](https://github.com/googleforgames/open-match/blob/{{< param release_branch >}}/tutorials/default_evaluator). Checkout `release-x.y` branch（e.g. release-1.3, release-1.4） of the Open Match Git repository. Use `tutorials/default_evaluator` of `release-x.y` branch as a working copy for all the instructions in this tutorial.
 
 For convenience, set the following variable:
 
