@@ -59,7 +59,8 @@ helm install open-match --create-namespace --namespace open-match open-match/ope
 To uninstall/delete the `open-match` deployment:
 
 ```bash
-helm uninstall -n open-match open-match
+helm uninstall -n open-match open-match && \ 
+kubectl delete namespace open-match
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
