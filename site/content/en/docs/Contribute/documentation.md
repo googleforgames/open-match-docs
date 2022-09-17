@@ -25,7 +25,7 @@ If you're adding a new page, changing the landing page, or making substantial ch
  1. Run `make run-site` to start the webserver. It'll be hosted on http://localhost:8080/.
  1. Open your favorite editor and navigate to the documentation which is stored at `$(REPOSITORY_ROOT)/site/content/en/`.
  1. Make your changes and run `git commit -m` and `git push`
- 1. Follow the Github Pull Request workflow to submit your changes.
+ 1. Follow the GitHub Pull Request workflow to submit your changes.
 
 ## Platform
 
