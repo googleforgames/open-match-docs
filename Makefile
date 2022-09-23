@@ -213,7 +213,7 @@ node_modules/: build/toolchain/nodejs/
 $(RENDERED_SITE_DIR_REL)/: $(HUGO_REL) site/static/swaggerui/ node_modules/
 	rm -rf $(RENDERED_SITE_DIR)/
 	mkdir -p $(RENDERED_SITE_DIR)/
-	cd $(SITE_DIR) && $(HUGO) --config=config.toml --source . --destination $(RENDERED_SITE_DIR)/public/
+	cd $(SITE_DIR) && $(ENV) $(HUGO) --config=config.toml --source . --destination $(RENDERED_SITE_DIR)/public/
 	# Only copy the root directory since that has the AppEngine serving code.
 	-cp -f $(SITE_DIR)/* $(RENDERED_SITE_DIR)
 	-cp -f $(SITE_DIR)/.gcloudignore $(RENDERED_SITE_DIR)/.gcloudignore
