@@ -74,7 +74,7 @@ github_docs_repo = "https://github.com/googleforgames/open-match-docs"
 gcs_engine_id = "008748710159674449076:sqoelpnrdoe"
 
 release_branch = "main"
-release_version = "1.5.0"
+release_version = "1.5.0-rc.1"
 slack_link = "https://join.slack.com/t/open-match/shared_invite/enQtNDM1NjcxNTY4MTgzLTM5ZWQxNjc1YWI3MzJmN2RiMWJmYWI0ZjFiNzNkZmNkMWQ3YWU5OGVkNzA5Yzc4OGVkOGU5MTc0OTA5ZTA5NDU"
 
 # Enable syntax highlighting and copy buttons on code blocks with Prism
