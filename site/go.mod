@@ -18,5 +18,5 @@ go 1.15
 
 require (
 	google.golang.org/appengine v1.6.7
-	gopkg.in/yaml.v2 v2.4.0
+	gopkg.in/yaml.v3 v3.0.1
 )
