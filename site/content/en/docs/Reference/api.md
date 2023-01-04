@@ -63,6 +63,7 @@ description:
     - [Assignment.ExtensionsEntry](#openmatch-Assignment-ExtensionsEntry)
     - [Backfill](#openmatch-Backfill)
     - [Backfill.ExtensionsEntry](#openmatch-Backfill-ExtensionsEntry)
+    - [Backfill.PersistentFieldEntry](#openmatch-Backfill-PersistentFieldEntry)
     - [DoubleRangeFilter](#openmatch-DoubleRangeFilter)
     - [Match](#openmatch-Match)
     - [Match.ExtensionsEntry](#openmatch-Match-ExtensionsEntry)
@@ -76,6 +77,7 @@ description:
     - [TagPresentFilter](#openmatch-TagPresentFilter)
     - [Ticket](#openmatch-Ticket)
     - [Ticket.ExtensionsEntry](#openmatch-Ticket-ExtensionsEntry)
+    - [Ticket.PersistentFieldEntry](#openmatch-Ticket-PersistentFieldEntry)
   
     - [DoubleRangeFilter.Exclude](#openmatch-DoubleRangeFilter-Exclude)
   
@@ -708,6 +710,7 @@ messages are not finalized and still subject to possible change or removal.
 | id | [string](#string) |  | Id represents an auto-generated Id issued by Open Match. |
 | search_fields | [SearchFields](#openmatch-SearchFields) |  | Search fields are the fields which Open Match is aware of, and can be used when specifying filters. |
 | extensions | [Backfill.ExtensionsEntry](#openmatch-Backfill-ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the Match Function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+| persistent_field | [Backfill.PersistentFieldEntry](#openmatch-Backfill-PersistentFieldEntry) | repeated | Customized information not inspected by Open Match, to be kept persistent throughout the life-cycle of a backfill. Optional, depending on the requirements of the connected systems. |
 | create_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Create time is the time the Ticket was created. It is populated by Open Match at the time of Ticket creation. |
 | generation | [int64](#int64) |  | Generation gets incremented on GameServers update operations. Prevents the MMF from overriding a newer version from the game server. Do NOT read or write to this field, it is for internal tracking, and changing the value will cause bugs. |
 
@@ -719,6 +722,22 @@ messages are not finalized and still subject to possible change or removal.
 <a name="openmatch-Backfill-ExtensionsEntry"></a>
 
 ### Backfill.ExtensionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="openmatch-Backfill-PersistentFieldEntry"></a>
+
+### Backfill.PersistentFieldEntry
 
 
 
@@ -974,6 +993,7 @@ Ticket.
 | assignment | [Assignment](#openmatch-Assignment) |  | An Assignment represents a game server assignment associated with a Ticket, or whatever finalized matched state means for your use case. Open Match does not require or inspect any fields on Assignment. |
 | search_fields | [SearchFields](#openmatch-SearchFields) |  | Search fields are the fields which Open Match is aware of, and can be used when specifying filters. |
 | extensions | [Ticket.ExtensionsEntry](#openmatch-Ticket-ExtensionsEntry) | repeated | Customized information not inspected by Open Match, to be used by the match making function, evaluator, and components making calls to Open Match. Optional, depending on the requirements of the connected systems. |
+| persistent_field | [Ticket.PersistentFieldEntry](#openmatch-Ticket-PersistentFieldEntry) | repeated | Customized information not inspected by Open Match, to be kept persistent throughout the life-cycle of a ticket. Optional, depending on the requirements of the connected systems. |
 | create_time | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Create time is the time the Ticket was created. It is populated by Open Match at the time of Ticket creation. |
 
 
@@ -984,6 +1004,22 @@ Ticket.
 <a name="openmatch-Ticket-ExtensionsEntry"></a>
 
 ### Ticket.ExtensionsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="openmatch-Ticket-PersistentFieldEntry"></a>
+
+### Ticket.PersistentFieldEntry
 
 
 
