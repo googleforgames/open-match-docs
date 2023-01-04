@@ -17,6 +17,14 @@ description: >
 If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/intro/) documentation to get started. The Open Match helm chart only installs the core services by default, please [override default helm configs]({{< relref "../Installation/helm.md#configuration" >}}) if you need to install telemetry support.
 {{< /alert >}}
 
+Open Match has various deployment options. Depending on your needs you can choose one of the available deployment options below:
+
+- [Install Open Match using stable Helm repository] ({{< relref "../Installation/helm.md#install-open-match-using-stable-helm-repository">}})
+- [Install Open Match using a specific version] ({{< relref "../Installation/helm.md#install-open-match-using-a-specific-version">}})
+- [Install Open Match with the Default Evaluator] ({{< relref "../Installation/helm.md#install-open-match-with-the-default-evaluator">}})
+
+
+## Install Open Match using stable Helm repository
 To install the chart with the release name `open-match` using our stable helm repository:
 
 ```bash
@@ -24,6 +32,7 @@ helm repo add open-match https://open-match.dev/chart/stable
 helm install open-match --create-namespace --namespace open-match open-match/open-match
 ```
 
+## Install Open Match using a specific version
 Helm install the latest stable version of Open Match `v{{< param release_version >}}` by default. To view the available helm chart versions and install a specific Open Match version:
 
 ```bash
@@ -41,18 +50,30 @@ This custom configuration is provided to the Open Match components via a ConfigM
 Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is available.
 {{% /alert %}}
 
-## Install the default Evaluator
+## Install Open Match with the Default Evaluator
 
 Run the command below to install the default Evaluator and configure Open Match to use it.
 
 ```bash
-# Install the default evaluator
-# Install ConfigMap `om-configmap-override`, this ConfigMap configures Open Match to talk to the default evaluator 
+# Install the Default Evaluator
+# Install ConfigMap `om-configmap-override`, this ConfigMap configures Open Match to talk to the Default Evaluator 
 helm install open-match --create-namespace --namespace open-match open-match/open-match \
   --set open-match-customize.enabled=true \
   --set open-match-customize.evaluator.enabled=true \
   --set open-match-override.enabled=true 
 ```
+
+To install Open Match with the Default Evaluator and another version of Open Match, you can run this command below
+
+```bash
+# Install the Default Evaluator with specific version of Open Match
+# Install ConfigMap `om-configmap-override`, this ConfigMap configures Open Match to talk to the Default Evaluator 
+helm install open-match --create-namespace --namespace open-match open-match/open-match --version=CHART_VERSION \
+  --set open-match-customize.enabled=true \
+  --set open-match-customize.evaluator.enabled=true \
+  --set open-match-override.enabled=true 
+```
+
 
 ## Uninstalling the Chart
 
