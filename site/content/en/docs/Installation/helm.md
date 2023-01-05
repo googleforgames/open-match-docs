@@ -19,9 +19,9 @@ If you don't have `Helm` installed, read the [Using Helm](https://helm.sh/docs/i
 
 Open Match has various deployment options. Depending on your needs you can choose one of the available deployment options below:
 
-  - [Install Open Match using stable Helm repository]({{< relref "../../Installation/helm.md#install-open-match-using-stable-helm-repository" >}})
-  - [Install Open Match using a specific version]({{< relref "../../Installation/helm.md#install-open-match-using-a-specific-version" >}})
-  - [Install Open Match with the Default Evaluator]({{< relref "../../Installation/helm.md#install-open-match-with-the-default-evaluator" >}})
+  - [Install Open Match using stable Helm repository]({{< relref "../Installation/helm.md#install-open-match-using-stable-helm-repository" >}})
+  - [Install Open Match using a specific version]({{< relref "../Installation/helm.md#install-open-match-using-a-specific-version" >}})
+  - [Install Open Match with the Default Evaluator]({{< relref "../Installation/helm.md#install-open-match-with-the-default-evaluator" >}})
 
 ## Install Open Match using stable Helm repository
 To install the chart with the release name `open-match` using our stable helm repository:
