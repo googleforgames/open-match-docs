@@ -127,3 +127,11 @@ expiryDate = ["expiryDate"]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[server]
+[[server.headers]]
+  for = '/**'
+  [server.headers.values]
+    X-Content-Type-Options = 'nosniff'
+    X-Frame-Options = 'DENY'
+    X-XSS-Protection = '1; mode=block'
