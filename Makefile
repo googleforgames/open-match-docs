@@ -37,7 +37,7 @@ HUGO_VERSION = 0.82.1
 NODEJS_VERSION = 16.13.2
 HTMLTEST_VERSION = 0.10.3
 GOLANGCI_VERSION = 1.17.1
-SWAGGERUI_VERSION = 3.22.3
+SWAGGERUI_VERSION = 4.15.5
 
 GO = GO111MODULE=on go
 # Defines the absolute local directory of the open-match project
@@ -229,7 +229,7 @@ site/static/swaggerui/:
 		$(SITE_DIR)/static/swaggerui
 	# Update the Swagger doc URLs to point to the same version as 
 	curl -L -o $(SITE_DIR)/static/swaggerui/config.json https://raw.githubusercontent.com/googleforgames/open-match/$(OPEN_MATCH_REMOTE_BRANCH)/third_party/swaggerui/config.json
-	$(SED_REPLACE) 's|url:.*|configUrl: "config.json",|g' $(SITE_DIR)/static/swaggerui/index.html
+	$(SED_REPLACE) 's|url:.*|configUrl: "config.json",|g' $(SITE_DIR)/static/swaggerui/swagger-initializer.js
 	rm -rf $(TOOLCHAIN_DIR)/swaggerui-temp
 
 md-test: docker
