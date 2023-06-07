@@ -60,7 +60,16 @@ func makeMatches(p *pb.MatchProfile, poolTickets map[string][]*pb.Ticket) ([]*pb
 }
 ```
 
-Please copy the above helper or add your own matchmaking logic to `$TUTORIALROOT/matchfunction/mmf/matchfunction.go`. Also, you may change the number of Tickets per match to observe its impact on the matchmaker run.
+Please copy the above helper or add your own matchmaking logic to `$TUTORIALROOT/matchfunction/mmf/matchfunction.go`. Also, you may change the number of Tickets per match to observe its impact on the matchmaker run. Please make sure to uncomment relevant values in the copied ```matchfunction.go``` file:
+
+```golang
+const (
+	matchName = "basic-matchfunction"
+
+	// Uncomment if following the tutorial
+	// ticketsPerPoolPerMatch = 4
+)
+```
 
 ### Configuring
 
