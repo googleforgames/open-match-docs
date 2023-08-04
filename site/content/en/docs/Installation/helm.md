@@ -44,7 +44,7 @@ helm install open-match --create-namespace --namespace open-match open-match/ope
 {{% alert title="Note" color="info" %}}
 Open Match needs to be customized to run as a Matchmaker.
 This custom configuration is provided to the Open Match components via a ConfigMap
-(<code>om-configmap-override</code>).
+(<code>open-match-configmap-override</code>).
 
 Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is available.
 {{% /alert %}}
