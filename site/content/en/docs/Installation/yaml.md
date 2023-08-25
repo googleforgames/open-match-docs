@@ -8,7 +8,7 @@ description: >
 
 ## Prerequisites
 
-- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
+- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.27+
 
 ## Install Core Open Match
 
@@ -18,7 +18,6 @@ The `01-open-match-core.yaml` contains:
 
 * Core Open Match service deployments.
 * A Redis deployment as Open Match's state storage system.
-* ServiceAccounts, Roles, and RoleBindings to define Open Match deployments' IAMs.
 * HorizontalAutoScalars to auto-scale Open Match based on pods' average CPU utilization.
 
 Here is the command to install the Open Match core in your cluster:
@@ -40,18 +39,18 @@ kubectl get -n open-match pod
 ```
 Output:
 
-NAME                                READY   STATUS              RESTARTS   AGE
-om-backend-76d8d76c96-fmhmn         0/1     ContainerCreating   0          3m53s
-om-frontend-57fc9f6b66-86hxj        0/1     ContainerCreating   0          3m53s
-om-query-799d8549d4-5qpgx           0/1     ContainerCreating   0          3m53s
-om-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
-om-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
+NAME                                        READY   STATUS              RESTARTS   AGE
+open-match-backend-76d8d76c96-fmhmn         0/1     ContainerCreating   0          3m53s
+open-match-frontend-57fc9f6b66-86hxj        0/1     ContainerCreating   0          3m53s
+open-match-query-799d8549d4-5qpgx           0/1     ContainerCreating   0          3m53s
+open-match-swaggerui-867d79b885-m9q6x       0/1     ContainerCreating   0          3m54s
+open-match-synchronizer-7f48f84dfd-j8swx    0/1     ContainerCreating   0          3m54s
 ```
 
 {{% alert title="Note" color="info" %}}
 Open Match needs to be customized to run as a Matchmaker.
 This custom configuration is provided to the Open Match components via a ConfigMap
-(<code>om-configmap-override</code>).
+(<code>open-match-configmap-override</code>).
 
 Thus, starting the core service pods will remain in <code>ContainerCreating</code> until this config map is available.
 {{% /alert %}}
@@ -75,7 +74,6 @@ kubectl apply --namespace open-match \
 To delete Open Match and the corresponding sample components from this cluster, simply run:
 
 ```bash
-kubectl delete psp,clusterrole,clusterrolebinding --selector=release=open-match
 kubectl delete namespace open-match
 ```
 
