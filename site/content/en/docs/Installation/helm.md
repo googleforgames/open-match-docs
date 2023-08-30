@@ -8,8 +8,8 @@ description: >
 
 ## Prerequisites
 
-- [Helm](https://docs.helm.sh/helm/) package manager 3.0.0+
-- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.13+
+- [Helm](https://docs.helm.sh/helm/) package manager, tested on version 3.12.3+
+- [Kubernetes](https://kubernetes.io) cluster, tested on Kubernetes version 1.27+
 
 ## Install the Open Match helm chart
 
@@ -91,11 +91,10 @@ Specify each parameter using the `--set key=value[,key=value]` argument to `helm
 
 ```bash
 helm install --name open-match --namespace open-match open-match/open-match \
-  --set open-match-telemetry.enabled=true  \
-  --set open-match-telemetry.jaeger.enabled=true
+  --set open-match-telemetry.enabled=true 
 ```
 
-The above command sets the namespace where Open Match is deployed to `open-match`. Additionally turn on the telemetry exporters and deploy Jaeger along with Open Match core services.
+The above command sets the namespace where Open Match is deployed to `open-match`, and turns on the telemetry exporters along with installing Open Match core services.
 
 The following tables lists the configurable parameters of the Open Match chart and their default values.
 
@@ -114,7 +113,6 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `open-match-core.proposalCollectionInterval` | Length of time after match function has started before it will be canceled. | `20s` |
 | `open-match-core.pendingReleaseTimeout` | Defines the time before a ticket returns to the pool after it was fetched. | `1m` |
 | `open-match-core.assignedDeleteTimeout` | Time after a ticket has been assigned before it is automatically deleted. | `10m` |
-| `open-match-core.queryPageSize` | Maximum number of tickets to return on a single QueryTicketsResponse. | `10000` |
 | `open-match-core.backfillLockTimeout` | Defines the time of keeping a lock on a single backfill. | `1m` |
 | `open-match-override.enabled` | Turn on/off the installation of `om-override-configmap` | `false` |
 | `open-match-telemetry.enabled` | Turn on/off the installation of Open Match telemetry services | `false` |
@@ -127,10 +125,6 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `global.tls.rootca.mountPath`  | The VolumeMount path for TLS CA | `/app/secrets/tls/rootca`  |
 | `global.logging.rpc.enabled`  | Turn on/off RPC payload logging for all Open Match core services | `false`  |
 | `global.telemetry.zpages.enabled` | Turn on/off Open Match zPages instrument. | `true`  |
-| `global.telemetry.jaeger.enabled`  | Turn on/off Open Match Jaeger exporter. Also install Jaeger if `open-match-telemetry.enabled` is set to true  | `false` |
-| `global.telemetry.jaeger.samplerFraction` | Configure a sampler that samples a given fraction of traces  | `1` |
-| `global.telemetry.jaeger.agentEndpoint` | AgentEndpoint instructs exporter to send spans to jaeger-agent at this address | `open-match-jaeger-agent:6831` |
-| `global.telemetry.jaeger.collectorEndpoint`  | CollectorEndpoint is the full url to the Jaeger HTTP Thrift collector | `open-match-jaeger-collector:14268/api/traces` |
 | `global.telemetry.prometheus.enabled` | Turn on/off Open Match Prometheus exporter. Also install Prometheus if `open-match-telemetry.enabled` is set to true | `false` |
 | `global.telemetry.prometheus.endpoint` | Bind the Prometheus exporters to the specified endpoint handler, also configures the `prometheus.io/path` k8s scraping annotations  | `/metrics` |
 | `global.telemetry.prometheus.serviceDiscovery` | If Prometheus is enabled and `serviceDiscover: true`, add the Prometheus scraping annotations to each Pod of the Open Match core services | `true` |
@@ -139,7 +133,6 @@ The following tables lists the configurable parameters of the Open Match chart a
 | `global.telemetry.grafana.enabled` | Turn on/off Open Match Grafana exporter. Also install Grafana if `open-match-telemetry.enabled` is set to true | `false`  |
 | `global.telemetry.reportingPeriod`  | Overrides the reporting periods of Open Match telemetry exporters | `1m` |
 | `open-match-telemetry.grafana` | Inherits the values from [Grafana helm chart](https://github.com/helm/charts/tree/master/stable/grafana)  |  |
-| `open-match-telemetry.jaeger`  | Inherits the values from [Jaeger helm chart](https://github.com/helm/charts/tree/master/incubator/jaeger)  |  |
 | `open-match-telemetry.prometheus`  | Inherits the values from [Prometheus helm chart](https://github.com/helm/charts/tree/master/stable/prometheus) |  |
 | `redis` | Inherits the values from the [Bitnami Redis Helm chart](https://github.com/bitnami/charts/tree/master/bitnami/redis) |  |
 
