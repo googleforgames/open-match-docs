@@ -108,3 +108,10 @@ helm install open-match --create-namespace --namespace open-match open-match/ope
   --set open-match-core.redis.enabled=false \
   --set open-match-core.redis.hostname= # Your redis server address
 ```
+
+## Enabling Read Replicas 
+Open Match can support many profiles (see the [issue](https://github.com/googleforgames/open-match/issues/1125) here), but read replica support has benefits depending on scale. It currently uses an open-source Redis image, and all reads and writes are on the master node (which will be referred to as the primary node going forward). At scale, there will be a considerable load when reading and writing, especially when querying tickets for profiles. To turn on read-replicas, follow the suggestions below: 
+ - Ensure that Redis is configured for read-replicas (read the documentation for Redis to help) within the values.yaml/values-production.yaml.
+ - Within `internal/statestore/redis.go`, modify the [RedisBackend](https://github.com/googleforgames/open-match/blob/120a114647fdae3423fa492fd4c01bdd9f6498b3/internal/statestore/redis.go#L58) to have a read-only pool. The port 6379, which is the port to connect to replicas for read-only access by default for most Redis images (see the documentation for the Redis image used) 
+ - Within the [`GetTickets`](https://github.com/googleforgames/open-match/blob/120a114647fdae3423fa492fd4c01bdd9f6498b3/internal/statestore/ticket.go#L60) function in `internal/statestore/ticket.go`, modify the function to use the read-only pool for the [connection](https://github.com/googleforgames/open-match/blob/120a114647fdae3423fa492fd4c01bdd9f6498b3/internal/statestore/ticket.go#L61).
+Reading and caching tickets will now happen on replicas, and the load on the primary node will be lessened.  
