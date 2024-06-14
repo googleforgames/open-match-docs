@@ -96,7 +96,7 @@ helm install --name open-match --namespace open-match open-match/open-match \
 
 The above command sets the namespace where Open Match is deployed to `open-match`, and turns on the telemetry exporters along with installing Open Match core services.
 
-The following tables lists the configurable parameters of the Open Match chart and their default values.
+The following tables lists the configurable parameters of the Open Match chart and their default values. Refer to the [Values.yaml] (https://github.com/googleforgames/open-match/blob/main/install/helm/open-match/values.yaml) file to customize your configs.
 
 | Parameter                                           | Description                                                                                     | Default                |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ---------------------- |
