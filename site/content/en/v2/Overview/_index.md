@@ -1,6 +1,6 @@
 ---
-title: "Open Match 2"
-linkTitle: "Open Match 2 Documentation"
+title: "Open Match 2 Overview"
+linkTitle: "Overview"
 weight: 1
 type: docs
 menu:
