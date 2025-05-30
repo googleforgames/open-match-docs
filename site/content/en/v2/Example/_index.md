@@ -7,4 +7,10 @@ description: >
   Open Match 2 examples
 ---
 
-Examples for Open Match 2 will go here.
+**Github Repository: https://github.com/googleforgames/open-match2**
+
+## Space Agon
+See how Open Match 2 is used to build a matchmaker for a multiplayer space shooting game called Space Agon.
+Github repository: https://github.com/googleforgames/space-agon/tree/main.
+
+TODO: More details will go here.
