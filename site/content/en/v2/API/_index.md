@@ -55,7 +55,7 @@ The OpenMatchService API exposes the following methods:
 
 **RPC Name**: ActivateTickets 
 **Request**: ActivateTicketsRequest  
-**Response**: ActivateTicketsResponse
+**Response**: Empty
 
 **Description**: Activates a list of ticket IDs, making them eligible to be placed in matchmaking pools.
 
@@ -64,17 +64,13 @@ The OpenMatchService API exposes the following methods:
 **Request**:
 ```json
 { "ticket_ids": ["abcdef12345", "ghijk67890"] }
-```
-**Response**:
-```json
-{}
 ```
 
 ## DeactivateTickets
 
 **RPC Name**: DeactivateTickets 
 **Request**: DeactivateTicketsRequest  
-**Response**: DeactivateTicketsResponse
+**Response**: Empty
 
 **Description**: Activates a list of ticket IDs, making them eligible to be placed in matchmaking pools.
 
@@ -84,7 +80,129 @@ The OpenMatchService API exposes the following methods:
 ```json
 { "ticket_ids": ["abcdef12345", "ghijk67890"] }
 ```
+
+## InvokeMatchmakingFunctions
+
+**RPC Name**: InvokeMatchmakingFunctions 
+**Request**: MmfRequest  
+**Response**: stream StreamedMmfResponse
+
+**Description**: This RPC is the core of matchmaking. It takes a match profile, processes the tickets
+based on pool filters, and invokes external matchmaking functions to return valid matchmaking results.
+
+### Example
+
+**Request**:
+```json
+{
+  "profile": {
+    "name": "1v1",
+    "pools": {
+      "all": {
+        "name": "everyone"
+      }
+    }
+  },
+  "mmfs": [
+    {
+      "host": "http://mmf.default.svc.cluster.local",
+      "port": 50502,
+      "type": "GRPC"
+    }
+  ]
+}
+```
 **Response**:
 ```json
-{}
+[
+  {
+    "match": {
+      "id": "profile-1v1-time-2025-06-03T20:06:57.10-num-0",
+      "rosters": {
+        "everyone": {
+          "name": "1v1",
+          "tickets": [
+            {
+              "id": "1748981212557-0",
+              "expirationTime": "2025-06-03T20:16:52.440304094Z",
+              "attributes": {
+                "creationTime": "2025-06-03T20:06:52.440303651Z"
+              }
+            },
+            {
+              "id": "1748981214061-0",
+              "expirationTime": "2025-06-03T20:16:53.995424380Z",
+              "attributes": {
+                "creationTime": "2025-06-03T20:06:53.995424041Z"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+]
 ```
+
+## WatchAssignments (Deprecated)
+
+**RPC Name**: WatchAssignments
+**Request**: WatchAssignmentsRequest
+**Response**: stream StreamedWatchAssignmentsResponse
+
+**Description**: Streams assignments for each ticket ID requested, as long as they exist before the
+specified timeout. This RPC is designed for situations where clients need to continuously monitor
+the status of assignments for tickets, such as when you want to know when a player has been assigned
+to a server or a match.
+
+### Example
+
+**Request**:
+```json
+{
+  "ticket_ids": ["abcdef12345", "ghijk67890"]
+}
+```
+**Response**:
+```json
+[
+  {
+    "ticket_id": "abcdef12345",
+    "assignment_details": {
+      "server_id": "server_1",
+      "match_id": "match_12345"
+    }
+  },
+  {
+    "ticket_id": "ghijk67890",
+    "assignment_details": {
+      "server_id": "server_2",
+      "match_id": "match_12346"
+    }
+  }
+]
+```
+
+## CreateAssignments (Deprecated)
+
+**RPC Name**: CreateAssignments
+**Request**: CreateAssignmentsRequest
+**Response**: Empty
+
+**Description**: Creates assignments that contain match information for tickets with matches assigned.
+
+### Example
+
+**Request**:
+```json
+{
+  "assignment_roster": [
+    {
+      "ticket_id": "abcdef12345",
+      "assignment_details": {
+        "server_id": "server_1",
+        "match_id": "match_12345"
+      }
+    }
+  ]
+}
