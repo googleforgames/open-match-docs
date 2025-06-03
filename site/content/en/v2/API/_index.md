@@ -206,5 +206,3 @@ to a server or a match.
     }
   ]
 }
-
-```
