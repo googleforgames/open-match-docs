@@ -29,5 +29,5 @@ The Space Agon example underwent a migration from using Open Match 1 to Open Mat
     - [mmf/mmf.go](https://github.com/googleforgames/space-agon/blob/main/mmf/mmf.go)
     - [install/helm/space-agon/templates](https://github.com/googleforgames/space-agon/tree/main/install/helm/space-agon/templates)
     - [install/helm/space-agon/values.yaml](https://github.com/googleforgames/space-agon/blob/main/install/helm/space-agon/values.yaml)
-    - [omclient/omclient.go](https://github.com/googleforgames/space-agon/blob/main/omclient/omclient.go) - mostly copied from https://github.com/peterzhongyi/open-match-ecosystem/blob/main/v2/internal/omclient/omclient.go, but added an initializer and assignment related APIs.
-    - [logging/logging.go](https://github.com/googleforgames/space-agon/blob/main/logging/logging.go) - completely copied from https://github.com/peterzhongyi/open-match-ecosystem/blob/main/v2/internal/logging/logging.go.
+    - [omclient/omclient.go](https://github.com/googleforgames/space-agon/blob/main/omclient/omclient.go) - mostly copied from https://github.com/googleforgames/open-match-ecosystem/blob/main/v2/internal/omclient/omclient.go, but added an initializer and assignment related APIs.
+    - [logging/logging.go](https://github.com/googleforgames/space-agon/blob/main/logging/logging.go) - completely copied from https://github.com/googleforgames/open-match-ecosystem/blob/main/v2/internal/logging/logging.go.
