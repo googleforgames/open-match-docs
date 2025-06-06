@@ -12,5 +12,3 @@ description: >
 ## Space Agon
 See how Open Match 2 is used to build a matchmaker for a multiplayer space shooting game called Space Agon.
 Github repository: https://github.com/googleforgames/space-agon/tree/main.
-
-TODO: More details will go here.
