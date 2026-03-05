@@ -264,7 +264,7 @@ ifeq ($(MAJOR_MINOR_VERSION),$(_GCB_LATEST_VERSION))
 	# Set CORS policy on GCS bucket so that Swagger UI will work against it.
 	# This only needs to be set once but in the interest of enforcing a consistency we'll apply this every deployment.
 	# CORS policies signal to browsers that it's ok to use this resource in services not hosted from itself (open-match.dev)
-	gsutil cors set $(SITE_DIR)/gcs-cors.json gs://open-match-chart/
+	gcloud storage buckets update gs://open-match-chart/ --cors-file=$(SITE_DIR)/gcs-cors.json
 endif
 else
 	@echo "Not deploying $(GAE_SERVICE_NAME).open-match.dev because this is not a post commit change."
