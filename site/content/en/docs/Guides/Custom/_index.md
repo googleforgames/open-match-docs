@@ -14,22 +14,34 @@ To customize an Open Match installation, we need to provide a ConfigMap with the
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: om-configmap-override
+  name: open-match-configmap-override
   namespace: open-match
+  labels:
+    app: open-match
+    component: config
 data:
   matchmaker_config_override.yaml: |-
-    # Specifies the hostname and port of the evaluator that Open Match should talk to.
+    # Length of time between first fetch matches call, and when no further fetch
+    # matches calls will join the current evaluation/synchronization cycle, 
+    # instead waiting for the next cycle.
+    registrationInterval:  250ms
+    # Length of time after match function as started before it will be canceled,
+    # and evaluator call input is EOF.
+    proposalCollectionInterval: 20s
+    # Time after a ticket has been returned from fetch matches (marked as pending)
+    # before it automatically becomes active again and will be returned by query
+    # calls.
+    pendingReleaseTimeout: 1m
+    # Time after a ticket has been assigned before it is automatically delted.
+    assignedDeleteTimeout: 10m
+    # Maximum number of tickets to return on a single QueryTicketsResponse.
+    queryPageSize: 10000
+    backfillLockTimeout: 1m
     api:
       evaluator:
-        hostname: "om-evaluator"
+        hostname: "open-match-evaluator"
         grpcport: "50508"
         httpport: "51508"
-    # Specifies if we should turn on/off the synchronizer.
-    #   - If on, specifies the registrationInterval and proposalCollectionInterval in milliseconds.
-    synchronizer:
-      enabled: true
-      registrationIntervalMs: 3000ms
-      proposalCollectionIntervalMs: 2000ms
 ```
 
 To configure Open Match with your custom config, create a new YAML file with this content, make your edits and run this command:
