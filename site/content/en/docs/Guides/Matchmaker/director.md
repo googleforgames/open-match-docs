@@ -16,7 +16,7 @@ Here are the key interactions the Director has with Open Match:
 
 ### Fetching Matches
 
-The Director can fetch matches for one or more MatchProfiles using the following API on Open Match Backend:
+The Director can fetch matches for a MatchProfile using the following API on Open Match Backend:
 
 ```proto
 rpc FetchMatches(FetchMatchesRequest) returns (stream FetchMatchesResponse) {
@@ -27,7 +27,7 @@ rpc FetchMatches(FetchMatchesRequest) returns (stream FetchMatchesResponse) {
 }
 ```
 
-The request to fetch matches provides a FunctionConfig and one or more MatchProfile.
+The request to fetch matches provides a FunctionConfig and a MatchProfile.
 
 #### FunctionConfig
 
