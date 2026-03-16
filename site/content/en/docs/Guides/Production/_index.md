@@ -108,3 +108,20 @@ helm install open-match --create-namespace --namespace open-match open-match/ope
   --set open-match-core.redis.enabled=false \
   --set open-match-core.redis.hostname= # Your redis server address
 ```
+
+## Enabling Read Replicas 
+Open Match can support many profiles (see the [issue](https://github.com/googleforgames/open-match/issues/1125) here), but read replica support has benefits depending on scale. It currently uses an open-source Redis image, and all reads and writes are on the master node (which will be referred to as the primary node going forward). At scale, there will be a considerable load when reading and writing, especially when querying tickets for profiles. To turn on read-replicas, follow the suggestions below: 
+ - Ensure that Redis is configured for read-replicas (read the documentation for Redis to help) within the values.yaml/values-production.yaml.
+ - Within `internal/statestore/redis.go`, modify the [RedisBackend](https://github.com/googleforgames/open-match/blob/120a114647fdae3423fa492fd4c01bdd9f6498b3/internal/statestore/redis.go#L58) to have a read-only pool. The port 6379, which is the port to connect to replicas for read-only access by default for most Redis images (see the documentation for the Redis image used) 
+ - Within the [`GetTickets`](https://github.com/googleforgames/open-match/blob/120a114647fdae3423fa492fd4c01bdd9f6498b3/internal/statestore/ticket.go#L60) function in `internal/statestore/ticket.go`, modify the function to use the read-only pool for the [connection](https://github.com/googleforgames/open-match/blob/120a114647fdae3423fa492fd4c01bdd9f6498b3/internal/statestore/ticket.go#L61).
+Reading and caching tickets will now happen on replicas, and the load on the primary node will be lessened. 
+
+## Cloud Memorystore Read Replica support
+To accomplish read replicas with Cloud Memorystore, we must first deploy Redis with specific configurations. To support read-replicas functionality, Open Match must be modified. Follow 2nd and 3rd bullet in the [enable read-replicas]({{< relref "../Production/_index.md#enabling-read-replicas">}}) production step above. To deploy a Cloud Memorystore instance with read-replicas enabled, follow the command below(see documentation [here](https://cloud.google.com/memorystore/docs/redis/managing-read-replicas#creating_a_redis_instance_with_read_replicas) for details on params):
+
+```gcloud redis instances create instance-id --size=size --region=region-id --replica-count=count --read-replicas-mode=READ_REPLICAS_ENABLED --tier=STANDARD```
+
+If you have a Cloud Memorystore instance created without read-replicas enabled, you can enable it by following the command detailed [here](https://cloud.google.com/memorystore/docs/redis/managing-read-replicas#enabling_read_replicas_on_existing_redis_instances).
+
+Cloud Memorystore also uses port 6379 for reads from replicas. Lastly, to connect to your Memorystore instance, you can either:
+Edit Redis configs within `install/helm/values.yaml` / `install/helm/values-production.yaml` to use the hostname/IP of your instance. Use this [practice]({{< relref "../Production/_index.md#use-alternative-to-included-redis-bitnami-image">}}) to connect to your Redis instance.
